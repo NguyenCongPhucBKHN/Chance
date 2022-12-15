@@ -55,4 +55,4 @@ MonoBehaviour:
   gunHolderAdjustmentObject: {fileID: 8122190884529286227, guid: 5d1afc23096026b49b55824ace716bf0, type: 3}
   displayABCTemplates: 1
   displayABCElements: 1
-  displayWelcomeOnStartUp: 1
+  displayWelcomeOnStartUp: 0
