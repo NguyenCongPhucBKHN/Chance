@@ -19,7 +19,7 @@ public class CameraFollow : MonoBehaviour
     // }
     void Awake()
     {
-        player = FindObjectOfType<Player>();
+        // player = FindObjectOfType<Player>();
         TF= gameObject.transform;
     }
 
@@ -41,7 +41,7 @@ public class CameraFollow : MonoBehaviour
     {
         Vector3 pos = TF.position;
         Vector3 targetPos = player.TF.position + offset;
-        pos = Vector3.Lerp(pos, targetPos, lerpRate*Time.fixedDeltaTime);
+        pos = Vector3.Lerp(pos, targetPos, lerpRate*Time.deltaTime);
         TF.position = pos;
     }
     

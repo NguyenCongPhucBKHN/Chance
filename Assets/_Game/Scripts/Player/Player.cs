@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Character
 {
     [SerializeField] Rigidbody rb;
     protected JoystickAttackBtn attckBtn;
     public Transform TF;
+    public Transform modelTF;
     protected bool jump;
 
-    // Start is called before the first frame update
+    private void Awake() {
+        attckBtn = FindObjectOfType<JoystickAttackBtn>();  
+    }
+
+    
     void Start()
     {
      attckBtn = FindObjectOfType<JoystickAttackBtn>();  
@@ -19,6 +24,26 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(JoystickInput.Instance.isControl)
+        {
+            Debug.Log("Run");
+            ChangeAnim("Run");
+            modelTF.rotation =  Quaternion.LookRotation(JoystickInput.Instance.move, Vector3.up);
+            
+        }
+        else if(!JoystickInput.Instance.isControl)
+        {
+            ChangeAnim("Idle");
+        }
+
+        if(Input.GetKeyUp(KeyCode.Space))
+        {
+            ChangeAnim("Attack");
+
+        }
+
+
+
         if(!jump && attckBtn.pressed)
         {
             jump = true;
