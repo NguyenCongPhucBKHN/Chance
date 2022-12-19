@@ -47,23 +47,21 @@ public class Player : Character
     {
         timer += Time.deltaTime;
         
-        if(Input.GetKeyUp(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
             OnAttackAction();
-
-
             
         }
 
-        else if(JoystickInput.Instance.isControl /* && !isAttacking*/)
+        else if(JoystickInput.Instance.isControl && !isAttacking)
         { 
             ChangeAnim("Run");
             modelTF.rotation =  Quaternion.LookRotation(JoystickInput.Instance.move, Vector3.up);     
         }
-        // else if(!JoystickInput.Instance.isControl)
-        // {
-        //     ChangeAnim("Idle");
-        // }
+        else if(!JoystickInput.Instance.isControl && !isAttacking)
+        {
+            ChangeAnim("Idle");
+        }
 
         
 
@@ -106,7 +104,7 @@ public class Player : Character
 
     private  IEnumerator ResettingAttackCombo()
     {
-        isAttacking = false;
+        
         yield return new WaitForEndOfFrame();
         yield return new WaitForSeconds(anim.GetAnimatorTransitionInfo(0).duration);
         yield return new WaitForEndOfFrame();
@@ -115,6 +113,7 @@ public class Player : Character
         comboHitStep = -1;
         // ChangeAnim("Attack");
         anim.SetInteger("hitStep", comboHitStep);
+        isAttacking = false;
     }
 
     private void ActiveAttack()
