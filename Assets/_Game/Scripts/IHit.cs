@@ -6,7 +6,7 @@ using UnityEngine;
 public interface IHit 
 {
     
-    public  void takeDame();
+    public void takeDame(float damage);
    
    
 }

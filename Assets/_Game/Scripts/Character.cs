@@ -4,16 +4,27 @@ using UnityEngine;
 
 public class Character : MonoBehaviour, IHit
 {
-    [SerializeField] private Animator anim;
+    [Header("Attributes")]
+    public float maxHp =10;
+    [SerializeField]
+    private float damage;
+    public Transform tf;
+    [Header("Movement")]
+    public float speed =5f;
+    
+    public bool IsDead => hp <= 0;
+    [Header("Animator")]
+    [SerializeField] protected Animator anim;
 
     private string currentAnimName;
-    private float hp;
-    public bool IsDead =>hp<=0;
-    public virtual void takeDame()
+    
+    public float Damage => damage;
+    public float hp; //TODO: protected
+    
+    public virtual void Awake()
     {
-        
+        tf= transform;
     }
-
     protected void ChangeAnim(string animName)
     {
         if(currentAnimName != animName)
@@ -22,28 +33,55 @@ public class Character : MonoBehaviour, IHit
             currentAnimName = animName;
             anim.SetTrigger(currentAnimName);
         }
+        if(currentAnimName =="Attack")
+        {
+            anim.SetTrigger(currentAnimName);
+        }
     }
 
     public void OnHit(float damage)
     {
-        Debug.Log("Hit");
+        // Debug.Log("Hit");
+        // if (!IsDead)
+        // {
+        //     takeDame(damage);
+
+        //     if (IsDead)
+        //     {
+        //         hp = 0;
+        //         OnDeath();
+        //     }
+
+        //     // healthBar.SetNewHp(hp);
+        // }
+    }
+    public virtual void OnInit()
+    {
+        hp =100;
+    }
+
+    public virtual void OnDespawn()
+    {
+        Destroy(gameObject);
+    }
+    protected virtual void OnDeath()
+    {
+        ChangeAnim("Die");
+        Invoke(nameof(OnDespawn), 2f);
+    }
+
+    public virtual void takeDame(float damage)
+    {
+        
         if (!IsDead)
         {
             hp -= damage;
 
             if (IsDead)
             {
-                hp = 0;
                 OnDeath();
             }
-
-            // healthBar.SetNewHp(hp);
         }
     }
-
-    protected virtual void OnDeath()
-    {
-        ChangeAnim("die");
-        // Invoke(nameof(OnDespawn), 2f);
-    }
 }
+   

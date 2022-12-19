@@ -3,7 +3,32 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - ABC/WeaponInitiation
+  - Environment
+  - Debris
+  - ABC/BackRightWeaponSheath
+  - ABC/BackLeftWeaponSheath
+  - Enemy
+  - ABC/Head
+  - ABC/RightFoot
+  - ABC/RightHand
+  - Headshot
+  - GunInitiation
+  - ABC/LeftFoot
+  - ABC/LeftHand
+  - ABC/BackCentreWeaponSheath
+  - ABC/LeftWeaponSheath
+  - ABC/WeaponTip
+  - ABC/BackRightDiagonalWeaponSheath
+  - ABC/RightWeaponHolder
+  - ABC/RightWeaponSheath
+  - ABC/LeftWeaponHolster
+  - ABC/LeftWeaponHolder
+  - ABC/AdditionalWeaponInitiation
+  - ABC/BackLeftDiagonalWeaponSheath
+  - ABC/RightWeaponHolster
+  - ABC/WeaponBase
   layers:
   - Default
   - TransparentFX
@@ -14,10 +39,10 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - character
+  - player
+  - AttackPlayer
+  - AttackEnemy
   - 
   - 
   - 
