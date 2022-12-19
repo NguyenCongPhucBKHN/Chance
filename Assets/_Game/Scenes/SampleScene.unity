@@ -609,11 +609,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8262a1ff8b85c74fa90af1c982d7fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 808142759}
   _joystick: {fileID: 1599558227}
-  _moveSpeed: 5
   controller: {fileID: 808142754}
   tfCenterJoystick: {fileID: 1610811777}
+  modelTF: {fileID: 5882710514286724139}
   move: {x: 0, y: 0, z: 0}
+  moveSpeed: 0
 --- !u!54 &808142759
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -622,7 +624,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 808142752}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
