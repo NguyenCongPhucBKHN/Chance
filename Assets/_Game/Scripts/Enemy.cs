@@ -93,7 +93,7 @@ public class Enemy : Character
         ChangeAnim("Idle");
         agent.SetDestination(tf.position);
     }
-    public void Moving()
+    public virtual void Moving()
     {
         ChangeAnim("Run");
         if(Target!=null)
@@ -102,6 +102,7 @@ public class Enemy : Character
         }
         else
         {
+            ChangeAnim("Walk");
             int index = Random.Range(0, listPoint.Count);
             agent.SetDestination(listPoint[index].position);
 
