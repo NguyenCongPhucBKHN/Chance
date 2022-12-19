@@ -33,28 +33,13 @@ public class Character : MonoBehaviour, IHit
             currentAnimName = animName;
             anim.SetTrigger(currentAnimName);
         }
-        if(currentAnimName =="Attack")
+        else if(currentAnimName =="Attack")
         {
             anim.SetTrigger(currentAnimName);
         }
     }
 
-    public void OnHit(float damage)
-    {
-        // Debug.Log("Hit");
-        // if (!IsDead)
-        // {
-        //     takeDame(damage);
-
-        //     if (IsDead)
-        //     {
-        //         hp = 0;
-        //         OnDeath();
-        //     }
-
-        //     // healthBar.SetNewHp(hp);
-        // }
-    }
+   
     public virtual void OnInit()
     {
         hp =100;
@@ -67,7 +52,7 @@ public class Character : MonoBehaviour, IHit
     protected virtual void OnDeath()
     {
         ChangeAnim("Die");
-        Invoke(nameof(OnDespawn), 2f);
+        Invoke(nameof(OnDespawn), 3f);
     }
 
     public virtual void takeDame(float damage)

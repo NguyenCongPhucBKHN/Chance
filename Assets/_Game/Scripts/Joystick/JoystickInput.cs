@@ -20,8 +20,8 @@ public class JoystickInput : Singleton<JoystickInput>
         if(_joystick.Horizontal != 0 || _joystick.Vertical != 0)
         {
             modelTF.rotation =  Quaternion.LookRotation(JoystickInput.Instance.move, Vector3.up);    
-        Move(moveSpeed);
         }
+        Move(moveSpeed);
     }
     public void Move(float speed)
     {

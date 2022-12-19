@@ -39,6 +39,7 @@ public class Player : Character
     public override void OnInit()
     {
         base.OnInit();
+        DeActiveAttack();
         timer =0;
         isAttacking = false;
     }
@@ -62,27 +63,25 @@ public class Player : Character
             ChangeAnim("Idle");
         }
 
-        
+        // if(!jump && attckBtn.pressed)
+        // {
+        //     jump = true;
+        //     // rb.velocity += Vector3.up*5;
+        //     ActiveAttack();
+        //     ChangeAnim("Attack");
+        // }
 
-
-        if(!jump && attckBtn.pressed)
-        {
-            jump = true;
-            // rb.velocity += Vector3.up*5;
-            ActiveAttack();
-            ChangeAnim("Attack");
-        }
-
-        if(jump && !attckBtn.pressed)
-        {
-            jump = false;
-            Debug.Log("after jump");
-        }
+        // if(jump && !attckBtn.pressed)
+        // {
+        //     jump = false;
+        //     Debug.Log("after jump");
+        // }
     }
 
     private void OnAttackAction()
     {
         JoystickInput.Instance.moveSpeed =0;
+        
         isAttacking = true;
         if(comboHitStep == COMBO_MAX_STEP)
             return;
@@ -96,6 +95,7 @@ public class Player : Character
             comboHitStep++;
             anim.SetInteger("hitStep", comboHitStep);
             ChangeAnim("Attack");
+            ActiveAttack();
             comboAttackResetCouroutine = StartCoroutine(ResettingAttackCombo());
         }
        
@@ -110,8 +110,10 @@ public class Player : Character
         yield return new WaitUntil(() =>
             anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f);
         comboHitStep = -1;
+        DeActiveAttack();
         anim.SetInteger("hitStep", comboHitStep);
         isAttacking = false;
+        
     }
 
     private void ActiveAttack()

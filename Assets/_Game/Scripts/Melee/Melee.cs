@@ -9,13 +9,14 @@ public class Melee : Enemy
     public override void OnInit()
     {
         base.OnInit();
-        // DeActiveAttack();
+        DeActiveAttack();
     }
     public  override void Attack()
     {
         ChangeAnim("Attack");
-        // ActiveAttack();
-        // Invoke(nameof(DeActiveAttack), 0.5f);
+        ActiveAttack();
+        // float t = anim.GetAnimatorTransitionInfo(0).duration;
+        Invoke(nameof(DeActiveAttack), 1f);
     }
     private void ActiveAttack()
     {

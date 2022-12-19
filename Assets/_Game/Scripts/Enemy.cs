@@ -36,20 +36,12 @@ public class Enemy : Character
         OnInit();
     }
 
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
-    /// 
-    /// 
+    
     private void Update()
     {
         if(currentState!= null)
         {
             currentState.OnExecute(this);
-        }
-        else
-        {
-            ChangeState( new PatrolState());
         }
     }
 
@@ -67,10 +59,13 @@ public class Enemy : Character
         ChangeState( new IdleState());
     }
 
+    protected override void  OnDeath()
+    {
+        ChangeState(null);
+        base.OnDeath();
+    }
      public void SetDestination(Vector3 position)
     {
-        //destination = position;
-
         destination = position;
         destination.y = 0;
         Moving();
