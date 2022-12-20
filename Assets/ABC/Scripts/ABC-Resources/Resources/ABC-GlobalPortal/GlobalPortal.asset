@@ -25,7 +25,7 @@ MonoBehaviour:
   - {fileID: 7991771417762655030, guid: 4e74e0c7fdc3e1e49aaf1a49bff28fdf, type: 3}
   - {fileID: 8938170482598162167, guid: f7b18dabefe301345bd9bdebdce14aae, type: 3}
   - {fileID: 7855075609614284343, guid: 7520babdb00eafb429a3a9a7000b9484, type: 3}
-  characterType: 0
+  characterType: 1
   characterIntegrationType: 0
   gameType: 0
   addComponentPresets: 1
@@ -48,7 +48,7 @@ MonoBehaviour:
   - {fileID: 318812323228562882, guid: 9b1d8b1fc07abe0409ab3d936759530a, type: 3}
   addMovement: 1
   AniController: {fileID: 9100000, guid: b459a893644e0d344aea25459250eb52, type: 2}
-  enableLockOnMovement: 1
+  enableLockOnMovement: 0
   enableJumping: 1
   enableCameraRotation: 1
   weaponHolderAdjustmentObject: {fileID: 5980400731100887671, guid: d8f59fe51010d6e4b96516c1ab106bd6, type: 3}

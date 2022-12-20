@@ -29,6 +29,8 @@ TagManager:
   - ABC/BackLeftDiagonalWeaponSheath
   - ABC/RightWeaponHolster
   - ABC/WeaponBase
+  - ABC/WeaponIK
+  - ABC/AdditionalWeaponIK
   layers:
   - Default
   - TransparentFX
