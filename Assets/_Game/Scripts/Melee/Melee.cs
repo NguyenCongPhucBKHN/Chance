@@ -15,7 +15,6 @@ public class Melee : Enemy
     {
         ChangeAnim("Attack");
         ActiveAttack();
-        // float t = anim.GetAnimatorTransitionInfo(0).duration;
         Invoke(nameof(DeActiveAttack), 1f);
     }
     private void ActiveAttack()

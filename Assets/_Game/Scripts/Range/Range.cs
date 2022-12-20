@@ -4,29 +4,29 @@ using UnityEngine;
 
 public class Range : Enemy
 {
+    [SerializeField] private Bullet BulletPrefab;
+    [SerializeField] private Transform throwPoint;
+
     public override void OnInit()
     {
         base.OnInit();
-
     }
 
     public override void Attack()
     {
         ChangeAnim("Attack");
+        Invoke(nameof(DelayAttack), 5f);
+        Invoke(nameof(ReloadBullet), 15f);
+        Instantiate(BulletPrefab, throwPoint.position, throwPoint.rotation);
     }
 
-    // public override void Moving()
-    // {
-    //     if(Target!= null)
-    //     {
-    //         ChangeAnim("Run");
-    //         agent.SetDestination(Target.tf.position);
-    //     }
-    //     else
-    //     {
-    //         ChangeAnim("Walk");
-    //         int index = Random.Range(0, listPoint.Count);
-    //         agent.SetDestination(listPoint[index].position);
-    //     }
-    // }
+    public void ReloadBullet()
+    {
+        ChangeAnim("Reload");
+    }
+    public void DelayAttack()
+    {
+        ChangeAnim("Delay");
+    }
+
 }

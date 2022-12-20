@@ -7,7 +7,6 @@ using UnityEngine.AI;
 public class Enemy : Character
 {
     [SerializeField] private float attackRange;
-    [SerializeField] private float moveSpeed;
     [SerializeField] private float fovRadius;
     public NavMeshAgent agent;
     Vector3 point;
@@ -16,6 +15,7 @@ public class Enemy : Character
     private Character target;
     public Character Target => target;
     public List<Transform> listPoint;
+    public bool isAttack =false;
     public bool IsDestination 
     {
         get 
@@ -33,6 +33,7 @@ public class Enemy : Character
     }
     private void Start() {
         GetComponent<SphereCollider>().radius = fovRadius;
+        agent.speed = speed;
         OnInit();
     }
 
