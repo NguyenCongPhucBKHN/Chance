@@ -256,7 +256,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &7306030104017403154
 Animator:
-  serializedVersion: 3
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -269,10 +269,11 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!136 &5904078468486841586
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2358,8 +2359,8 @@ MonoBehaviour:
       hit
     iconImage:
       refVal: {fileID: 2800000, guid: b38a9be79cbb11a4a93580a6d6c3cb03, type: 3}
-      refName: AttackIcon
-      refUpdateDateTime: 09/08/2020 19:14:22
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:03 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -3011,8 +3012,8 @@ MonoBehaviour:
     description: The third attack in a combo which inflicts damage on the enemy hit
     iconImage:
       refVal: {fileID: 2800000, guid: b38a9be79cbb11a4a93580a6d6c3cb03, type: 3}
-      refName: AttackIcon
-      refUpdateDateTime: 09/08/2020 19:14:45
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:03 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -3665,8 +3666,8 @@ MonoBehaviour:
       hit
     iconImage:
       refVal: {fileID: 2800000, guid: b38a9be79cbb11a4a93580a6d6c3cb03, type: 3}
-      refName: AttackIcon
-      refUpdateDateTime: 09/08/2020 19:14:50
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:03 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -4318,8 +4319,8 @@ MonoBehaviour:
     description: The fifth attack in a combo which inflicts damage on the enemy hit
     iconImage:
       refVal: {fileID: 2800000, guid: b38a9be79cbb11a4a93580a6d6c3cb03, type: 3}
-      refName: AttackIcon
-      refUpdateDateTime: 09/08/2020 19:14:55
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:03 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -4971,8 +4972,8 @@ MonoBehaviour:
     description: ' '
     iconImage:
       refVal: {fileID: 2800000, guid: 6fd1362870976cb4f8125562df65599c, type: 3}
-      refName: FireIcon
-      refUpdateDateTime: 16/08/2020 10:40:59
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:03 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -5726,8 +5727,8 @@ MonoBehaviour:
     description: ' '
     iconImage:
       refVal: {fileID: 2800000, guid: 6fd1362870976cb4f8125562df65599c, type: 3}
-      refName: FireIcon
-      refUpdateDateTime: 16/08/2020 10:40:59
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:03 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -8454,8 +8455,8 @@ MonoBehaviour:
     description: The first attack in a combo which inflicts damage on the enemy hit
     iconImage:
       refVal: {fileID: 2800000, guid: b38a9be79cbb11a4a93580a6d6c3cb03, type: 3}
-      refName: AttackIcon
-      refUpdateDateTime: 09/08/2020 19:14:17
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:03 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -9276,8 +9277,8 @@ MonoBehaviour:
       hit
     iconImage:
       refVal: {fileID: 2800000, guid: b38a9be79cbb11a4a93580a6d6c3cb03, type: 3}
-      refName: AttackIcon
-      refUpdateDateTime: 09/08/2020 19:14:22
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:04 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -9929,8 +9930,8 @@ MonoBehaviour:
     description: The third attack in a combo which inflicts damage on the enemy hit
     iconImage:
       refVal: {fileID: 2800000, guid: b38a9be79cbb11a4a93580a6d6c3cb03, type: 3}
-      refName: AttackIcon
-      refUpdateDateTime: 09/08/2020 19:14:45
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:04 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -11391,7 +11392,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: -12.196001, y: 123.19601, z: 1.269}
 --- !u!95 &5591811423006212119
 Animator:
-  serializedVersion: 3
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -11404,10 +11405,11 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &5533294247426651413
 GameObject:
   m_ObjectHideFlags: 0

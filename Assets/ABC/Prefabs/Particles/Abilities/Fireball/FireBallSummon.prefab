@@ -79,8 +79,8 @@ MonoBehaviour:
     description: ' '
     iconImage:
       refVal: {fileID: 2800000, guid: 6fd1362870976cb4f8125562df65599c, type: 3}
-      refName: FireIcon
-      refUpdateDateTime: 16/08/2020 10:40:59
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:06 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -870,8 +870,8 @@ MonoBehaviour:
       hit
     iconImage:
       refVal: {fileID: 2800000, guid: b38a9be79cbb11a4a93580a6d6c3cb03, type: 3}
-      refName: AttackIcon
-      refUpdateDateTime: 09/08/2020 19:14:22
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:06 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -1523,8 +1523,8 @@ MonoBehaviour:
     description: The third attack in a combo which inflicts damage on the enemy hit
     iconImage:
       refVal: {fileID: 2800000, guid: b38a9be79cbb11a4a93580a6d6c3cb03, type: 3}
-      refName: AttackIcon
-      refUpdateDateTime: 09/08/2020 19:14:45
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:06 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -2177,8 +2177,8 @@ MonoBehaviour:
       hit
     iconImage:
       refVal: {fileID: 2800000, guid: b38a9be79cbb11a4a93580a6d6c3cb03, type: 3}
-      refName: AttackIcon
-      refUpdateDateTime: 09/08/2020 19:14:50
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:06 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -2830,8 +2830,8 @@ MonoBehaviour:
     description: The fifth attack in a combo which inflicts damage on the enemy hit
     iconImage:
       refVal: {fileID: 2800000, guid: b38a9be79cbb11a4a93580a6d6c3cb03, type: 3}
-      refName: AttackIcon
-      refUpdateDateTime: 09/08/2020 19:14:55
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:06 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -3483,8 +3483,8 @@ MonoBehaviour:
     description: ' '
     iconImage:
       refVal: {fileID: 2800000, guid: 6fd1362870976cb4f8125562df65599c, type: 3}
-      refName: FireIcon
-      refUpdateDateTime: 16/08/2020 10:40:59
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:06 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -4238,8 +4238,8 @@ MonoBehaviour:
     description: ' '
     iconImage:
       refVal: {fileID: 2800000, guid: 6fd1362870976cb4f8125562df65599c, type: 3}
-      refName: FireIcon
-      refUpdateDateTime: 16/08/2020 10:40:59
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:06 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -6966,8 +6966,8 @@ MonoBehaviour:
     description: The first attack in a combo which inflicts damage on the enemy hit
     iconImage:
       refVal: {fileID: 2800000, guid: b38a9be79cbb11a4a93580a6d6c3cb03, type: 3}
-      refName: AttackIcon
-      refUpdateDateTime: 09/08/2020 19:14:17
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:06 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -7792,8 +7792,8 @@ MonoBehaviour:
       hit
     iconImage:
       refVal: {fileID: 2800000, guid: b38a9be79cbb11a4a93580a6d6c3cb03, type: 3}
-      refName: AttackIcon
-      refUpdateDateTime: 09/08/2020 19:14:22
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:06 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -8445,8 +8445,8 @@ MonoBehaviour:
     description: The third attack in a combo which inflicts damage on the enemy hit
     iconImage:
       refVal: {fileID: 2800000, guid: b38a9be79cbb11a4a93580a6d6c3cb03, type: 3}
-      refName: AttackIcon
-      refUpdateDateTime: 09/08/2020 19:14:45
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:06 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1

@@ -24582,6 +24582,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gun Trooper
       objectReference: {fileID: 0}
+    - target: {fileID: 5904078468486841585, guid: 5dc9a6726ae5239418e34b5f4d60447e, type: 3}
+      propertyPath: _currentAbilities.Array.data[10].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
+    - target: {fileID: 5904078468486841585, guid: 5dc9a6726ae5239418e34b5f4d60447e, type: 3}
+      propertyPath: _currentAbilities.Array.data[11].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
     - target: {fileID: 5904078469116367275, guid: 5dc9a6726ae5239418e34b5f4d60447e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -24614,6 +24622,42 @@ PrefabInstance:
     - target: {fileID: 1544330061556951791, guid: d2005522c00c741459cfba5c1440294f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723377858078957184, guid: d2005522c00c741459cfba5c1440294f, type: 3}
+      propertyPath: _currentAbilities.Array.data[0].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723377858078957184, guid: d2005522c00c741459cfba5c1440294f, type: 3}
+      propertyPath: _currentAbilities.Array.data[1].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723377858078957184, guid: d2005522c00c741459cfba5c1440294f, type: 3}
+      propertyPath: _currentAbilities.Array.data[2].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723377858078957184, guid: d2005522c00c741459cfba5c1440294f, type: 3}
+      propertyPath: _currentAbilities.Array.data[3].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723377858078957184, guid: d2005522c00c741459cfba5c1440294f, type: 3}
+      propertyPath: _currentAbilities.Array.data[4].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723377858078957184, guid: d2005522c00c741459cfba5c1440294f, type: 3}
+      propertyPath: _currentAbilities.Array.data[5].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723377858078957184, guid: d2005522c00c741459cfba5c1440294f, type: 3}
+      propertyPath: _currentAbilities.Array.data[9].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723377858078957184, guid: d2005522c00c741459cfba5c1440294f, type: 3}
+      propertyPath: _currentAbilities.Array.data[10].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723377858078957184, guid: d2005522c00c741459cfba5c1440294f, type: 3}
+      propertyPath: _currentAbilities.Array.data[11].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
       objectReference: {fileID: 0}
     - target: {fileID: 2864740953679841778, guid: d2005522c00c741459cfba5c1440294f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -25732,6 +25776,42 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5945766192994481470, guid: 5027aec8c9535e244848b617b9fe2f17, type: 3}
+      propertyPath: _currentAbilities.Array.data[0].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
+    - target: {fileID: 5945766192994481470, guid: 5027aec8c9535e244848b617b9fe2f17, type: 3}
+      propertyPath: _currentAbilities.Array.data[1].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
+    - target: {fileID: 5945766192994481470, guid: 5027aec8c9535e244848b617b9fe2f17, type: 3}
+      propertyPath: _currentAbilities.Array.data[2].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
+    - target: {fileID: 5945766192994481470, guid: 5027aec8c9535e244848b617b9fe2f17, type: 3}
+      propertyPath: _currentAbilities.Array.data[3].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
+    - target: {fileID: 5945766192994481470, guid: 5027aec8c9535e244848b617b9fe2f17, type: 3}
+      propertyPath: _currentAbilities.Array.data[4].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
+    - target: {fileID: 5945766192994481470, guid: 5027aec8c9535e244848b617b9fe2f17, type: 3}
+      propertyPath: _currentAbilities.Array.data[5].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
+    - target: {fileID: 5945766192994481470, guid: 5027aec8c9535e244848b617b9fe2f17, type: 3}
+      propertyPath: _currentAbilities.Array.data[9].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
+    - target: {fileID: 5945766192994481470, guid: 5027aec8c9535e244848b617b9fe2f17, type: 3}
+      propertyPath: _currentAbilities.Array.data[10].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
+    - target: {fileID: 5945766192994481470, guid: 5027aec8c9535e244848b617b9fe2f17, type: 3}
+      propertyPath: _currentAbilities.Array.data[11].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
     - target: {fileID: 5945766194120540082, guid: 5027aec8c9535e244848b617b9fe2f17, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -26162,6 +26242,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1625136328357832, guid: 3b032acd584ea7e4a8a7c9bddcf97ae2, type: 3}
+      propertyPath: _currentAbilities.Array.data[0].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625136328357832, guid: 3b032acd584ea7e4a8a7c9bddcf97ae2, type: 3}
+      propertyPath: _currentAbilities.Array.data[1].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625136328357832, guid: 3b032acd584ea7e4a8a7c9bddcf97ae2, type: 3}
+      propertyPath: _currentAbilities.Array.data[2].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625136328357832, guid: 3b032acd584ea7e4a8a7c9bddcf97ae2, type: 3}
+      propertyPath: _currentAbilities.Array.data[3].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625136328357832, guid: 3b032acd584ea7e4a8a7c9bddcf97ae2, type: 3}
+      propertyPath: _currentAbilities.Array.data[4].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625136328357832, guid: 3b032acd584ea7e4a8a7c9bddcf97ae2, type: 3}
+      propertyPath: _currentAbilities.Array.data[5].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625136328357832, guid: 3b032acd584ea7e4a8a7c9bddcf97ae2, type: 3}
+      propertyPath: _currentAbilities.Array.data[9].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625136328357832, guid: 3b032acd584ea7e4a8a7c9bddcf97ae2, type: 3}
+      propertyPath: _currentAbilities.Array.data[10].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625136328357832, guid: 3b032acd584ea7e4a8a7c9bddcf97ae2, type: 3}
+      propertyPath: _currentAbilities.Array.data[11].iconImage.refUpdateDateTime
+      value: 20/12/2022 10:09:03 SA
+      objectReference: {fileID: 0}
     - target: {fileID: 1480194607561758725, guid: 3b032acd584ea7e4a8a7c9bddcf97ae2, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -34496,8 +34612,8 @@ MonoBehaviour:
       hit
     iconImage:
       refVal: {fileID: 2800000, guid: b38a9be79cbb11a4a93580a6d6c3cb03, type: 3}
-      refName: AttackIcon
-      refUpdateDateTime: 09/08/2020 19:14:22
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:03 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -35149,8 +35265,8 @@ MonoBehaviour:
     description: The third attack in a combo which inflicts damage on the enemy hit
     iconImage:
       refVal: {fileID: 2800000, guid: b38a9be79cbb11a4a93580a6d6c3cb03, type: 3}
-      refName: AttackIcon
-      refUpdateDateTime: 09/08/2020 19:14:45
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:03 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -35803,8 +35919,8 @@ MonoBehaviour:
       hit
     iconImage:
       refVal: {fileID: 2800000, guid: b38a9be79cbb11a4a93580a6d6c3cb03, type: 3}
-      refName: AttackIcon
-      refUpdateDateTime: 09/08/2020 19:14:50
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:03 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -36456,8 +36572,8 @@ MonoBehaviour:
     description: The fifth attack in a combo which inflicts damage on the enemy hit
     iconImage:
       refVal: {fileID: 2800000, guid: b38a9be79cbb11a4a93580a6d6c3cb03, type: 3}
-      refName: AttackIcon
-      refUpdateDateTime: 09/08/2020 19:14:55
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:03 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -37109,8 +37225,8 @@ MonoBehaviour:
     description: ' '
     iconImage:
       refVal: {fileID: 2800000, guid: 6fd1362870976cb4f8125562df65599c, type: 3}
-      refName: FireIcon
-      refUpdateDateTime: 16/08/2020 10:40:59
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:03 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -37864,8 +37980,8 @@ MonoBehaviour:
     description: ' '
     iconImage:
       refVal: {fileID: 2800000, guid: 6fd1362870976cb4f8125562df65599c, type: 3}
-      refName: FireIcon
-      refUpdateDateTime: 16/08/2020 10:40:59
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:03 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -40592,8 +40708,8 @@ MonoBehaviour:
     description: The first attack in a combo which inflicts damage on the enemy hit
     iconImage:
       refVal: {fileID: 2800000, guid: b38a9be79cbb11a4a93580a6d6c3cb03, type: 3}
-      refName: AttackIcon
-      refUpdateDateTime: 09/08/2020 19:14:17
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:03 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -41414,8 +41530,8 @@ MonoBehaviour:
       hit
     iconImage:
       refVal: {fileID: 2800000, guid: b38a9be79cbb11a4a93580a6d6c3cb03, type: 3}
-      refName: AttackIcon
-      refUpdateDateTime: 09/08/2020 19:14:22
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:03 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -42067,8 +42183,8 @@ MonoBehaviour:
     description: The third attack in a combo which inflicts damage on the enemy hit
     iconImage:
       refVal: {fileID: 2800000, guid: b38a9be79cbb11a4a93580a6d6c3cb03, type: 3}
-      refName: AttackIcon
-      refUpdateDateTime: 09/08/2020 19:14:45
+      refName: 
+      refUpdateDateTime: 20/12/2022 10:09:03 SA
     loggingEnabled: 1
     globalAbilityOverrideEnableStatus: 0
     abilityEnabled: 1
@@ -45833,7 +45949,7 @@ CharacterController:
   m_Center: {x: 0, y: 1.05, z: 0}
 --- !u!95 &7870408987759051609
 Animator:
-  serializedVersion: 3
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -45846,13 +45962,13 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
     are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'CC_Base_R_Hand'\n\tFrom animation clip 'Combat_Stance'\n\tFrom
-    animation clip 'Combat_Stance'"
+    by Humanoid clips.\n\tTransform 'CC_Base_R_Hand'\n\tFrom animation clip 'Combat_Stance'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!4 &7870408987759051610
 Transform:
   m_ObjectHideFlags: 0
