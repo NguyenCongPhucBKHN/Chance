@@ -17,7 +17,7 @@ public class Character : MonoBehaviour, IHitAttack
     [SerializeField] protected Animator anim;
 
     private string currentAnimName;
-    
+    protected bool isHitting;
     public float Damage => damage;
     public float hp; //TODO: protected
     

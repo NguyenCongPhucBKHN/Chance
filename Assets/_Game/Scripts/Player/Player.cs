@@ -50,6 +50,7 @@ public class Player : Character
         comboHitStep=-1;
         isAttacking = false;
         isDashing = false;
+        isHitting = false;
         DashObj.SetActive(false);
     }
     // Update is called once per frame
@@ -76,7 +77,7 @@ public class Player : Character
             ChangeAnim("Run");
             JoystickInput.Instance.moveSpeed =speed;
         }
-        else if(!JoystickInput.Instance.isControl && !isAttacking && !isDashing)
+        else if(!JoystickInput.Instance.isControl && !isAttacking && !isDashing && !isHitting)
         {
             ChangeAnim("Idle");
         }
@@ -104,6 +105,7 @@ public class Player : Character
         DashObj.SetActive(false);
         ChangeAnim("Idle");
         isDashing = false;
+        
         
     }
     private void OnAttackAction()
