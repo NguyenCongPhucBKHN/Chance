@@ -11,21 +11,32 @@ public class JoystickInput : Singleton<JoystickInput>
     [SerializeField] private CharacterController controller;
     [SerializeField] private Transform tfCenterJoystick;
     [SerializeField] private Transform modelTF;
+    [SerializeField] private Player player;
     public Vector3 move;
     public bool isControl => Vector3.Distance(tfCenterJoystick.localPosition, Vector3.zero)>0.001;
      public float moveSpeed;
     private void FixedUpdate() 
     {
         move = new Vector3(_joystick.Horizontal, 0, _joystick.Vertical ).normalized;
-        if(_joystick.Horizontal != 0 || _joystick.Vertical != 0)
+        if( !player.isDashing &&(_joystick.Horizontal != 0 || _joystick.Vertical != 0))
         {
-            modelTF.rotation =  Quaternion.LookRotation(JoystickInput.Instance.move, Vector3.up);    
+            modelTF.rotation =  Quaternion.LookRotation(JoystickInput.Instance.move, Vector3.up);   
+            Move(moveSpeed); 
         }
-        Move(moveSpeed);
+        else if(player.isDashing)
+        {
+            Dash(moveSpeed);
+        }
     }
     public void Move(float speed)
     {
         _rigidbody.velocity = new Vector3(_joystick.Horizontal *speed, _rigidbody.velocity.y, _joystick.Vertical*speed);
+
+    }
+
+    public void Dash(float speed)
+    {
+         _rigidbody.velocity = modelTF.forward * speed;
 
     }
 }

@@ -108,7 +108,7 @@ public class Enemy : Character
             agent.SetDestination(listPoint[index].position);
 
         }
-        //TODO: Set agent move
+        
     }
 
     public virtual void Attack()

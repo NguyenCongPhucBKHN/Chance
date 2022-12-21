@@ -9,6 +9,8 @@ public class Bullet : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float timeLife;
     [SerializeField] float damge;
+    [SerializeField] ParticleSystem hitVFX;
+    [SerializeField] GameObject hitBullet;
     public Rigidbody rb;
     void Start()
     {
@@ -18,6 +20,10 @@ public class Bullet : MonoBehaviour
     private void OnInit()
     {
         rb.velocity = tf.right * speed;
+        // if(hitVFX.isPlaying)
+        // {
+        //     hitVFX.Stop();
+        // }
         Invoke(nameof(OnDespawn), timeLife);
     }
 
@@ -31,7 +37,8 @@ public class Bullet : MonoBehaviour
         Player player = other.GetComponent<Player>();
         if(player!= null)
         {
-            player.takeDame(damge);
+            player.OnHitAttack(damge);
+            Instantiate(hitBullet, tf.position, tf.rotation);
             OnDespawn();
         }
     }

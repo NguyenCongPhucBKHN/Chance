@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Melee : Enemy
+public class Melee : Enemy, IHitDash
 {
     [SerializeField] private GameObject attackArea;
     public override void OnInit()
@@ -25,5 +25,11 @@ public class Melee : Enemy
     private void DeActiveAttack()
     {
         attackArea.SetActive(false);
+    }
+    public void OnHitDash()
+    {
+        // Debug.Log("Dash collider");
+        OnDeath();
+        
     }
 }

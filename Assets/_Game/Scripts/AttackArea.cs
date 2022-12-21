@@ -5,23 +5,18 @@ using UnityEngine;
 // [RequireComponent(typeof(Rigidbody))]
 public class AttackArea : MonoBehaviour
 {
-    [SerializeField]
-    Character ownAttack;
+    [SerializeField] Transform tf;
+    [SerializeField] Character ownAttack;
+    [SerializeField] GameObject hitSlashPrefab;
     
     private void OnTriggerEnter(Collider collision)
     {
-        Player player = collision.GetComponent<Player>();
-        if(player!= null)
+        Character character = collision.GetComponentInParent<Character>();
+        if(character!=null)
         {
-            Debug.Log("character dame:"+ player.hp);
-            player.takeDame(ownAttack.Damage);
-        }
-
-        if(collision.CompareTag("Enemy"))
-        {
-            Character character = collision.GetComponentInParent<Character>();
-            Debug.Log("character dame:"+ character.hp);
-            character.takeDame(ownAttack.Damage);
+            Instantiate(hitSlashPrefab, tf.position, tf.rotation);
+            character.OnHitAttack(ownAttack.Damage);
+            
         }
     }
 }

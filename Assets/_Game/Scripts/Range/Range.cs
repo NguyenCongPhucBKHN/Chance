@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Range : Enemy
+public class Range : Enemy, IHitDash
 {
     [SerializeField] private Bullet BulletPrefab;
     [SerializeField] private Transform throwPoint;
@@ -27,6 +27,11 @@ public class Range : Enemy
     public void DelayAttack()
     {
         ChangeAnim("Delay");
+    }
+    public void OnHitDash()
+    {
+        OnDeath();
+        
     }
 
 }

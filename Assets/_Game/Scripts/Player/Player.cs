@@ -21,6 +21,12 @@ public class Player : Character
     private int comboHitStep;
     private bool isAttacking;
     private Coroutine comboAttackResetCouroutine;
+    [SerializeField] GameObject vfxAttack;
+    #endregion
+    #region Variables: Dash
+    [SerializeField] private GameObject DashObj;
+    public bool isDashing;
+    
     #endregion
 
     public override void Awake() 
@@ -41,7 +47,10 @@ public class Player : Character
         base.OnInit();
         DeActiveAttack();
         timer =0;
+        comboHitStep=-1;
         isAttacking = false;
+        isDashing = false;
+        DashObj.SetActive(false);
     }
     // Update is called once per frame
     void Update()
@@ -52,17 +61,25 @@ public class Player : Character
         {
             OnAttackAction(); 
         }
+        else if(Input.GetKeyDown(KeyCode.D))
+        {
+            isDashing = true;
+            ChangeAnim("Dash");
+            Invoke(nameof(StopDash), 1.2f);
+            OnDash();
+            JoystickInput.Instance.moveSpeed =speed-2f;
+            
+        }
 
-        else if(JoystickInput.Instance.isControl && !isAttacking)
+        else if(JoystickInput.Instance.isControl && !isAttacking  && !isDashing)
         { 
             ChangeAnim("Run");
             JoystickInput.Instance.moveSpeed =speed;
         }
-        else if(!JoystickInput.Instance.isControl && !isAttacking)
+        else if(!JoystickInput.Instance.isControl && !isAttacking && !isDashing)
         {
             ChangeAnim("Idle");
         }
-
         // if(!jump && attckBtn.pressed)
         // {
         //     jump = true;
@@ -77,11 +94,21 @@ public class Player : Character
         //     Debug.Log("after jump");
         // }
     }
-
+    private void OnDash()
+    {
+        JoystickInput.Instance.moveSpeed =speed+5;
+        DashObj.SetActive(true);
+    }
+    private void StopDash()
+    {
+        DashObj.SetActive(false);
+        ChangeAnim("Idle");
+        isDashing = false;
+        
+    }
     private void OnAttackAction()
     {
         JoystickInput.Instance.moveSpeed =0;
-        
         isAttacking = true;
         if(comboHitStep == COMBO_MAX_STEP)
             return;
@@ -108,7 +135,8 @@ public class Player : Character
         yield return new WaitForSeconds(anim.GetAnimatorTransitionInfo(0).duration);
         yield return new WaitForEndOfFrame();
         yield return new WaitUntil(() =>
-            anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f);
+            anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f
+           );
         comboHitStep = -1;
         DeActiveAttack();
         anim.SetInteger("hitStep", comboHitStep);
@@ -118,11 +146,13 @@ public class Player : Character
 
     private void ActiveAttack()
     {
+        vfxAttack.SetActive(true);
         attackArea.SetActive(true);
     }
 
     private void DeActiveAttack()
     {
+        vfxAttack.SetActive(false);
         attackArea.SetActive(false);
     }
 }

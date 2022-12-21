@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour, IHit
+public class Character : MonoBehaviour, IHitAttack
 {
     [Header("Attributes")]
     public float maxHp =10;
@@ -67,6 +67,13 @@ public class Character : MonoBehaviour, IHit
                 OnDeath();
             }
         }
+    }
+
+    public void OnHitAttack(float damage)
+    {
+        ChangeAnim("Hit");
+        takeDame(damage);
+        
     }
 }
    
