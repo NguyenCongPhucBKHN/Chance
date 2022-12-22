@@ -25,6 +25,7 @@ public class Player : Character
     #endregion
     #region Variables: Dash
     [SerializeField] private GameObject DashObj;
+    [SerializeField] private GameObject DashVFX;
     public bool isDashing;
     
     #endregion
@@ -52,6 +53,7 @@ public class Player : Character
         isDashing = false;
         isHitting = false;
         DashObj.SetActive(false);
+        DashVFX.SetActive(false);
     }
     // Update is called once per frame
     void Update()
@@ -66,9 +68,9 @@ public class Player : Character
         {
             isDashing = true;
             ChangeAnim("Dash");
-            Invoke(nameof(StopDash), 1.2f);
+            Invoke(nameof(StopDash), 0.7f);
             OnDash();
-            JoystickInput.Instance.moveSpeed =speed-2f;
+            JoystickInput.Instance.moveSpeed =speed+5f;
             
         }
 
@@ -99,10 +101,13 @@ public class Player : Character
     {
         JoystickInput.Instance.moveSpeed =speed+5;
         DashObj.SetActive(true);
+        DashVFX.SetActive(true);
     }
     private void StopDash()
     {
         DashObj.SetActive(false);
+        DashVFX.SetActive(false);
+        JoystickInput.Instance.Stop();
         ChangeAnim("Idle");
         isDashing = false;
         

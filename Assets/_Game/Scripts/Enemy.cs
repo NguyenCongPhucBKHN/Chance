@@ -140,4 +140,5 @@ public class Enemy : Character
         int index = Random.Range(0, listPoint.Count);
         return listPoint[index].position;
     }
+    
 }

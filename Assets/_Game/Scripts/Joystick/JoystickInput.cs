@@ -14,7 +14,7 @@ public class JoystickInput : Singleton<JoystickInput>
     [SerializeField] private Player player;
     public Vector3 move;
     public bool isControl => Vector3.Distance(tfCenterJoystick.localPosition, Vector3.zero)>0.001;
-     public float moveSpeed;
+    public float moveSpeed;
     private void FixedUpdate() 
     {
         move = new Vector3(_joystick.Horizontal, 0, _joystick.Vertical ).normalized;
@@ -37,6 +37,10 @@ public class JoystickInput : Singleton<JoystickInput>
     public void Dash(float speed)
     {
          _rigidbody.velocity = modelTF.forward * speed;
+    }
 
+    public void Stop()
+    {
+        _rigidbody.velocity = Vector3.zero;
     }
 }
