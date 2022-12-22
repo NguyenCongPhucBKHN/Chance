@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class Player : Character
 {
     [SerializeField] Rigidbody rb;
@@ -27,14 +27,39 @@ public class Player : Character
     [SerializeField] private GameObject DashObj;
     [SerializeField] private GameObject DashVFX;
     public bool isDashing;
-    
     #endregion
 
+     #region Variables: Inputs
+     private PlayerControllAction inputActions;
+    private InputAction moveAction;
+    private InputAction attackAction;
+    private InputAction dashAction;
+    #endregion
+    private Vector2 moveInput ;
+    private Vector3 move;
+    private bool isRunning;
     public override void Awake() 
     {
         attckBtn = FindObjectOfType<JoystickAttackBtn>();  
+        inputActions = new PlayerControllAction();
     }
 
+    private void OnEnable() {
+        moveAction = inputActions.Player.Move;
+        moveAction.Enable();
+
+        attackAction= inputActions.Player.Attack;
+        attackAction.performed += OnAttackAction;
+        attackAction.Enable();
+
+        dashAction = inputActions.Player.Dash;
+        dashAction.performed += OnDashAction;
+        dashAction.Enable();
+
+    }
+    private void OnDisable() {
+        moveAction.Disable();
+    }
     void Start()
     {
      attckBtn = FindObjectOfType<JoystickAttackBtn>();  
@@ -49,6 +74,7 @@ public class Player : Character
         DeActiveAttack();
         timer =0;
         comboHitStep=-1;
+        isRunning = false;
         isAttacking = false;
         isDashing = false;
         isHitting = false;
@@ -58,64 +84,97 @@ public class Player : Character
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
+        moveInput = moveAction.ReadValue<Vector2>();
+        if(!isDashing || moveInput.sqrMagnitude>0.01f)
+        {
+            RotationModel();
+        }
         
-        if(Input.GetKeyDown(KeyCode.A) /*|| Input.GetMouseButtonDown(0)*/)
+        if(moveInput.SqrMagnitude() >0.001f &&!isAttacking && !isDashing)
         {
-            OnAttackAction(); 
-        }
-        else if(Input.GetKeyDown(KeyCode.D))
-        {
-            isDashing = true;
-            ChangeAnim("Dash");
-            Invoke(nameof(StopDash), 0.7f);
-            OnDash();
-            JoystickInput.Instance.moveSpeed =speed+5f;
-            
-        }
-
-        else if(JoystickInput.Instance.isControl && !isAttacking  && !isDashing)
-        { 
+            // isRunning = true;
+            Move(speed);
             ChangeAnim("Run");
-            JoystickInput.Instance.moveSpeed =speed;
         }
-        else if(!JoystickInput.Instance.isControl && !isAttacking && !isDashing && !isHitting)
+        else if(moveInput.SqrMagnitude() <0.001f)
         {
             ChangeAnim("Idle");
         }
-        // if(!jump && attckBtn.pressed)
+        
+        // if(isDashing)
         // {
-        //     jump = true;
-        //     // rb.velocity += Vector3.up*5;
-        //     ActiveAttack();
-        //     ChangeAnim("Attack");
+            
+        // }
+         
+        // else if(isAttacking)
+        // {
+        //     RotationModel();
+        // }
+        
+        // else if(moveInput.SqrMagnitude() >0.001f)
+        // {
+        //     RotationModel();
+        //     if(!isRunning)
+        //     {
+        //         isRunning = true;
+        //         ChangeAnim("Run");
+        //     }
+            
+        //     move.Normalize();
+            
+        //     Move(speed);
+        // }
+        // else if(isRunning)
+        // {
+        //     isRunning = false;
+        //     ChangeAnim("Idle");
         // }
 
-        // if(jump && !attckBtn.pressed)
-        // {
-        //     jump = false;
-        //     Debug.Log("after jump");
-        // }
+        
     }
-    private void OnDash()
+    public void RotationModel()
     {
-        JoystickInput.Instance.moveSpeed =speed+5;
+        
+        move = new Vector3(moveInput.x, 0f, moveInput.y);
+        modelTF.rotation =  Quaternion.LookRotation(move, Vector3.up);
+    }
+    public void Move(float speed)
+    {
+        rb.velocity = new Vector3(move.x *speed, rb.velocity.y, move.z*speed);
+
+    }
+    private void OnDashAction(InputAction.CallbackContext obj)
+    {
+        isDashing= true;
+        ChangeAnim("Dash");
+        Invoke(nameof(StopDash), 0.7f);
+        Dash(speed+5);
         DashObj.SetActive(true);
         DashVFX.SetActive(true);
+    }
+
+    public void Dash(float speed)
+    {
+         rb.velocity = modelTF.forward * speed;
     }
     private void StopDash()
     {
         DashObj.SetActive(false);
         DashVFX.SetActive(false);
-        JoystickInput.Instance.Stop();
+        Stop();
         ChangeAnim("Idle");
         isDashing = false;
         
         
     }
-    private void OnAttackAction()
+
+    public void Stop()
     {
-        JoystickInput.Instance.moveSpeed =0;
+        rb.velocity = Vector3.zero;
+    }
+    private void OnAttackAction(InputAction.CallbackContext obj)
+    {
+        // JoystickInput.Instance.moveSpeed =0;
         isAttacking = true;
         if(comboHitStep == COMBO_MAX_STEP)
             return;
@@ -148,6 +207,7 @@ public class Player : Character
         DeActiveAttack();
         anim.SetInteger("hitStep", comboHitStep);
         isAttacking = false;
+        isRunning = false;
         
     }
 

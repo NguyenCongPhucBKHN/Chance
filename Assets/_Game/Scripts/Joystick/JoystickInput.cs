@@ -6,9 +6,8 @@ public class JoystickInput : Singleton<JoystickInput>
 {
     [SerializeField] private Rigidbody _rigidbody;
     
-    [SerializeField] private FixedJoystick _joystick;
+    // [SerializeField] private FixedJoystick _joystick;
    
-    [SerializeField] private CharacterController controller;
     [SerializeField] private Transform tfCenterJoystick;
     [SerializeField] private Transform modelTF;
     [SerializeField] private Player player;
@@ -17,20 +16,24 @@ public class JoystickInput : Singleton<JoystickInput>
     public float moveSpeed;
     private void FixedUpdate() 
     {
-        move = new Vector3(_joystick.Horizontal, 0, _joystick.Vertical ).normalized;
-        if( !player.isDashing &&(_joystick.Horizontal != 0 || _joystick.Vertical != 0))
-        {
-            modelTF.rotation =  Quaternion.LookRotation(JoystickInput.Instance.move, Vector3.up);   
-            Move(moveSpeed); 
-        }
-        else if(player.isDashing)
-        {
-            Dash(moveSpeed);
-        }
+        // Vector2 moveInput = player.moveAction.ReadValue<Vector2>();
+        // move = new Vector3(moveInput.x, 0f, moveInput.y);
+        // move.Normalize();
+        // Move(moveSpeed); 
+        // move = new Vector3(_joystick.Horizontal, 0, _joystick.Vertical ).normalized;
+        // if( !player.isDashing &&(_joystick.Horizontal != 0 || _joystick.Vertical != 0))
+        // {
+        //     modelTF.rotation =  Quaternion.LookRotation(JoystickInput.Instance.move, Vector3.up);   
+        //     Move(moveSpeed); 
+        // }
+        // else if(player.isDashing)
+        // {
+        //     Dash(moveSpeed);
+        // }
     }
     public void Move(float speed)
     {
-        _rigidbody.velocity = new Vector3(_joystick.Horizontal *speed, _rigidbody.velocity.y, _joystick.Vertical*speed);
+        _rigidbody.velocity = new Vector3(move.x *speed, _rigidbody.velocity.y, move.z*speed);
 
     }
 
