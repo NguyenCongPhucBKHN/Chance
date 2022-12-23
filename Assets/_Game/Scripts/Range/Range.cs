@@ -34,8 +34,12 @@ public class Range : Enemy, IHitDash
         ChangeAnim("Delay");
     }
     public void OnHitDash()
-    {
-        OnDeath();
+    {   
+        if(!IsDead)
+        {
+            TakeDame(hp);
+        }
+        
         
     }
 

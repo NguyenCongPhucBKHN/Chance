@@ -15,7 +15,7 @@ public class Enemy : Character
     private IState currentState;
     private Character target;
     public Character Target => target;
-    public List<Transform> listPoint;
+    public List<Transform> listPoint ; //TODO
     public bool isAttack =false;
 
     public bool IsDestination 
@@ -67,7 +67,14 @@ public class Enemy : Character
         ChangeState(null);
         SubAmount();
         base.OnDeath();
+        LevelManager.Instance.SpawnEnemy(enemyType);
+        
     }
+
+    // public void Spawn()
+    // {
+    //     Instantiate(enemyPrefab);
+    // }
      public void SetDestination(Vector3 position)
     {
         destination = position;

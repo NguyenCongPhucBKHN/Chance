@@ -11,6 +11,9 @@ public class Boss : Enemy, IHitDash
     }
     public void OnHitDash()
     {
-        takeDame(100);
+        if(!IsDead)
+        {
+            TakeDame(hp/2);
+        }
     }
 }

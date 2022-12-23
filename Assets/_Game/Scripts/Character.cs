@@ -13,6 +13,7 @@ public class Character : MonoBehaviour, IHitAttack
     public float speed =5f;
     
     public bool IsDead => hp <= 0;
+    public bool IsDie;
     [Header("Animator")]
     [SerializeField] protected Animator anim;
 
@@ -20,6 +21,8 @@ public class Character : MonoBehaviour, IHitAttack
     protected bool isHitting;
     public float Damage => damage;
     public float hp; //TODO: protected
+
+    
     
     // public virtual void Awake()
     // {
@@ -55,7 +58,7 @@ public class Character : MonoBehaviour, IHitAttack
         Invoke(nameof(OnDespawn), 3f);
     }
 
-    public virtual void takeDame(float damage)
+    public virtual void TakeDame(float damage)
     {
         
         if (!IsDead)
@@ -64,6 +67,7 @@ public class Character : MonoBehaviour, IHitAttack
 
             if (IsDead)
             {
+                hp=0;
                 OnDeath();
             }
         }
@@ -71,8 +75,12 @@ public class Character : MonoBehaviour, IHitAttack
 
     public void OnHitAttack(float damage)
     {
-        ChangeAnim("Hit");
-        takeDame(damage);
+        if(!IsDead)
+        {
+            ChangeAnim("Hit");
+            TakeDame(damage);
+        }
+        
         
     }
 }

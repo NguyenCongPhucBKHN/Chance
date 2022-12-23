@@ -5,7 +5,7 @@ using UnityEngine;
 public interface IHitDash 
 {
     
-    // public void takeDame(float damage);
+    // public void TakeDame(float damage);
     public void OnHitDash();
     
    

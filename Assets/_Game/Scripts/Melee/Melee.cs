@@ -34,8 +34,11 @@ public class Melee : Enemy, IHitDash
     }
     public void OnHitDash()
     {
-        // Debug.Log("Dash collider");
-        OnDeath();
+        if(!IsDead)
+        {
+            TakeDame(hp);
+        }
+
         
     }
 }

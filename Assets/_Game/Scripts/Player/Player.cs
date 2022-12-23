@@ -110,6 +110,7 @@ public class Player : Character
         else if(moveInput.SqrMagnitude() <0.001f)
         {
             ChangeAnim("Idle");
+            Stop();
         }
           
     }

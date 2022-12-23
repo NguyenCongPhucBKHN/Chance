@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,9 +11,9 @@ public class LevelManager : Singleton<LevelManager>
     public Boss bossPrefab;
     public Player player;
     public Vector3 savePointPlayer;
-    public int enemyAmount = 4; //TODO: Get from currentLevel;
     public List<Transform> listSpawnTf => currentLevel.listSpawnEnemyTf;
     public EnemyPath[] Paths => currentLevel.paths;
+    public EnemyDatas enemyDatas;
     public float EnemySpawnInterval => currentLevel.enemySpawnInterval; //Khoang thoi gian
     // private NavMeshTriangulation triangulation;
     private Level currentLevel;
@@ -26,9 +27,9 @@ public class LevelManager : Singleton<LevelManager>
     public int NumberRange => currentLevel.numberRange;
     public int NumberBoss => currentLevel.numberBoss;
 
-    private int   meleeSpawned;
-    private int   rangeSpawned;
-    private int   bossSpawned;
+    public int   meleeSpawned; //TODO: private
+    public int   rangeSpawned;
+    public int   bossSpawned;
 
     public int amoutCurrentMelee;
     public int amountCurrentRange;
@@ -46,7 +47,7 @@ public class LevelManager : Singleton<LevelManager>
         //TODO: Load level
         // triangulation = NavMesh.CalculateTriangulation();
         OnInit();
-        StartCoroutine(IESpawnsEnemies());
+        // StartCoroutine(IESpawnsEnemies());
 
     }
 
@@ -54,6 +55,11 @@ public class LevelManager : Singleton<LevelManager>
     {
         player.tf.position = savePointPlayer;
         player.OnInit();
+       
+        SpawnEnemy(EnemyType.Melee);
+        SpawnEnemy(EnemyType.Range);
+        
+        
         
         
     }
@@ -62,41 +68,123 @@ public class LevelManager : Singleton<LevelManager>
     private IEnumerator IESpawnsEnemies()
     {
        
-        if(meleeSpawned<TotalMelee)
-        {
-            yield return StartCoroutine(IESpawnsEnemie(amoutCurrentMelee, NumberMelee,  meleePrefab , Paths[0]));
-            amoutCurrentMelee ++;
-            meleeSpawned++;
-        }
-        if(rangeSpawned<TotalMelee)
-        {
-            yield return StartCoroutine(IESpawnsEnemie( amountCurrentRange, NumberRange, rangePrefab , Paths[0]));
-            amountCurrentRange++;
-            rangeSpawned++;
-        }
+        
+        yield return StartCoroutine(IESpawnsEnemie(EnemyType.Melee, NumberMelee,  meleePrefab , Paths[0]));
+        yield return StartCoroutine(IESpawnsEnemie( EnemyType.Range, NumberRange, rangePrefab , Paths[0]));
+            
+        
         if(meleeSpawned==TotalMelee && rangeSpawned==TotalRange && bossSpawned< NumberBoss)
         {
-            yield return StartCoroutine(IESpawnsEnemie( amountCurrentBoss, NumberBoss, bossPrefab , Paths[0]));
-            amountCurrentBoss++;
-            bossSpawned++;
+            yield return StartCoroutine(IESpawnsEnemie( EnemyType.Boss, NumberBoss, bossPrefab , Paths[0]));
+            // amountCurrentBoss++;
+            // bossSpawned++;
         }
+       
+        
     }
 
     //Spawn 1 loai
-   private IEnumerator  IESpawnsEnemie( int  amoutcurrent, float  amoutTotal, Enemy enemyPrefab ,EnemyPath path)
+   private IEnumerator  IESpawnsEnemie( EnemyType enemyType, float  amoutAct, Enemy enemyPrefab ,EnemyPath path)
     {
-        if(amoutcurrent< amoutTotal)
+        while (true)
         {
-            yield return new WaitForSeconds(EnemySpawnInterval); //TODO: speed
-            Enemy enemy = Instantiate(enemyPrefab, path.WayPoints[0].position, Quaternion.identity);
-            enemy.OnInit();
-            // amoutcurrent ++;
-        }
+            yield return new WaitForSeconds(EnemySpawnInterval); 
+            // float amout = GetAmout(enemyType);
             
+            // if(EnableSpawn(enemyType, amoutAct))
+            {
+                //TODO: speed
+                Enemy enemy = Instantiate(enemyPrefab, path.WayPoints[0].position, Quaternion.identity);
+                enemy.listPoint = path.WayPoints;
+                IncrAmout(enemyType);
+                enemy.OnInit();
+                
+            }
+        }
+        
+        
     }
 
-    
+    public void IncrAmout(EnemyType enemyType)
+    {
+       
+       switch (enemyType) {
+        case EnemyType.Melee:
+            amoutCurrentMelee++;
+            meleeSpawned++;
+            break;
+        case EnemyType.Range:
+            amountCurrentRange++;
+            rangeSpawned++;
+            break;
+        case EnemyType.Boss:
+            amountCurrentBoss++;
+            bossSpawned++;
+            break;
+        default :
+            
+            break;
+       }
+    }
 
+    public int GetAmout(EnemyType enemyType)
+    {
+        if(enemyType == EnemyType.Melee)
+        {
+            return amoutCurrentMelee;
+        }
+        else if(enemyType == EnemyType.Range)
+        {
+            return amountCurrentRange;
+        }
+        else
+        {
+            return amountCurrentBoss;
+        }
+    }
+
+    public bool EnableSpawn(EnemyType enemyType)
+    {
+        if(enemyType == EnemyType.Melee)
+        {
+            
+            return amoutCurrentMelee < NumberMelee && meleeSpawned < TotalMelee;
+        }
+        else if(enemyType == EnemyType.Range)
+        {
+           
+            return amountCurrentRange < NumberRange && rangeSpawned < TotalRange;
+        }
+        else
+        {
+           
+            return amountCurrentBoss < NumberBoss && bossSpawned< TotalBoss;
+        }
+    }
+
+    public void SpawnAEnemy(EnemyType enemyType)
+    {
+        Enemy enemyPrefab = enemyDatas.GetPrefabEnemy(enemyType);
+        int index = Random.Range(0, listSpawnTf.Count);
+        Vector3 point = listSpawnTf[index].position;
+        EnemyPath path = Paths[Random.Range(0, Paths.Length)];
+        Enemy enemy = Instantiate(enemyPrefab, path.WayPoints[0].position, Quaternion.identity);
+        enemy.listPoint = path.WayPoints;
+        enemy.OnInit();
+        IncrAmout(enemyType);
+    }
+
+    public void SpawnEnemy(EnemyType enemyType)
+    {
+        
+        if(EnableSpawn(enemyType))
+        {
+            while(true)
+            {
+                SpawnAEnemy(enemyType);
+            }   
+        }
+    }
 
 
 

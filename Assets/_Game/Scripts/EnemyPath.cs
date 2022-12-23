@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class EnemyPath : MonoBehaviour
 {
-    [SerializeField] private Transform[] wayPoints;
-    public Transform[] WayPoints => wayPoints;
+    [SerializeField] private List<Transform> wayPoints;
+    public List<Transform> WayPoints => wayPoints;
 }
