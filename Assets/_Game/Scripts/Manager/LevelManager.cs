@@ -13,18 +13,26 @@ public class LevelManager : Singleton<LevelManager>
     public int enemyAmount = 4; //TODO: Get from currentLevel;
     public List<Transform> listSpawnTf => currentLevel.listSpawnEnemyTf;
     public EnemyPath[] Paths => currentLevel.paths;
-    public float EnemySpawnInterval => currentLevel.enemySpawnInterval;
+    public float EnemySpawnInterval => currentLevel.enemySpawnInterval; //Khoang thoi gian
     // private NavMeshTriangulation triangulation;
     private Level currentLevel;
     private int levelIndex;
 
     #region  Variable parameter enemy in level
-    public float TotalMelee => currentLevel.totalMelee;
-    public float TotalRange => currentLevel.totalRange;
-    public float TotalBoss => currentLevel.totalBoss;
-    public float NumberMelee => currentLevel.numberMelee;
-    public float NumberRange => currentLevel.numberRange;
-    public float NumberBoss => currentLevel.numberBoss;
+    public int TotalMelee => currentLevel.totalMelee;
+    public int TotalRange => currentLevel.totalRange;
+    public int TotalBoss => currentLevel.totalBoss;
+    public int NumberMelee => currentLevel.numberMelee;
+    public int NumberRange => currentLevel.numberRange;
+    public int NumberBoss => currentLevel.numberBoss;
+
+    private int   meleeSpawned;
+    private int   rangeSpawned;
+    private int   bossSpawned;
+
+    public int amoutCurrentMelee;
+    public int amountCurrentRange;
+    public int amountCurrentBoss;
     #endregion
     
     private void Awake() {
@@ -53,19 +61,38 @@ public class LevelManager : Singleton<LevelManager>
     //Cho spawn
     private IEnumerator IESpawnsEnemies()
     {
-        int totalEnemies =2;
-        yield return StartCoroutine(IESpawnsEnemie(  totalEnemies,  meleePrefab , Paths[0]));
+       
+        if(meleeSpawned<TotalMelee)
+        {
+            yield return StartCoroutine(IESpawnsEnemie(amoutCurrentMelee, NumberMelee,  meleePrefab , Paths[0]));
+            amoutCurrentMelee ++;
+            meleeSpawned++;
+        }
+        if(rangeSpawned<TotalMelee)
+        {
+            yield return StartCoroutine(IESpawnsEnemie( amountCurrentRange, NumberRange, rangePrefab , Paths[0]));
+            amountCurrentRange++;
+            rangeSpawned++;
+        }
+        if(meleeSpawned==TotalMelee && rangeSpawned==TotalRange && bossSpawned< NumberBoss)
+        {
+            yield return StartCoroutine(IESpawnsEnemie( amountCurrentBoss, NumberBoss, bossPrefab , Paths[0]));
+            amountCurrentBoss++;
+            bossSpawned++;
+        }
     }
 
     //Spawn 1 loai
-   private IEnumerator  IESpawnsEnemie( int totalEnemies, Enemy enemyPrefab ,EnemyPath path)
+   private IEnumerator  IESpawnsEnemie( int  amoutcurrent, float  amoutTotal, Enemy enemyPrefab ,EnemyPath path)
     {
-        for(int i =0; i< totalEnemies; i++)
+        if(amoutcurrent< amoutTotal)
         {
-            yield return new WaitForSeconds(EnemySpawnInterval/2); //TODO: speed
+            yield return new WaitForSeconds(EnemySpawnInterval); //TODO: speed
             Enemy enemy = Instantiate(enemyPrefab, path.WayPoints[0].position, Quaternion.identity);
             enemy.OnInit();
+            // amoutcurrent ++;
         }
+            
     }
 
     

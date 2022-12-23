@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Boss : Enemy, IHitDash
 {
+    public override void Awake()
+    {
+        base.Awake();
+        enemyType = EnemyType.Boss;
+    }
     public void OnHitDash()
     {
         takeDame(100);

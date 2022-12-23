@@ -38,10 +38,11 @@ public class Player : Character
     private Vector2 moveInput ;
     private Vector3 move;
     private bool isRunning;
-    public override void Awake() 
+    public  void Awake() 
     {
         attckBtn = FindObjectOfType<JoystickAttackBtn>();  
         inputActions = new PlayerControllAction();
+        tf= transform;
     }
 
     private void OnEnable() {
@@ -85,52 +86,32 @@ public class Player : Character
     void Update()
     {
         moveInput = moveAction.ReadValue<Vector2>();
-        if(!isDashing || moveInput.sqrMagnitude>0.01f)
+         if(isDashing)
         {
-            RotationModel();
         }
         
-        if(moveInput.SqrMagnitude() >0.001f &&!isAttacking && !isDashing)
+        // else if( moveInput.sqrMagnitude>0.01f)
+        // {
+        //     RotationModel();
+        // }
+        
+        else if(moveInput.SqrMagnitude() >0.001f &&!isAttacking && !isDashing)
         {
+            RotationModel();
             // isRunning = true;
             Move(speed);
             ChangeAnim("Run");
+        }
+       
+        else if(isAttacking)
+        {
+            RotationModel();
         }
         else if(moveInput.SqrMagnitude() <0.001f)
         {
             ChangeAnim("Idle");
         }
-        
-        // if(isDashing)
-        // {
-            
-        // }
-         
-        // else if(isAttacking)
-        // {
-        //     RotationModel();
-        // }
-        
-        // else if(moveInput.SqrMagnitude() >0.001f)
-        // {
-        //     RotationModel();
-        //     if(!isRunning)
-        //     {
-        //         isRunning = true;
-        //         ChangeAnim("Run");
-        //     }
-            
-        //     move.Normalize();
-            
-        //     Move(speed);
-        // }
-        // else if(isRunning)
-        // {
-        //     isRunning = false;
-        //     ChangeAnim("Idle");
-        // }
-
-        
+          
     }
     public void RotationModel()
     {
@@ -139,7 +120,7 @@ public class Player : Character
         modelTF.rotation =  Quaternion.LookRotation(move, Vector3.up);
     }
     public void Move(float speed)
-    {
+    {   move.Normalize();
         rb.velocity = new Vector3(move.x *speed, rb.velocity.y, move.z*speed);
 
     }
@@ -159,11 +140,11 @@ public class Player : Character
     }
     private void StopDash()
     {
+        isDashing = false;
         DashObj.SetActive(false);
         DashVFX.SetActive(false);
         Stop();
         ChangeAnim("Idle");
-        isDashing = false;
         
         
     }

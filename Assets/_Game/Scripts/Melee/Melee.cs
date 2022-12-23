@@ -6,6 +6,12 @@ using UnityEngine;
 public class Melee : Enemy, IHitDash
 {
     [SerializeField] private GameObject attackArea;
+
+    public override void Awake()
+    {
+        base.Awake();
+        enemyType = EnemyType.Melee;
+    }
     public override void OnInit()
     {
         base.OnInit();

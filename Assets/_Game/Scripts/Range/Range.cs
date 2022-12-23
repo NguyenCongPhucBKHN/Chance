@@ -7,6 +7,11 @@ public class Range : Enemy, IHitDash
     [SerializeField] private Bullet BulletPrefab;
     [SerializeField] private Transform throwPoint;
 
+    public override void Awake()
+    {
+        base.Awake();
+        enemyType = EnemyType.Range;
+    }
     public override void OnInit()
     {
         base.OnInit();

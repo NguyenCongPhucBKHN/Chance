@@ -21,10 +21,10 @@ public class Character : MonoBehaviour, IHitAttack
     public float Damage => damage;
     public float hp; //TODO: protected
     
-    public virtual void Awake()
-    {
-        tf= transform;
-    }
+    // public virtual void Awake()
+    // {
+    //     tf= transform;
+    // }
     protected void ChangeAnim(string animName)
     {
         if(currentAnimName != animName)

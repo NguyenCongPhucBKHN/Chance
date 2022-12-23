@@ -8,6 +8,7 @@ public class Enemy : Character
 {
     [SerializeField] private float attackRange;
     [SerializeField] private float fovRadius;
+    protected EnemyType enemyType;
     public NavMeshAgent agent;
     Vector3 point;
     Vector3 destination;
@@ -16,6 +17,7 @@ public class Enemy : Character
     public Character Target => target;
     public List<Transform> listPoint;
     public bool isAttack =false;
+
     public bool IsDestination 
     {
         get 
@@ -26,9 +28,9 @@ public class Enemy : Character
         }
     }
     public bool isTargetInFov; 
-    public override void Awake() 
+    public virtual void Awake() 
     {
-        base.Awake();
+        tf = transform;
         
     }
     private void Start() {
@@ -63,6 +65,7 @@ public class Enemy : Character
     protected override void  OnDeath()
     {
         ChangeState(null);
+        SubAmount();
         base.OnDeath();
     }
      public void SetDestination(Vector3 position)
@@ -141,4 +144,21 @@ public class Enemy : Character
         return listPoint[index].position;
     }
     
+    public void SubAmount()
+    {
+       switch (enemyType) {
+        case EnemyType.Melee:
+            LevelManager.Instance.amoutCurrentMelee--;
+            break;
+        case EnemyType.Range:
+            LevelManager.Instance.amountCurrentRange--;
+            break;
+        case EnemyType.Boss:
+            LevelManager.Instance.amountCurrentBoss--;
+            break;
+        default :
+            
+            break;
+       }
+    }
 }

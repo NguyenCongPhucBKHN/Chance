@@ -7,13 +7,13 @@ public class Level : MonoBehaviour
     //TODO: Create SO
   public List<Transform> listSpawnEnemyTf;
   public EnemyPath[] paths;
-  public float totalMelee;
-  public float totalRange;
-  public float totalBoss;
-  public float numberMelee;
-  public float numberRange;
-  public float numberBoss;
-  public float enemySpawnInterval;
+  public int totalMelee;
+  public int totalRange;
+  public int totalBoss;
+  public int numberMelee;
+  public int numberRange;
+  public int numberBoss;
+  public int enemySpawnInterval;
   
 
 }
