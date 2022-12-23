@@ -55,13 +55,24 @@ public class LevelManager : Singleton<LevelManager>
     {
         player.tf.position = savePointPlayer;
         player.OnInit();
-       
-        SpawnEnemy(EnemyType.Melee);
-        SpawnEnemy(EnemyType.Range);
+        for(int i =0; i< NumberMelee; i++)
+        {
+            SpawnEnemy(EnemyType.Melee);
+
+        }
+        for(int i =0; i< NumberMelee; i++)
+        {
+            SpawnEnemy(EnemyType.Range);
+        }
+        StartCoroutine(IESpawnBot());
         
-        
-        
-        
+    }
+
+    private IEnumerator IESpawnBot()
+    {
+        yield return new WaitUntil(()=>(rangeSpawned == TotalRange && meleeSpawned == TotalMelee));
+        SpawnAEnemy(EnemyType.Boss);
+
     }
 
     //Cho spawn
@@ -179,10 +190,9 @@ public class LevelManager : Singleton<LevelManager>
         
         if(EnableSpawn(enemyType))
         {
-            while(true)
-            {
-                SpawnAEnemy(enemyType);
-            }   
+            
+            SpawnAEnemy(enemyType);
+              
         }
     }
 
