@@ -6507,7 +6507,9 @@ MonoBehaviour:
   damage: 5
   tf: {fileID: 3510640047174808053}
   speed: 5
+  IsDie: 0
   anim: {fileID: 8284510373982103788}
+  combatTextPrefab: {fileID: 3697667550122787028, guid: 4c5138eef9a28af4ab79f5f9aac35e27, type: 3}
   hp: 0
   attackRange: 1.1
   fovRadius: 5
@@ -6995,7 +6997,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: -12.196001, y: 123.19601, z: 1.269}
 --- !u!95 &5062927635447776475
 Animator:
-  serializedVersion: 3
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -7008,10 +7010,11 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &5121448880399490731
 GameObject:
   m_ObjectHideFlags: 0
@@ -15600,7 +15603,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8284510373982103788
 Animator:
-  serializedVersion: 3
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -15613,10 +15616,11 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!136 &9197796682819037661
 CapsuleCollider:
   m_ObjectHideFlags: 0

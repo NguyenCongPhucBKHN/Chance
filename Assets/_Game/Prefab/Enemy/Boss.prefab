@@ -27784,6 +27784,7 @@ MonoBehaviour:
   speed: 5
   IsDie: 0
   anim: {fileID: 1058685160761852825}
+  combatTextPrefab: {fileID: 3697667550122787028, guid: 4c5138eef9a28af4ab79f5f9aac35e27, type: 3}
   hp: 0
   attackRange: 3
   fovRadius: 5

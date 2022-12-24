@@ -16,11 +16,13 @@ public class Character : MonoBehaviour, IHitAttack
     public bool IsDie;
     [Header("Animator")]
     [SerializeField] protected Animator anim;
+    [SerializeField] protected CombatText combatTextPrefab;
 
     private string currentAnimName;
     protected bool isHitting;
     public float Damage => damage;
     public float hp; //TODO: protected
+
 
     
     
@@ -70,6 +72,7 @@ public class Character : MonoBehaviour, IHitAttack
                 hp=0;
                 OnDeath();
             }
+            Instantiate(combatTextPrefab, tf.position + Vector3.up, Quaternion.identity).OnInit(damage);
         }
     }
 
