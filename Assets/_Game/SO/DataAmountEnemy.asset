@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57688ccb1dfac534a9cca2edcd23547a, type: 3}
   m_Name: DataAmountEnemy
   m_EditorClassIdentifier: 
-  totalMelee: 5
-  totalRange: 5
+  totalMelee: 4
+  totalRange: 3
   totalBoss: 2
   numberMelee: 3
   numberRange: 2

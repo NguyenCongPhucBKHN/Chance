@@ -13,7 +13,7 @@ public class Boss : Enemy, IHitDash
     {
         if(!IsDead)
         {
-            TakeDame(hp/2);
+            TakeDame(50);
         }
     }
 }

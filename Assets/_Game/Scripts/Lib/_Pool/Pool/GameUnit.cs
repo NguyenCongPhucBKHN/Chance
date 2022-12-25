@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class GameUnit : MonoBehaviour
 {
-    private Transform tf;
+    public Transform tf;
     public Transform TF
     {
         get

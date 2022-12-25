@@ -8,7 +8,7 @@ public class Character : GameUnit, IHitAttack
     public float maxHp =10;
     [SerializeField]
     private float damage;
-    public Transform tf;
+    // public Transform tf;
     [Header("Movement")]
     public float speed =5f;
     

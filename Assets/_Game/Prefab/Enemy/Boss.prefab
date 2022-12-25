@@ -27778,9 +27778,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ab0c370ef3b3934e812d2b6c4081741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tf: {fileID: 8744997548607744068}
+  poolType: 1
   maxHp: 100
   damage: 10
-  tf: {fileID: 8744997548607744068}
   speed: 5
   IsDie: 0
   anim: {fileID: 1058685160761852825}
@@ -27789,6 +27790,7 @@ MonoBehaviour:
   attackRange: 3
   fovRadius: 5
   agent: {fileID: 8744997548607744067}
+  path: {fileID: 0}
   listPoint: []
   isAttack: 0
   isTargetInFov: 0

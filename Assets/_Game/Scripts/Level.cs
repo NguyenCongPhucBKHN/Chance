@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class Level : MonoBehaviour
 {
-    //TODO: Create SO
-  public List<Transform> listSpawnEnemyTf;
-  public EnemyPath[] paths;
-  public int totalMelee;
-  public int totalRange;
-  public int totalBoss;
-  public int numberMelee;
-  public int numberRange;
-  public int numberBoss;
-  public int enemySpawnInterval;
+  internal Stage currentStage;
+  public Stage[] stages;
+  public int currentStageIndex;
+  public void OnInit()
+  {
+    currentStageIndex=0;
+    currentStage = stages[currentStageIndex];
+  }
+  public void ChangeStage()
+  {
+    currentStageIndex ++;
+    currentStage = stages[currentStageIndex];
+  }
   
 
 }

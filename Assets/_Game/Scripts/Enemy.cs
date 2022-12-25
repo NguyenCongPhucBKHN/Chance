@@ -15,6 +15,7 @@ public class Enemy : Character
     private IState currentState;
     private Character target;
     public Character Target => target;
+    public EnemyPath path;
     public List<Transform> listPoint ; //TODO
     public bool isAttack =false;
 
@@ -59,15 +60,16 @@ public class Enemy : Character
     public override void OnInit()
     {
         base.OnInit();
+        listPoint = path.WayPoints;
         ChangeState( new IdleState());
     }
 
     protected override void  OnDeath()
     {
-        ChangeState(null);
         SubAmount();
+        ChangeState(null);
         base.OnDeath();
-        LevelManager.Instance.SpawnEnemy(enemyType);
+        LevelManager.Instance.SpawnWhileEnemyDead(enemyType);
         
     }
 
@@ -155,13 +157,16 @@ public class Enemy : Character
     {
        switch (enemyType) {
         case EnemyType.Melee:
-            LevelManager.Instance.amoutCurrentMelee--;
+            LevelManager.Instance.meleeDead ++;
+            LevelManager.Instance.meleeCouter--;
             break;
         case EnemyType.Range:
-            LevelManager.Instance.amountCurrentRange--;
+            LevelManager.Instance.rangeDead ++;
+            LevelManager.Instance.rangeCouter--;
             break;
         case EnemyType.Boss:
-            LevelManager.Instance.amountCurrentBoss--;
+            LevelManager.Instance.bossDead ++;
+            LevelManager.Instance.bossCouter--;
             break;
         default :
             
