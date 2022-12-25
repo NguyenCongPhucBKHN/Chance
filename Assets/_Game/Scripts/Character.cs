@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour, IHitAttack
+public class Character : GameUnit, IHitAttack
 {
     [Header("Attributes")]
     public float maxHp =10;
