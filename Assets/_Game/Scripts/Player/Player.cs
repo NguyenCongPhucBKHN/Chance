@@ -90,11 +90,6 @@ public class Player : Character
         {
         }
         
-        // else if( moveInput.sqrMagnitude>0.01f)
-        // {
-        //     RotationModel();
-        // }
-        
         else if(moveInput.SqrMagnitude() >0.001f &&!isAttacking && !isDashing)
         {
             RotationModel();
@@ -105,7 +100,7 @@ public class Player : Character
        
         else if(isAttacking)
         {
-            RotationModel();
+            // RotationModel();
         }
         else if(moveInput.SqrMagnitude() <0.001f)
         {
