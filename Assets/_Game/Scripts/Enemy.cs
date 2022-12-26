@@ -66,9 +66,9 @@ public class Enemy : Character
 
     protected override void  OnDeath()
     {
-        SubAmount();
         ChangeState(null);
         base.OnDeath();
+        LevelManager.Instance.UpdateCounter(enemyType);
         LevelManager.Instance.SpawnWhileEnemyDead(enemyType);
         
     }

@@ -89,12 +89,34 @@ public class LevelManager : Singleton<LevelManager>
     {
         SpawnEnemyAmount(EnemyType.Melee, NumberMelee);
         SpawnEnemyAmount(EnemyType.Range, NumberRange);
-        
+        StartCoroutine(IESpawnBoss());
     }
 
-    public IEnumerable IESpawnBoss()
+    public void UpdateCounter(EnemyType enemyType)
+    {
+       switch (enemyType) {
+        case EnemyType.Melee:
+            LevelManager.Instance.meleeDead ++;
+            LevelManager.Instance.meleeCouter--;
+            break;
+        case EnemyType.Range:
+            LevelManager.Instance.rangeDead ++;
+            LevelManager.Instance.rangeCouter--;
+            break;
+        case EnemyType.Boss:
+            LevelManager.Instance.bossDead ++;
+            LevelManager.Instance.bossCouter--;
+            break;
+        default :
+            
+            break;
+       }
+    }
+
+    public IEnumerator IESpawnBoss()
     {
         yield return new WaitUntil(()=> meleeDead == TotalMelee && rangeDead == TotalRange);
+        Debug.Log("Spawn boss");
         SpawnEnemyAmount(EnemyType.Boss, 1);
     }
 
@@ -103,17 +125,17 @@ public class LevelManager : Singleton<LevelManager>
         if(enemyType == EnemyType.Melee)
         {
             
-            return /*meleeCouter < NumberMelee &&*/ meleeDead < TotalMelee-1;
+            return  meleeDead + meleeCouter < TotalMelee;
         }
         else if(enemyType == EnemyType.Range)
         {
            
-            return /*rangeCouter < NumberRange &&*/ rangeDead < TotalRange-1;
+            return rangeDead + rangeCouter< TotalRange;
         }
         else
         {
            
-            return /* bossCouter < NumberBoss &&*/ bossDead< TotalBoss-1;
+            return  bossDead+ bossCouter< TotalBoss;
         }
     }
     public void SpawnWhileEnemyDead(EnemyType enemyType)
