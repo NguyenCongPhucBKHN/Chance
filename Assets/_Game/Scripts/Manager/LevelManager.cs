@@ -13,7 +13,7 @@ public class LevelManager : Singleton<LevelManager>
     public List<Enemy> enemies = new List<Enemy>();
     public Player player;
     public Vector3 savePointPlayer;
-    private Level currentLevel;
+    public Level currentLevel;
     private int levelIndex;
 
     #region  Variable parameter enemy in stage
@@ -44,7 +44,7 @@ public class LevelManager : Singleton<LevelManager>
         //TODO: Load level
         // triangulation = NavMesh.CalculateTriangulation();
         OnInit();
-        // StartCoroutine(IESpawnsEnemies());
+    
 
     }
     public void RetryLevel()
@@ -54,17 +54,37 @@ public class LevelManager : Singleton<LevelManager>
     public void NextLevel()
     {
         OnDespawn();
+        ResetCounter();
         LoadLevel(1);
         OnInit();
     }
 
-    private void OnDespawn()
+    public void OnStartGame()
+    {
+        
+    }
+    public void OnFinishGame()
+    {   
+        OnDespawn();
+        ResetCounter();
+    }
+    public void OnDespawn()
     {
         for(int i =0; i< enemies.Count; i++)
         {
             SimplePool.Despawn(enemies[i]);
         }
+        
         enemies.Clear();
+    }
+    public void ResetCounter()
+    {
+        meleeDead =0;
+        rangeDead =0;
+        bossDead=0;
+        meleeCouter=0;
+        rangeCouter=0;
+        bossCouter=0;
     }
     public void LoadLevel(int index)
     {
@@ -108,7 +128,6 @@ public class LevelManager : Singleton<LevelManager>
             LevelManager.Instance.bossCouter--;
             break;
         default :
-            
             break;
        }
     }
@@ -116,11 +135,10 @@ public class LevelManager : Singleton<LevelManager>
     public IEnumerator IESpawnBoss()
     {
         yield return new WaitUntil(()=> meleeDead == TotalMelee && rangeDead == TotalRange);
-        Debug.Log("Spawn boss");
         SpawnEnemyAmount(EnemyType.Boss, 1);
     }
 
-    public bool EnableSpawn(EnemyType enemyType)
+    public bool CheckSpawn(EnemyType enemyType)
     {
         if(enemyType == EnemyType.Melee)
         {
@@ -132,15 +150,19 @@ public class LevelManager : Singleton<LevelManager>
            
             return rangeDead + rangeCouter< TotalRange;
         }
+        
         else
         {
-           
-            return  bossDead+ bossCouter< TotalBoss;
+            if(bossDead == TotalBoss)
+            {
+                currentLevel.currentStage.endStage.gameObject.SetActive(true);
+            }
+            return  bossDead+ bossCouter < TotalBoss;
         }
     }
     public void SpawnWhileEnemyDead(EnemyType enemyType)
     {
-        if(EnableSpawn(enemyType))
+        if(CheckSpawn(enemyType))
         {
             SpawnEnemyAmount(enemyType, 1);
         }
@@ -152,10 +174,11 @@ public class LevelManager : Singleton<LevelManager>
         {
             int pathId = Random.Range(0, Paths.Length);
             int pointId = Random.Range(0, Paths[pathId].WayPoints.Count);
-            Enemy enemy = Instantiate(enemyPrefab, Paths[pathId].WayPoints[pointId].position, Quaternion.identity);// SimplePool.Spawn<Enemy>(PoolType.Enemy, Paths[pathId].WayPoints[pointId].position, Quaternion.identity);
+            Enemy enemy = SimplePool.Spawn<Enemy>(enemyPrefab, Paths[pathId].WayPoints[pointId].position, Quaternion.identity);
             enemy.path = Paths[pathId];
             IncreaseEnemy(enemyType);
             enemies.Add(enemy);
+            enemy.OnInit();
         }
     }
     public void SpawnEnemyType(EnemyType enemyType)
@@ -210,197 +233,5 @@ public class LevelManager : Singleton<LevelManager>
             break;
        }
     }
-
-//     private IEnumerator IESpawnBot()
-//     {
-//         yield return new WaitUntil(()=>(rangeSpawned == TotalRange && meleeSpawned == TotalMelee));
-//         // SpawnAEnemy(EnemyType.Boss);
-
-//     }
-
-//     //Cho spawn
-//     // private IEnumerator IESpawnsEnemies()
-//     // {
-       
-        
-//     //     yield return StartCoroutine(IESpawnsEnemie(EnemyType.Melee, NumberMelee,  meleePrefab , Paths[0]));
-//     //     yield return StartCoroutine(IESpawnsEnemie( EnemyType.Range, NumberRange, rangePrefab , Paths[0]));
-            
-        
-//     //     if(meleeSpawned==TotalMelee && rangeSpawned==TotalRange && bossSpawned< NumberBoss)
-//     //     {
-//     //         yield return StartCoroutine(IESpawnsEnemie( EnemyType.Boss, NumberBoss, bossPrefab , Paths[0]));
-//     //         // amountCurrentBoss++;
-//     //         // bossSpawned++;
-//     //     }
-       
-        
-//     // }
-
-//     //Spawn 1 loai
-// //    private IEnumerator  IESpawnsEnemie( EnemyType enemyType, float  amoutAct, Enemy enemyPrefab ,EnemyPath path)
-// //     {
-// //         while (true)
-// //         {
-// //             yield return new WaitForSeconds(EnemySpawnInterval); 
-// //             // float amout = GetAmout(enemyType);
-            
-// //             // if(EnableSpawn(enemyType, amoutAct))
-// //             {
-// //                 //TODO: speed
-// //                 Enemy enemy = Instantiate(enemyPrefab, path.WayPoints[0].position, Quaternion.identity);
-// //                 enemy.listPoint = path.WayPoints;
-// //                 IncrAmout(enemyType);
-// //                 enemy.OnInit();
-                
-// //             }
-// //         }
-        
-        
-// //     }
-
-//     public void IncrAmout(EnemyType enemyType)
-//     {
-       
-//        switch (enemyType) {
-//         case EnemyType.Melee:
-//             meleeCouter++;
-//             meleeSpawned++;
-//             break;
-//         case EnemyType.Range:
-//             rangeCouter++;
-//             rangeSpawned++;
-//             break;
-//         case EnemyType.Boss:
-//             bossCouter++;
-//             bossSpawned++;
-//             break;
-//         default :
-            
-//             break;
-//        }
-//     }
-
-//     public int GetAmout(EnemyType enemyType)
-//     {
-//         if(enemyType == EnemyType.Melee)
-//         {
-//             return meleeCouter;
-//         }
-//         else if(enemyType == EnemyType.Range)
-//         {
-//             return rangeCouter;
-//         }
-//         else
-//         {
-//             return bossCouter;
-//         }
-//     }
-
-//     public bool EnableSpawn(EnemyType enemyType)
-//     {
-//         if(enemyType == EnemyType.Melee)
-//         {
-            
-//             return meleeCouter < NumberMelee && meleeSpawned < TotalMelee;
-//         }
-//         else if(enemyType == EnemyType.Range)
-//         {
-           
-//             return rangeCouter < NumberRange && rangeSpawned < TotalRange;
-//         }
-//         else
-//         {
-           
-//             return bossCouter < NumberBoss && bossSpawned< TotalBoss;
-//         }
-//     }
-
-   
-
-//     public void SpawnEnemy(EnemyType enemyType)
-//     {
-        
-//         if(EnableSpawn(enemyType))
-//         {
-            
-//             // SpawnAEnemy(enemyType);
-              
-//         }
-//     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//     public void SpawnAEnemy(Enemy enemyPrefab, Vector3 point)
-//     {
-//         Enemy enemy = Instantiate(enemyPrefab, point, Quaternion.identity);
-//     }
-
-
-//     // public Vector3 ChooseClosedPoint()
-//     // {
-//     //     float distance = Mathf.Infinity;
-//     //     Vector3 point = listSpawnTf[0].position;
-//     //     for(int i =0; i< listSpawnTf.Count; i++)
-//     //     {
-//     //         if(Vector3.Distance(listSpawnTf[i].position, player.tf.position)< distance)
-//     //         {
-//     //             point = listSpawnTf[i].position;
-//     //         }
-//     //     }
-//     //     return point;
-//     // }
-
-
-//     // public void SpawnNumberEnemy(Enemy enemyPrefab, float number)
-//     // {
-//     //     Vector3 point = ChooseClosedPoint();
-//     //     SpawnAEnemy(enemyPrefab, point);
-//     //     for(int i =1; i< number; i++)
-//     //     {
-//     //         int index = Random.Range(0, listSpawnTf.Count);
-//     //         Vector3 pos = listSpawnTf[index].position;
-//     //         SpawnAEnemy(enemyPrefab, pos);
-//     //     }
-//     // }
-
-
-//     // public void SpawnAEnemy(Enemy enemyPrefab)
-//     // {
-        
-//     //     int VertexIndex = Random.Range(0, triangulation.vertices.Length);
-//     //     NavMeshHit Hit;
-//     //     if (NavMesh.SamplePosition(triangulation.vertices[VertexIndex], out Hit,  0.1f,  NavMesh.AllAreas))
-//     //     {
-//     //         if(Hit.mask>0.5)
-//     //         {
-//     //             Enemy enemy = Instantiate(enemyPrefab);
-//     //             enemy.agent.Warp(Hit.position);
-//     //             Debug.DrawRay(Hit.position, Vector3.up*100, Color.red, Mathf.Infinity);
-//     //             enemy.OnInit();
-//     //         }
-            
-            
-//     //     }
-//     // }
-
-    
 
 }

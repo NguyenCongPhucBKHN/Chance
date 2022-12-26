@@ -37,7 +37,6 @@ public class Enemy : Character
     private void Start() {
         GetComponent<SphereCollider>().radius = fovRadius;
         agent.speed = speed;
-        OnInit();
     }
 
     
@@ -63,7 +62,10 @@ public class Enemy : Character
         listPoint = path.WayPoints;
         ChangeState( new IdleState());
     }
-
+    public override void OnDespawn()
+    {
+        SimplePool.Despawn(this);
+    }
     protected override void  OnDeath()
     {
         ChangeState(null);
@@ -73,16 +75,12 @@ public class Enemy : Character
         
     }
 
-    // public void Spawn()
-    // {
-    //     Instantiate(enemyPrefab);
-    // }
+
      public void SetDestination(Vector3 position)
     {
         destination = position;
         destination.y = 0;
-        Moving();
-        agent.SetDestination(position);
+        agent.SetDestination(destination);
     }
 
 
@@ -104,21 +102,21 @@ public class Enemy : Character
     public void StopMoving()
     {
         ChangeAnim("Idle");
-        agent.SetDestination(tf.position);
+        agent.enabled= false;
     }
     public virtual void Moving()
     {
+        agent.enabled= true;
         ChangeAnim("Run");
         if(Target!=null)
         {
-            agent.SetDestination(Target.tf.position);
+            SetDestination(Target.tf.position);
         }
         else
         {
             ChangeAnim("Walk");
             int index = Random.Range(0, listPoint.Count);
-            agent.SetDestination(listPoint[index].position);
-
+            SetDestination(listPoint[index].position);
         }
         
     }

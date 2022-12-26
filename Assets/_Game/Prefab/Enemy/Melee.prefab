@@ -6503,9 +6503,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e9066bcd3fc93498bc36806bf00f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tf: {fileID: 3510640047174808053}
+  poolType: 1
   maxHp: 100
   damage: 5
-  tf: {fileID: 3510640047174808053}
   speed: 5
   IsDie: 0
   anim: {fileID: 8284510373982103788}
@@ -6514,6 +6515,7 @@ MonoBehaviour:
   attackRange: 1.1
   fovRadius: 5
   agent: {fileID: 3510640047174807944}
+  path: {fileID: 0}
   listPoint:
   - {fileID: 0}
   - {fileID: 0}
@@ -6567,7 +6569,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
@@ -6997,7 +6999,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: -12.196001, y: 123.19601, z: 1.269}
 --- !u!95 &5062927635447776475
 Animator:
-  serializedVersion: 5
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -7010,11 +7012,10 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5121448880399490731
 GameObject:
   m_ObjectHideFlags: 0
@@ -15603,7 +15604,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8284510373982103788
 Animator:
-  serializedVersion: 5
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -15616,11 +15617,10 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!136 &9197796682819037661
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -15647,7 +15647,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0

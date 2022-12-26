@@ -52,7 +52,7 @@ public class Character : GameUnit, IHitAttack
 
     public virtual void OnDespawn()
     {
-        Destroy(gameObject);
+        // Destroy(gameObject);
     }
     protected virtual void OnDeath()
     {

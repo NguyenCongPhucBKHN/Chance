@@ -8,7 +8,6 @@ public class Player : Character
     [SerializeField] Rigidbody rb;
     [SerializeField] private GameObject attackArea;
     protected JoystickAttackBtn attckBtn;
-    public Transform TF;
     public Transform modelTF;
     protected bool jump;
     private float timer;
@@ -64,7 +63,6 @@ public class Player : Character
     void Start()
     {
      attckBtn = FindObjectOfType<JoystickAttackBtn>();  
-     TF = transform;
      OnInit();
      
     }
@@ -86,7 +84,7 @@ public class Player : Character
     void Update()
     {
         moveInput = moveAction.ReadValue<Vector2>();
-         if(isDashing)
+        if(isDashing)
         {
         }
         
@@ -119,6 +117,20 @@ public class Player : Character
     {   move.Normalize();
         rb.velocity = new Vector3(move.x *speed, rb.velocity.y, move.z*speed);
 
+    }
+    public void MoveToPoint(Transform Point)
+    {
+
+        Vector3 point = Point.position;
+        point.y = tf.position.y;
+        while(Vector3.Distance(tf.position, point)>0.1f)
+        {
+            moveInput = new Vector2(point.x-tf.position.x, point.y-tf.position.y);
+            RotationModel();
+            // isRunning = true;
+            Move(speed);
+            ChangeAnim("Run");
+        }
     }
     private void OnDashAction(InputAction.CallbackContext obj)
     {
@@ -169,6 +181,13 @@ public class Player : Character
             comboAttackResetCouroutine = StartCoroutine(ResettingAttackCombo());
         }
        
+    }
+    public override void OnDespawn()
+    {
+        base.OnDespawn();
+        LevelManager.Instance.OnFinishGame();
+
+
     }
 
     private  IEnumerator ResettingAttackCombo()

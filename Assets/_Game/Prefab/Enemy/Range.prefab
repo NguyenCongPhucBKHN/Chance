@@ -4629,7 +4629,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: -12.196001, y: 123.19601, z: 1.269}
 --- !u!95 &3602523357400245449
 Animator:
-  serializedVersion: 5
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4642,11 +4642,10 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3507904961167069643
 GameObject:
   m_ObjectHideFlags: 0
@@ -5197,7 +5196,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1801609860650244556
 Animator:
-  serializedVersion: 5
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5210,11 +5209,10 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!136 &3971595475318041967
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5241,7 +5239,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
@@ -5332,14 +5330,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5332447392628332636}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 44.42, y: 0, z: 10.3}
+  m_LocalRotation: {x: 0, y: 0.008726558, z: 0, w: 0.999962}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4347699488250476500}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 1, z: 0}
 --- !u!135 &5332447392628332635
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5365,9 +5363,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a89abf26256cbe742b8844840b418a52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tf: {fileID: 5332447392628332637}
+  poolType: 1
   maxHp: 100
   damage: 10
-  tf: {fileID: 5332447392628332637}
   speed: 5
   IsDie: 0
   anim: {fileID: 1801609860650244556}
@@ -5376,6 +5375,7 @@ MonoBehaviour:
   attackRange: 5
   fovRadius: 7
   agent: {fileID: 5332447392628332632}
+  path: {fileID: 0}
   listPoint:
   - {fileID: 0}
   - {fileID: 0}
@@ -5417,7 +5417,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0

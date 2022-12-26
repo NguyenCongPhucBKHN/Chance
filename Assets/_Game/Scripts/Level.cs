@@ -4,19 +4,40 @@ using UnityEngine;
 
 public class Level : MonoBehaviour
 {
-  internal Stage currentStage;
-  public Stage[] stages;
+  internal Stage currentStagePrefab;
+  public Stage currentStage; //TODO internal
+  public Stage[] stagesPrefab;
   public int currentStageIndex;
+  public Stage prevStage;
   public void OnInit()
   {
     currentStageIndex=0;
-    currentStage = stages[currentStageIndex];
+    currentStagePrefab = stagesPrefab[currentStageIndex];
+    currentStage = Instantiate(currentStagePrefab);
   }
-  public void ChangeStage()
+  public void DespawnPrevStage()
   {
-    currentStageIndex ++;
-    currentStage = stages[currentStageIndex];
+    Invoke(nameof(DespawnStage), 2f);
+  }
+
+  public void DespawnStage()
+  {
+    Destroy(prevStage.gameObject);
   }
   
+  public void SpawnNewStage()
+  {
+    currentStageIndex ++;
+    if(currentStageIndex < stagesPrefab.Length)
+    {
+      currentStagePrefab = stagesPrefab[currentStageIndex];
+      currentStage = Instantiate(currentStagePrefab);
+    }
+    else
+    {
+      Debug.Log("Win ");
+    }
+    
+  }
 
 }

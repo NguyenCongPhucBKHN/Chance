@@ -6,4 +6,5 @@ public class EnemyPath : MonoBehaviour
 {
     [SerializeField] private List<Transform> wayPoints;
     public List<Transform> WayPoints => wayPoints;
+    
 }
