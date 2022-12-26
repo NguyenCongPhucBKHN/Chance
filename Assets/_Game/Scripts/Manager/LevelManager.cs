@@ -40,14 +40,17 @@ public class LevelManager : Singleton<LevelManager>
 
     private void Start() 
     {
-        RetryLevel();
-        //TODO: Load level
-        // triangulation = NavMesh.CalculateTriangulation();
+        LoadLevel(levelIndex);
         OnInit();
+        UIManager.Instance.OpenUI<MainMenu>();
     
 
     }
     public void RetryLevel()
+    {
+
+    }
+    public void OnNextLevel()
     {
 
     }
@@ -62,6 +65,10 @@ public class LevelManager : Singleton<LevelManager>
     public void OnStartGame()
     {
         
+    }
+    public void OnRetry()
+    {
+
     }
     public void OnFinishGame()
     {   
