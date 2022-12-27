@@ -26,4 +26,11 @@ public class Settings : UICanvas
         LevelManager.Instance.OnRetry();
         Close();
     }
+    public void ExitButton()
+    {
+        Debug.Log("Close 1");
+        Application.Quit();
+        Debug.Log("Close 2");
+        Close();
+    }
 }
