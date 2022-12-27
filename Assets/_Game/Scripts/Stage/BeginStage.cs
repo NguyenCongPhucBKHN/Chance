@@ -13,7 +13,8 @@ public class BeginStage : MonoBehaviour
     {
         LevelManager.Instance.OnDespawn();
         // LevelManager.Instance.ResetCounter();
-        LevelManager.Instance.OnDespawnCurrentStage();
+        LevelManager.Instance.DespawnPrevStage();
+
         Invoke(nameof(ClosePort), 2f);
         LevelManager.Instance.SpawnEnemyWhileInit();
         gameObject.SetActive(false);

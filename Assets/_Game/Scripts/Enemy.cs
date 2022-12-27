@@ -68,6 +68,7 @@ public class Enemy : Character
     }
     protected override void  OnDeath()
     {
+        target= null;
         ChangeState(null);
         base.OnDeath();
         LevelManager.Instance.UpdateCounter(enemyType);
@@ -170,5 +171,9 @@ public class Enemy : Character
             
             break;
        }
+    }
+    public void ResetTarget()
+    {
+        target = null;
     }
 }

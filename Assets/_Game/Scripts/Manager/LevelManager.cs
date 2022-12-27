@@ -62,10 +62,6 @@ public class LevelManager : Singleton<LevelManager>
         {
             Destroy(currentLevel.gameObject);
         }
-        // if(index < levelPrefabs.Length)
-        // {
-           
-        // }
         else if(index > levelPrefabs.Length)
         {
             index = levelPrefabs.Length -1;
@@ -131,6 +127,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         for(int i =0; i< enemies.Count; i++)
         {
+            enemies[i].ResetTarget();
             SimplePool.Despawn(enemies[i]);
         }
         enemies.Clear();
@@ -141,6 +138,10 @@ public class LevelManager : Singleton<LevelManager>
     public void OnDespawnCurrentStage()
     {
         currentLevel.DespawnCurrentStage();
+    }
+    public void DespawnPrevStage()
+    {
+        currentLevel.DespawnPrevStage();
     }
     public void ResetCounter()
     {
