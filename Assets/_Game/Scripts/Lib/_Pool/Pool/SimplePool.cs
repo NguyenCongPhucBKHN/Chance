@@ -328,7 +328,11 @@ public enum IngameType
 public enum PoolType
 {
     None,
-    Enemy
+    Enemy,
+    Bullet,
+    CombatText,
+    HitBullet,
+    HitSlash
     // Bullet_1,
     // Bullet_2,
     // Bullet_3,

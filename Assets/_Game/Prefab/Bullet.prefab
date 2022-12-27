@@ -4914,6 +4914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tf: {fileID: 2848655199241356743}
+  poolType: 2
   speed: 5
   timeLife: 2
   damge: 10

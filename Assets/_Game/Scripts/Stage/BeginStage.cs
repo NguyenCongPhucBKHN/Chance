@@ -12,8 +12,8 @@ public class BeginStage : MonoBehaviour
     if(character is Player)
     {
         LevelManager.Instance.OnDespawn();
-        LevelManager.Instance.ResetCounter();
-        LevelManager.Instance.currentLevel.DespawnPrevStage();
+        // LevelManager.Instance.ResetCounter();
+        LevelManager.Instance.OnDespawnCurrentStage();
         Invoke(nameof(ClosePort), 2f);
         LevelManager.Instance.SpawnEnemyWhileInit();
         gameObject.SetActive(false);

@@ -201,6 +201,7 @@ public class Player : Character
         UIManager.Instance.CloseUI<Gameplay>();
         UIManager.Instance.OpenUI<Fail>();
         GameManager.Instance.ChangeState(GameState.Pause);
+        
     }
 
     private  IEnumerator ResettingAttackCombo()

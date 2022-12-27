@@ -8,7 +8,7 @@ public class Level : MonoBehaviour
   public Stage currentStage; //TODO internal
   public Stage[] stagesPrefab;
   public int currentStageIndex;
-  public bool IsEndLevel => currentStageIndex >= stagesPrefab.Length-1;
+  public bool IsEndLevel => currentStageIndex >= stagesPrefab.Length;
   public Stage prevStage;
  
   public void OnInit()
@@ -21,7 +21,10 @@ public class Level : MonoBehaviour
   {
     Invoke(nameof(DespawnStage), 2f);
   }
-
+  public void DespawnCurrentStage()
+  {
+    Destroy(currentStage.gameObject);
+  }
   public void DespawnStage()
   {
     Destroy(prevStage.gameObject);

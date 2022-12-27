@@ -4786,6 +4786,7 @@ GameObject:
   - component: {fileID: 4199370099427940029}
   - component: {fileID: 4074153687596713001}
   - component: {fileID: 4075413841248726707}
+  - component: {fileID: 1842201709788430333}
   m_Layer: 0
   m_Name: HitBullet
   m_TagString: Untagged
@@ -9545,6 +9546,20 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &1842201709788430333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4200758887306335721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df1818b727aaed48b7c42eaacea0abb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tf: {fileID: 4199370099427940029}
+  poolType: 4
 --- !u!1 &4200968086021680313
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,15 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class CombatText : MonoBehaviour
+public class CombatText : GameUnit
 {
     [SerializeField] TextMesh hpText;
     [SerializeField] float speed;
-    [SerializeField] private Transform tf;
     [SerializeField] private float timeLife;
     private Transform cameraTf;
     void Awake(){
         cameraTf = Camera.main.transform;
+        tf = transform;
     }
     public void OnInit(float damage)
     {
@@ -26,6 +26,6 @@ public class CombatText : MonoBehaviour
 
     private void OnDespawn()
     {
-        Destroy(gameObject);
+        SimplePool.Despawn(this);
     }
 }

@@ -68,7 +68,8 @@ public class Character : GameUnit, IHitAttack
                 hp=0;
                 OnDeath();
             }
-            Instantiate(combatTextPrefab, tf.position + Vector3.up, Quaternion.identity).OnInit(damage);
+            SimplePool.Spawn<CombatText>(PoolType.CombatText, tf.position + Vector3.up, Quaternion.identity).OnInit(damage);
+            // Instantiate(combatTextPrefab, tf.position + Vector3.up, Quaternion.identity).OnInit(damage);
         }
     }
 

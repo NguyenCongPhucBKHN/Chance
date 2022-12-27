@@ -108,7 +108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c053bd001333f44cabc38a3be5cd80c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tf: {fileID: 3697667550122787031}
+  poolType: 3
   hpText: {fileID: 3697667550122787033}
   speed: 5
-  tf: {fileID: 3697667550122787031}
   timeLife: 0.5

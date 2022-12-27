@@ -3,21 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : GameUnit
 {
-    [SerializeField] Transform tf;
+    // [SerializeField] Transform tf;
     [SerializeField] float speed;
     [SerializeField] float timeLife;
     [SerializeField] float damge;
     [SerializeField] ParticleSystem hitVFX;
     [SerializeField] GameObject hitBullet;
+    [SerializeField] Hit hit;
     public Rigidbody rb;
     void Start()
     {
-        OnInit();
+        tf = transform;
+        // OnInit();
     }
 
-    private void OnInit()
+    public void OnInit()
     {
         rb.velocity = tf.right * speed;
         // if(hitVFX.isPlaying)
@@ -29,7 +31,12 @@ public class Bullet : MonoBehaviour
 
     private void OnDespawn()
     {
-        Destroy(gameObject);
+        SimplePool.Despawn(this);
+        if(hit!=null)
+        {
+            hit.Despawn();
+        }
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,7 +45,8 @@ public class Bullet : MonoBehaviour
         if(player!= null)
         {
             player.OnHitAttack(damge);
-            Instantiate(hitBullet, tf.position, tf.rotation);
+            hit = SimplePool.Spawn<Hit>(PoolType.HitBullet, tf.position, tf.rotation);
+            // Instantiate(hitBullet, tf.position, tf.rotation);
             OnDespawn();
         }
     }

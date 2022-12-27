@@ -22,7 +22,8 @@ public class Range : Enemy, IHitDash
         ChangeAnim("Attack");
         Invoke(nameof(DelayAttack), 5f);
         Invoke(nameof(ReloadBullet), 15f);
-        Instantiate(BulletPrefab, throwPoint.position, throwPoint.rotation);
+        SimplePool.Spawn<Bullet>(PoolType.Bullet, throwPoint.position, throwPoint.rotation).OnInit();
+        // Instantiate(BulletPrefab, throwPoint.position, throwPoint.rotation);
     }
 
     public void ReloadBullet()

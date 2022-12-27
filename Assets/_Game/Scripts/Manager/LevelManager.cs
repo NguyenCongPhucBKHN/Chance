@@ -94,17 +94,19 @@ public class LevelManager : Singleton<LevelManager>
         {
             enemies[i].ChangeAnim("Idle");
             enemies[i].StopMoving();
-            Debug.Log(enemies[i].gameObject);
             enemies[i].ChangeState(null);
             
         }
-        // ResetCounter();
+
     }
 
     public void OnReset()
     {
         SimplePool.CollectAll();
         enemies.Clear();
+        OnDespawn();
+        OnDespawnCurrentStage();
+
     }
 
      public void OnRetry()
@@ -131,8 +133,14 @@ public class LevelManager : Singleton<LevelManager>
         {
             SimplePool.Despawn(enemies[i]);
         }
-        
         enemies.Clear();
+        ResetCounter();
+        // OnDespawnCurrentStage();
+    }
+
+    public void OnDespawnCurrentStage()
+    {
+        currentLevel.DespawnCurrentStage();
     }
     public void ResetCounter()
     {
