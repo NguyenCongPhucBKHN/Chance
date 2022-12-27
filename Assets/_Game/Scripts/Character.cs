@@ -18,7 +18,7 @@ public class Character : GameUnit, IHitAttack
     [SerializeField] protected Animator anim;
     [SerializeField] protected CombatText combatTextPrefab;
 
-    private string currentAnimName;
+    protected string currentAnimName;
     protected bool isHitting;
     public float Damage => damage;
     public float hp; //TODO: protected
@@ -30,16 +30,12 @@ public class Character : GameUnit, IHitAttack
     // {
     //     tf= transform;
     // }
-    protected void ChangeAnim(string animName)
+    public virtual void ChangeAnim(string animName)
     {
         if(currentAnimName != animName)
         {
             anim.ResetTrigger(currentAnimName);
             currentAnimName = animName;
-            anim.SetTrigger(currentAnimName);
-        }
-        else if(currentAnimName =="Attack")
-        {
             anim.SetTrigger(currentAnimName);
         }
     }

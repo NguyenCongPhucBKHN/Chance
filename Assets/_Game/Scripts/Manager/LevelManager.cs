@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 public class LevelManager : Singleton<LevelManager>
 {
-    public Level[] levels;
+    public Level[] levelPrefabs;
     // public  Melee meleePrefab;
     // public Range rangePrefab;
     // public Boss bossPrefab;
@@ -33,9 +33,10 @@ public class LevelManager : Singleton<LevelManager>
     public int bossCouter;
     #endregion
     
-    private void Awake() {
-        currentLevel = levels[0]; 
-        levelIndex =0; //TODO Set level index
+    private void Awake() 
+    {
+        levelIndex = PlayerPrefs.GetInt("Level", 0);
+        // currentLevel = levelPrefabs[0]; 
     }
 
     private void Start() 
@@ -46,35 +47,84 @@ public class LevelManager : Singleton<LevelManager>
     
 
     }
-    public void RetryLevel()
-    {
 
-    }
-    public void OnNextLevel()
+    public void OnInit()
     {
+        player.tf.position = savePointPlayer;
+        player.OnInit();
+        // currentLevel.OnInit();
+        SpawnEnemyWhileInit();
+    }
 
-    }
-    public void NextLevel()
+    public void LoadLevel(int index)
     {
-        OnDespawn();
-        ResetCounter();
-        LoadLevel(1);
-        OnInit();
+        if (currentLevel != null)
+        {
+            Destroy(currentLevel.gameObject);
+        }
+        // if(index < levelPrefabs.Length)
+        // {
+           
+        // }
+        else if(index > levelPrefabs.Length)
+        {
+            index = levelPrefabs.Length -1;
+            
+        }
+        currentLevel = Instantiate(levelPrefabs[index]);
+        currentLevel.OnInit();
     }
 
     public void OnStartGame()
     {
-        
-    }
-    public void OnRetry()
-    {
+        GameManager.Instance.ChangeState(GameState.Gameplay);
+        //TODO: Check ChangeState Enemy
+        for(int i =0; i< enemies.Count; i++)
+        {
+            enemies[i].ChangeState(new PatrolState());
+        }
 
     }
+
     public void OnFinishGame()
     {   
-        OnDespawn();
-        ResetCounter();
+
+        // OnDespawn();
+        for(int i =0; i< enemies.Count; i++)
+        {
+            enemies[i].ChangeAnim("Idle");
+            enemies[i].StopMoving();
+            Debug.Log(enemies[i].gameObject);
+            enemies[i].ChangeState(null);
+            
+        }
+        // ResetCounter();
     }
+
+    public void OnReset()
+    {
+        SimplePool.CollectAll();
+        enemies.Clear();
+    }
+
+     public void OnRetry()
+    {
+        OnReset();
+        LoadLevel(levelIndex);
+        OnInit();
+        UIManager.Instance.OpenUI<MainMenu>();
+    }
+
+    internal void OnNextLevel()
+    {
+        levelIndex++;
+        PlayerPrefs.SetInt("Level", levelIndex);
+        OnReset();
+        LoadLevel(levelIndex);
+        OnInit();
+        UIManager.Instance.OpenUI<MainMenu>();
+    }
+
     public void OnDespawn()
     {
         for(int i =0; i< enemies.Count; i++)
@@ -93,25 +143,7 @@ public class LevelManager : Singleton<LevelManager>
         rangeCouter=0;
         bossCouter=0;
     }
-    public void LoadLevel(int index)
-    {
-        if (currentLevel != null)
-        {
-            Destroy(currentLevel.gameObject);
-        }
-
-        currentLevel = Instantiate(levels[index]);
-    }
-
-    public void OnInit()
-    {
-        player.tf.position = savePointPlayer;
-        player.OnInit();
-        currentLevel.OnInit();
-        SpawnEnemyWhileInit();
-        
-        
-    }
+    
     public void SpawnEnemyWhileInit()
     {
         SpawnEnemyAmount(EnemyType.Melee, NumberMelee);
@@ -162,7 +194,10 @@ public class LevelManager : Singleton<LevelManager>
         {
             if(bossDead == TotalBoss)
             {
+
                 currentLevel.currentStage.endStage.gameObject.SetActive(true);
+                currentLevel.currentStage.endStage.NextStage();
+                player.arrowTF.gameObject.SetActive(!currentLevel.IsEndLevel);
             }
             return  bossDead+ bossCouter < TotalBoss;
         }
@@ -183,47 +218,13 @@ public class LevelManager : Singleton<LevelManager>
             int pointId = Random.Range(0, Paths[pathId].WayPoints.Count);
             Enemy enemy = SimplePool.Spawn<Enemy>(enemyPrefab, Paths[pathId].WayPoints[pointId].position, Quaternion.identity);
             enemy.path = Paths[pathId];
-            IncreaseEnemy(enemyType);
+            IncreaseEnemyCount(enemyType);
             enemies.Add(enemy);
             enemy.OnInit();
         }
     }
-    public void SpawnEnemyType(EnemyType enemyType)
-    {
-        Enemy enemyPrefab = enemyDatas.GetPrefabEnemy(enemyType);
-        int counter=0;
-        int maxEnemy;
-       switch (enemyType) 
-       {
-        case EnemyType.Melee:
-            counter = meleeCouter;
-            maxEnemy = NumberMelee;
-            break;
-        case EnemyType.Range:
-            counter = rangeCouter;
-            maxEnemy = NumberRange;
-            break;
-        case EnemyType.Boss:
-            counter = bossCouter;
-            maxEnemy = NumberBoss;
-            break;
-        default :
-            counter = 0;
-            maxEnemy = 0;
-            break;
-       }
-        for(int i = counter; i< maxEnemy; i++)
-        {
-            int pathId = Random.Range(0, Paths.Length);
-            int pointId = Random.Range(0, Paths[pathId].WayPoints.Count);
-            Enemy enemy = Instantiate(enemyPrefab, Paths[pathId].WayPoints[pointId].position, Quaternion.identity);
-            enemy.path = Paths[pathId];
-            counter ++;
-            IncreaseEnemy(enemyType);
-        }
-        
-    }
-    public  void IncreaseEnemy(EnemyType enemyType)
+
+    public  void IncreaseEnemyCount(EnemyType enemyType)
     {
         switch (enemyType) 
        {

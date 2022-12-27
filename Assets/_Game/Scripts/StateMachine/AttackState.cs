@@ -7,7 +7,7 @@ public class AttackState : IState
     float timer;
     public void OnEnter(Enemy enemy)
     {
-        if (enemy.Target != null)
+        if (enemy.Target != null && !enemy.Target.IsDead)
         {
             enemy.ChangeDirection(enemy.Target.tf);
             enemy.StopMoving();

@@ -7,6 +7,7 @@ public class Player : Character
 {
     [SerializeField] Rigidbody rb;
     [SerializeField] private GameObject attackArea;
+    [SerializeField] public Transform arrowTF;
     protected JoystickAttackBtn attckBtn;
     public Transform modelTF;
     protected bool jump;
@@ -21,10 +22,11 @@ public class Player : Character
     private bool isAttacking;
     private Coroutine comboAttackResetCouroutine;
     [SerializeField] GameObject vfxAttack;
+    
     #endregion
     #region Variables: Dash
-    [SerializeField] private GameObject DashObj;
-    [SerializeField] private GameObject DashVFX;
+    [SerializeField] private GameObject dashObj;
+    [SerializeField] private GameObject dashVfx;
     public bool isDashing;
     #endregion
 
@@ -77,8 +79,10 @@ public class Player : Character
         isAttacking = false;
         isDashing = false;
         isHitting = false;
-        DashObj.SetActive(false);
-        DashVFX.SetActive(false);
+        dashObj.SetActive(false);
+        dashVfx.SetActive(false);
+        arrowTF.gameObject.SetActive(false);
+        
     }
     // Update is called once per frame
     void Update()
@@ -99,6 +103,10 @@ public class Player : Character
         else if(isAttacking)
         {
             // RotationModel();
+        }
+        else if(IsDead)
+        {
+
         }
         else if(moveInput.SqrMagnitude() <0.001f)
         {
@@ -138,8 +146,8 @@ public class Player : Character
         ChangeAnim("Dash");
         Invoke(nameof(StopDash), 0.7f);
         Dash(speed+5);
-        DashObj.SetActive(true);
-        DashVFX.SetActive(true);
+        dashObj.SetActive(true);
+        dashVfx.SetActive(true);
     }
 
     public void Dash(float speed)
@@ -149,8 +157,8 @@ public class Player : Character
     private void StopDash()
     {
         isDashing = false;
-        DashObj.SetActive(false);
-        DashVFX.SetActive(false);
+        dashObj.SetActive(false);
+        dashVfx.SetActive(false);
         Stop();
         ChangeAnim("Idle");
         
@@ -184,10 +192,15 @@ public class Player : Character
     }
     public override void OnDespawn()
     {
-        base.OnDespawn();
+        // gameObject.SetActive(false);
+    }
+    protected override void OnDeath()
+    {
+        base.OnDeath();
         LevelManager.Instance.OnFinishGame();
-
-
+        UIManager.Instance.CloseUI<Gameplay>();
+        UIManager.Instance.OpenUI<Fail>();
+        GameManager.Instance.ChangeState(GameState.Pause);
     }
 
     private  IEnumerator ResettingAttackCombo()
@@ -207,6 +220,20 @@ public class Player : Character
         
     }
 
+     public override void ChangeAnim(string animName)
+    {
+        if(currentAnimName != animName)
+        {
+            anim.ResetTrigger(currentAnimName);
+            currentAnimName = animName;
+            anim.SetTrigger(currentAnimName);
+        }
+        else if(currentAnimName =="Attack")
+        {
+            anim.SetTrigger(currentAnimName);
+        }
+    }
+
     private void ActiveAttack()
     {
         vfxAttack.SetActive(true);
@@ -217,5 +244,15 @@ public class Player : Character
     {
         vfxAttack.SetActive(false);
         attackArea.SetActive(false);
+    }
+    public void ActivateArrow(Transform endStage)
+    {
+        Vector3 arrow = endStage.position - tf.position;
+        arrow.y =0;
+        arrowTF.rotation = Quaternion.LookRotation(arrow, Vector3.up);
+    }
+    public void DeactivaeArrow()
+    {
+        arrowTF.gameObject.SetActive(false);
     }
 }

@@ -8,7 +8,9 @@ public class Level : MonoBehaviour
   public Stage currentStage; //TODO internal
   public Stage[] stagesPrefab;
   public int currentStageIndex;
+  public bool IsEndLevel => currentStageIndex >= stagesPrefab.Length-1;
   public Stage prevStage;
+ 
   public void OnInit()
   {
     currentStageIndex=0;
@@ -35,7 +37,9 @@ public class Level : MonoBehaviour
     }
     else
     {
-      Debug.Log("Win ");
+      GameManager.Instance.ChangeState(GameState.Pause);
+      UIManager.Instance.CloseUI<Gameplay>();
+      UIManager.Instance.OpenUI<Victory>();
     }
     
   }
