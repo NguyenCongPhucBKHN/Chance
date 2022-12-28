@@ -40,8 +40,6 @@ public class Range : Enemy, IHitDash
         {
             TakeDame(hp);
         }
-        
-        
     }
 
 }

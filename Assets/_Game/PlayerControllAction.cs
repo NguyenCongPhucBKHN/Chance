@@ -53,6 +53,24 @@ public partial class @PlayerControllAction : IInputActionCollection2, IDisposabl
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AOE"",
+                    ""type"": ""Button"",
+                    ""id"": ""d8803880-4267-494f-ace9-6dbf0f29f51b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RotationAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""a6204137-250e-4344-81e3-44df740136e8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -110,6 +128,50 @@ public partial class @PlayerControllAction : IInputActionCollection2, IDisposabl
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""58ece029-7fb7-49b7-bb3b-e7002532e807"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AOE"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""255a9884-d47c-44ec-b0f4-57edcd2f00da"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AOE"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""22d50a21-30e1-48ad-9c10-0c21be804937"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotationAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4e1b7eb2-e739-43e1-92bb-3f8be5085847"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotationAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -121,6 +183,8 @@ public partial class @PlayerControllAction : IInputActionCollection2, IDisposabl
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+        m_Player_AOE = m_Player.FindAction("AOE", throwIfNotFound: true);
+        m_Player_RotationAttack = m_Player.FindAction("RotationAttack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -183,6 +247,8 @@ public partial class @PlayerControllAction : IInputActionCollection2, IDisposabl
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Dash;
+    private readonly InputAction m_Player_AOE;
+    private readonly InputAction m_Player_RotationAttack;
     public struct PlayerActions
     {
         private @PlayerControllAction m_Wrapper;
@@ -190,6 +256,8 @@ public partial class @PlayerControllAction : IInputActionCollection2, IDisposabl
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
+        public InputAction @AOE => m_Wrapper.m_Player_AOE;
+        public InputAction @RotationAttack => m_Wrapper.m_Player_RotationAttack;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -208,6 +276,12 @@ public partial class @PlayerControllAction : IInputActionCollection2, IDisposabl
                 @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @AOE.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAOE;
+                @AOE.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAOE;
+                @AOE.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAOE;
+                @RotationAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotationAttack;
+                @RotationAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotationAttack;
+                @RotationAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotationAttack;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -221,6 +295,12 @@ public partial class @PlayerControllAction : IInputActionCollection2, IDisposabl
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
+                @AOE.started += instance.OnAOE;
+                @AOE.performed += instance.OnAOE;
+                @AOE.canceled += instance.OnAOE;
+                @RotationAttack.started += instance.OnRotationAttack;
+                @RotationAttack.performed += instance.OnRotationAttack;
+                @RotationAttack.canceled += instance.OnRotationAttack;
             }
         }
     }
@@ -230,5 +310,7 @@ public partial class @PlayerControllAction : IInputActionCollection2, IDisposabl
         void OnMove(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnAOE(InputAction.CallbackContext context);
+        void OnRotationAttack(InputAction.CallbackContext context);
     }
 }

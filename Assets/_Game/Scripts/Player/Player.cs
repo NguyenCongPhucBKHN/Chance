@@ -30,11 +30,22 @@ public class Player : Character
     public bool isDashing;
     #endregion
 
+    #region  Variables: RotationAttack
+    [SerializeField] private GameObject rotationObj;
+    public bool isRotating;
+
+    #region Variables: AOE
+    [SerializeField] private GameObject aoeObj;
+    private bool isAoeing;
+    #endregion  
+
      #region Variables: Inputs
      private PlayerControllAction inputActions;
     private InputAction moveAction;
     private InputAction attackAction;
     private InputAction dashAction;
+    private InputAction rotationAction;
+    private InputAction aoeAction;
     #endregion
     private Vector2 moveInput ;
     private Vector3 move;
@@ -58,7 +69,18 @@ public class Player : Character
         dashAction.performed += OnDashAction;
         dashAction.Enable();
 
+        rotationAction = inputActions.Player.RotationAttack;
+        rotationAction.performed += OnRotationAction;
+        rotationAction.Enable();
+
+        aoeAction = inputActions.Player.AOE;
+        aoeAction.performed += OnAOEAction;
+        aoeAction.Enable();
+
     }
+
+    
+
     private void OnDisable() {
         moveAction.Disable();
     }
@@ -79,8 +101,11 @@ public class Player : Character
         isAttacking = false;
         isDashing = false;
         isHitting = false;
+        isAoeing = false;
         dashObj.SetActive(false);
         dashVfx.SetActive(false);
+        aoeObj.SetActive(false);
+        rotationObj.SetActive(false);
         arrowTF.gameObject.SetActive(false);
         
     }
@@ -115,6 +140,7 @@ public class Player : Character
         }
           
     }
+
     public void RotationModel()
     {
         
@@ -150,6 +176,19 @@ public class Player : Character
         dashVfx.SetActive(true);
     }
 
+    private void OnRotationAction(InputAction.CallbackContext obj)
+    {
+        isRotating= true;
+        ChangeAnim("Skill2");
+
+    }
+
+    private void OnAOEAction(InputAction.CallbackContext obj)
+    {
+        isAoeing = true;
+
+    }
+
     public void Dash(float speed)
     {
          rb.velocity = modelTF.forward * speed;
@@ -160,9 +199,16 @@ public class Player : Character
         dashObj.SetActive(false);
         dashVfx.SetActive(false);
         Stop();
-        ChangeAnim("Idle");
-        
-        
+        // ChangeAnim("Idle"); 
+    }
+
+    private void StopRotation()
+    {
+        rotationObj.SetActive(false);
+    }
+    private void StopAOE()
+    {
+
     }
 
     public void Stop()

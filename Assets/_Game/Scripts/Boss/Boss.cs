@@ -9,6 +9,12 @@ public class Boss : Enemy, IHitDash
         base.Awake();
         enemyType = EnemyType.Boss;
     }
+
+    public override void Attack()
+    {
+        // base.Attack();
+        ChangeAnim("Attack");
+    }
     public void OnHitDash()
     {
         if(!IsDead)
