@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100370366489787159
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 455768585042754907}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &455768585042754907
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100370366489787159}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4609938925337655574}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1081828507763962963
 GameObject:
   m_ObjectHideFlags: 0
@@ -3322,6 +3352,7 @@ Transform:
   - {fileID: 4609938926253636148}
   - {fileID: 4773906120301910465}
   - {fileID: 2903267256153594305}
+  - {fileID: 455768585042754907}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3341,7 +3372,7 @@ MonoBehaviour:
   - {fileID: 4609938924534241957}
   - {fileID: 4609938925049154167}
   - {fileID: 4609938925570859508}
-  dataAmountEnemy: {fileID: 11400000, guid: bd7f67895f88e844e8b1a97c91d9b24e, type: 2}
+  dataAmountEnemy: {fileID: 11400000, guid: 735704c4d661027428094e629677cba8, type: 2}
   endStage: {fileID: 4609938926530126820}
   navMeshSurface: {fileID: 17042787981197930}
 --- !u!1 &4609938925506098286
@@ -4288,8 +4319,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stage: {fileID: 4609938925337655575}
-  portOut: {fileID: 4609938926253636149}
-  bridge: {fileID: 4609938925562805050}
+  portOut: {fileID: 100370366489787159}
+  bridge: {fileID: 100370366489787159}
 --- !u!1 &4609938926627244775
 GameObject:
   m_ObjectHideFlags: 0
