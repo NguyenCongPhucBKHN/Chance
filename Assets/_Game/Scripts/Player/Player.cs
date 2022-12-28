@@ -40,8 +40,8 @@ public class Player : Character
     private bool isAoeing;
     #endregion  
 
-     #region Variables: Inputs
-     private PlayerControllAction inputActions;
+    #region Variables: Inputs
+    private PlayerControllAction inputActions;
     private InputAction moveAction;
     private InputAction attackAction;
     private InputAction dashAction;
@@ -98,10 +98,11 @@ public class Player : Character
         moveInput = moveAction.ReadValue<Vector2>();
         if(isDashing)
         {
+            
         }
         else if(isRotating)
         {
-
+            
         }
         else if(isAoeing)
         {
@@ -116,14 +117,14 @@ public class Player : Character
             ChangeAnim("Run");
         }
        
-        else if(isAttacking)
-        {
-            // RotationModel();
-        }
-        else if(IsDead)
-        {
+        // else if(isAttacking)
+        // {
+        //     // RotationModel();
+        // }
+        // else if(IsDead)
+        // {
 
-        }
+        // }
         else if(moveInput.SqrMagnitude() <0.001f)
         {
             ChangeAnim("Idle");
@@ -164,20 +165,43 @@ public class Player : Character
 
     }
 
-    public void MoveToPoint(Transform Point)
-    {
-
-        Vector3 point = Point.position;
-        point.y = tf.position.y;
-        while(Vector3.Distance(tf.position, point)>0.1f)
+    public  IEnumerator WaitingForCurrentAnimation(
+            Animator animator,
+            System.Action callback,
+            float earlyExit = 0f,
+            string waitForAnimName = null,
+            float extraWait = 0f,
+            bool stopAfterAnim = false)
         {
-            moveInput = new Vector2(point.x-tf.position.x, point.y-tf.position.y);
-            RotationModel();
-            // isRunning = true;
-            Move(speed);
-            ChangeAnim("Run");
+            if (stopAfterAnim)
+            {
+                yield return new WaitForEndOfFrame();
+                yield return new WaitForSeconds(
+                    animator.GetAnimatorTransitionInfo(0).duration);
+                yield return new WaitForEndOfFrame();
+                yield return new WaitUntil(() =>
+                    animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f);
+            }
+            else if (waitForAnimName == null)
+            {
+                yield return new WaitForEndOfFrame();
+                yield return new WaitForSeconds(
+                    animator.GetAnimatorTransitionInfo(0).duration);
+                yield return new WaitForEndOfFrame();
+                yield return new WaitForSeconds(
+                    animator.GetCurrentAnimatorStateInfo(0).length - earlyExit);
+            }
+            else
+            {
+                yield return new WaitUntil(() =>
+                    animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == waitForAnimName);
+                yield return new WaitForSeconds(
+                    animator.GetCurrentAnimatorStateInfo(0).length - earlyExit);
+            }
+            if (extraWait > 0)
+                yield return new WaitForSeconds(extraWait);
+            callback();
         }
-    }
     private void OnDashAction(InputAction.CallbackContext obj)
     {
         isDashing= true;
@@ -192,6 +216,7 @@ public class Player : Character
     {
         isRotating= true;
         ChangeAnim("Skill2");
+        Invoke(nameof(StopRotation), Constant.TIMER_RUN_ROTATION);
 
     }
 
@@ -201,6 +226,8 @@ public class Player : Character
         ChangeAnim("Skill3");
 
     }
+
+    
 
     public void Dash(float speed)
     {
@@ -218,11 +245,21 @@ public class Player : Character
     private void StopRotation()
     {
         rotationObj.SetActive(false);
+        // isAoeing = false;
+        StartCoroutine(EnableRotation());
+
         
+    }
+    private IEnumerator EnableRotation()
+    {
+        yield return new WaitForSeconds(Constant.TIMER_BLOCK_ROTATION);
+        isRotating = false;
+
     }
     private void StopAOE()
     {
-
+        isAoeing = false;
+        aoeObj.SetActive(false);
     }
 
     public void Stop()
@@ -232,7 +269,6 @@ public class Player : Character
 
     private void OnAttackAction(InputAction.CallbackContext obj)
     {
-        // JoystickInput.Instance.moveSpeed =0;
         isAttacking = true;
         if(comboHitStep == COMBO_MAX_STEP)
             return;
@@ -247,10 +283,32 @@ public class Player : Character
             anim.SetInteger("hitStep", comboHitStep);
             ChangeAnim("Attack");
             ActiveAttack();
-            comboAttackResetCouroutine = StartCoroutine(ResettingAttackCombo());
+            comboAttackResetCouroutine = StartCoroutine(
+                WaitingForCurrentAnimation(anim,()=>
+                
+                {
+                    ResetAttackCombo();
+                    moveInput = moveAction.ReadValue<Vector2>();
+                    if(move.sqrMagnitude>0.01f )
+                    {
+                        ChangeAnim("Run");
+                        RotationModel();
+                        Move(speed);
+                    }
+                },
+                stopAfterAnim: true,
+                earlyExit: 0.2f
+                ));
         }
        
     }
+
+    public void ResetAttackCombo()
+        {
+            comboHitStep = -1;
+            isAttacking = false;
+            anim.SetInteger("hitStep", comboHitStep);
+        }
     public override void OnDespawn()
     {
         // gameObject.SetActive(false);
