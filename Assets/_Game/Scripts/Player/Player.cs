@@ -33,7 +33,8 @@ public class Player : Character
     #region  Variables: RotationAttack
     [SerializeField] private GameObject rotationObj;
     public bool isRotating;
-
+    #endregion
+    
     #region Variables: AOE
     [SerializeField] private GameObject aoeObj;
     private bool isAoeing;
@@ -91,30 +92,20 @@ public class Player : Character
      
     }
 
-    public override void OnInit()
-    {
-        base.OnInit();
-        DeActiveAttack();
-        timer =0;
-        comboHitStep=-1;
-        isRunning = false;
-        isAttacking = false;
-        isDashing = false;
-        isHitting = false;
-        isAoeing = false;
-        dashObj.SetActive(false);
-        dashVfx.SetActive(false);
-        aoeObj.SetActive(false);
-        rotationObj.SetActive(false);
-        arrowTF.gameObject.SetActive(false);
-        
-    }
     // Update is called once per frame
     void Update()
     {
         moveInput = moveAction.ReadValue<Vector2>();
         if(isDashing)
         {
+        }
+        else if(isRotating)
+        {
+
+        }
+        else if(isAoeing)
+        {
+
         }
         
         else if(moveInput.SqrMagnitude() >0.001f &&!isAttacking && !isDashing)
@@ -141,17 +132,38 @@ public class Player : Character
           
     }
 
+     public override void OnInit()
+    {
+        base.OnInit();
+        DeActiveAttack();
+        timer =0;
+        comboHitStep=-1;
+        isRunning = false;
+        isAttacking = false;
+        isDashing = false;
+        isHitting = false;
+        isAoeing = false;
+        dashObj.SetActive(false);
+        dashVfx.SetActive(false);
+        aoeObj.SetActive(false);
+        rotationObj.SetActive(false);
+        arrowTF.gameObject.SetActive(false);
+        
+    }
+
     public void RotationModel()
     {
         
         move = new Vector3(moveInput.x, 0f, moveInput.y);
         modelTF.rotation =  Quaternion.LookRotation(move, Vector3.up);
     }
+
     public void Move(float speed)
     {   move.Normalize();
         rb.velocity = new Vector3(move.x *speed, rb.velocity.y, move.z*speed);
 
     }
+
     public void MoveToPoint(Transform Point)
     {
 
@@ -186,6 +198,7 @@ public class Player : Character
     private void OnAOEAction(InputAction.CallbackContext obj)
     {
         isAoeing = true;
+        ChangeAnim("Skill3");
 
     }
 
@@ -205,6 +218,7 @@ public class Player : Character
     private void StopRotation()
     {
         rotationObj.SetActive(false);
+        
     }
     private void StopAOE()
     {
@@ -215,6 +229,7 @@ public class Player : Character
     {
         rb.velocity = Vector3.zero;
     }
+
     private void OnAttackAction(InputAction.CallbackContext obj)
     {
         // JoystickInput.Instance.moveSpeed =0;
