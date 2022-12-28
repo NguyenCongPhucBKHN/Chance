@@ -265,7 +265,9 @@ public class Player : Character
     private void AOE() 
     {
         ChangeAnim(Constant.ANIM_TRIGGER_AOE);
+        Invoke(nameof(StopAOE), Constant.TIMER_RUN_AOE);
     }
+    
     
 
     
