@@ -88,7 +88,7 @@ public class LevelManager : Singleton<LevelManager>
         // OnDespawn();
         for(int i =0; i< enemies.Count; i++)
         {
-            enemies[i].ChangeAnim("Idle");
+            enemies[i].ChangeAnim(Constant.ANIM_TRIGGER_IDLE);
             enemies[i].StopMoving();
             enemies[i].ChangeState(null);
             
@@ -127,7 +127,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         for(int i =0; i< enemies.Count; i++)
         {
-            enemies[i].ResetTarget();
+            enemies[i].Reset();
             SimplePool.Despawn(enemies[i]);
         }
         enemies.Clear();

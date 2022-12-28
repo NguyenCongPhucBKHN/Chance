@@ -19,7 +19,7 @@ public class Range : Enemy, IHitDash
 
     public override void Attack()
     {
-        ChangeAnim("Attack");
+        ChangeAnim(Constant.ANIM_TRIGGER_ATTACK);
         Invoke(nameof(DelayAttack), 5f);
         Invoke(nameof(ReloadBullet), 15f);
         SimplePool.Spawn<Bullet>(PoolType.Bullet, throwPoint.position, throwPoint.rotation).OnInit();

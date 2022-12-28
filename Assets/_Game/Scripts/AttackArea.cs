@@ -12,10 +12,9 @@ public class AttackArea : MonoBehaviour
     
     private void OnTriggerEnter(Collider collision)
     {
-        Character character = collision.GetComponentInParent<Character>();
+        IHitAttack character = collision.GetComponentInParent<IHitAttack>();
         if(character!=null)
         {
-            // Instantiate(hitSlashPrefab, tf.position, tf.rotation);
             hit = SimplePool.Spawn<Hit>(PoolType.HitSlash, tf.position, tf.rotation);
             character.OnHitAttack(ownAttack.Damage);
             Invoke(nameof(DestroyHitVfx), 3f);

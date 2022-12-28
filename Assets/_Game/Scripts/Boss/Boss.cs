@@ -13,7 +13,7 @@ public class Boss : Enemy, IHitDash
     public override void Attack()
     {
         // base.Attack();
-        ChangeAnim("Attack");
+        ChangeAnim(Constant.ANIM_TRIGGER_ATTACK);
     }
     public void OnHitDash()
     {

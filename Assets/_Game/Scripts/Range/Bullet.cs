@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : GameUnit
+public class Bullet : GameUnit, IHitAttack
 {
     // [SerializeField] Transform tf;
     [SerializeField] float speed;
@@ -49,5 +49,11 @@ public class Bullet : GameUnit
             // Instantiate(hitBullet, tf.position, tf.rotation);
             OnDespawn();
         }
+    }
+
+    public void OnHitAttack(float damage)
+    {
+        SimplePool.Despawn(this);
+        Debug.Log("Dodan");
     }
 }

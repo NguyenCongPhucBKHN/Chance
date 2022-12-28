@@ -64,6 +64,8 @@ public class Enemy : Character
     }
     public override void OnDespawn()
     {
+        target = null;
+        ChangeState(null);
         SimplePool.Despawn(this);
     }
     protected override void  OnDeath()
@@ -102,20 +104,20 @@ public class Enemy : Character
 
     public void StopMoving()
     {
-        ChangeAnim("Idle");
+        ChangeAnim(Constant.ANIM_TRIGGER_IDLE);
         agent.enabled= false;
     }
     public virtual void Moving()
     {
         agent.enabled= true;
-        ChangeAnim("Run");
+        ChangeAnim(Constant.ANIM_TRIGGER_RUN);
         if(Target!=null)
         {
             SetDestination(Target.tf.position);
         }
         else
         {
-            ChangeAnim("Walk");
+            ChangeAnim(Constant.ANIM_TRIGGER_WALK);
             int index = Random.Range(0, listPoint.Count);
             SetDestination(listPoint[index].position);
         }
@@ -172,8 +174,9 @@ public class Enemy : Character
             break;
        }
     }
-    public void ResetTarget()
+    public void Reset()
     {
         target = null;
+        ChangeState(null);
     }
 }

@@ -19,7 +19,7 @@ public class Melee : Enemy, IHitDash
     }
     public  override void Attack()
     {
-        ChangeAnim("Attack");
+        ChangeAnim(Constant.ANIM_TRIGGER_ATTACK);
         ActiveAttack();
         Invoke(nameof(DeActiveAttack), 1f);
     }

@@ -27,17 +27,20 @@ public class Player : Character
     #region Variables: Dash
     [SerializeField] private GameObject dashObj;
     [SerializeField] private GameObject dashVfx;
-    public bool isDashing;
+    private bool dashRequest;
+    private bool enableDash = true;
     #endregion
 
     #region  Variables: RotationAttack
     [SerializeField] private GameObject rotationObj;
-    public bool isRotating;
+    private bool rotationRequest;
+    private bool enableRotate= true;
     #endregion
     
     #region Variables: AOE
     [SerializeField] private GameObject aoeObj;
-    private bool isAoeing;
+    private bool aoeRequest;
+    private bool enableAoe = true;
     #endregion  
 
     #region Variables: Inputs
@@ -96,38 +99,61 @@ public class Player : Character
     void Update()
     {
         moveInput = moveAction.ReadValue<Vector2>();
-        if(isDashing)
+        if(dashRequest)
         {
-            
+            if(enableDash)
+            {
+                Dash();
+            }
+            else
+            {
+                dashRequest = false;
+            }
         }
-        else if(isRotating)
+        else if(aoeRequest)
         {
-            
+            if(enableAoe)
+            {
+                AOE();
+            }
+            else
+            {
+                aoeRequest = false;
+            }
         }
-        else if(isAoeing)
+        else if(rotationRequest)
+        {
+            if(enableRotate)
+            {
+                Rotation();
+            }
+            else
+            {
+                rotationRequest = false;
+            }
+        }
+        else if(isAttacking)
+        {
+           
+        }
+        else if(IsDead)
         {
 
         }
-        
-        else if(moveInput.SqrMagnitude() >0.001f &&!isAttacking && !isDashing)
+        else if(moveInput.SqrMagnitude() >0.001f )
         {
             RotationModel();
             // isRunning = true;
             Move(speed);
-            ChangeAnim("Run");
+            ChangeAnim(Constant.ANIM_TRIGGER_RUN);
         }
        
-        // else if(isAttacking)
-        // {
-        //     // RotationModel();
-        // }
-        // else if(IsDead)
-        // {
-
-        // }
-        else if(moveInput.SqrMagnitude() <0.001f)
+        
+        
+        else /*if(moveInput.SqrMagnitude() <0.001f)*/
         {
-            ChangeAnim("Idle");
+            ChangeAnim(Constant.ANIM_TRIGGER_IDLE);
+            Debug.Log("Stop player");
             Stop();
         }
           
@@ -141,9 +167,9 @@ public class Player : Character
         comboHitStep=-1;
         isRunning = false;
         isAttacking = false;
-        isDashing = false;
+        dashRequest = false;
         isHitting = false;
-        isAoeing = false;
+        aoeRequest = false;
         dashObj.SetActive(false);
         dashVfx.SetActive(false);
         aoeObj.SetActive(false);
@@ -179,12 +205,15 @@ public class Player : Character
                 yield return new WaitForSeconds(
                     animator.GetAnimatorTransitionInfo(0).duration);
                 yield return new WaitForEndOfFrame();
+                    
                 yield return new WaitUntil(() =>
-                    animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f);
+                    animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.85f);
+                    RotationModel();
             }
             else if (waitForAnimName == null)
             {
                 yield return new WaitForEndOfFrame();
+
                 yield return new WaitForSeconds(
                     animator.GetAnimatorTransitionInfo(0).duration);
                 yield return new WaitForEndOfFrame();
@@ -204,9 +233,13 @@ public class Player : Character
         }
     private void OnDashAction(InputAction.CallbackContext obj)
     {
-        isDashing= true;
-        ChangeAnim("Dash");
-        Invoke(nameof(StopDash), 0.7f);
+        dashRequest= true;
+        
+    }
+    private void Dash()
+    {
+        ChangeAnim(Constant.ANIM_TRIGGER_DASH);
+        Invoke(nameof(StopDash), Constant.TIMER_RUN_DASH);
         Dash(speed+5);
         dashObj.SetActive(true);
         dashVfx.SetActive(true);
@@ -214,38 +247,55 @@ public class Player : Character
 
     private void OnRotationAction(InputAction.CallbackContext obj)
     {
-        isRotating= true;
-        ChangeAnim("Skill2");
+        rotationRequest= true;
+    }
+    private void Rotation()
+    {
+        ActiveAttack();
+        ChangeAnim(Constant.ANIM_TRIGGER_ROTATION);
         Invoke(nameof(StopRotation), Constant.TIMER_RUN_ROTATION);
-
     }
 
     private void OnAOEAction(InputAction.CallbackContext obj)
     {
-        isAoeing = true;
-        ChangeAnim("Skill3");
+        aoeRequest = true;
+        
 
     }
-
+    private void AOE() 
+    {
+        ChangeAnim(Constant.ANIM_TRIGGER_AOE);
+    }
     
 
+    
     public void Dash(float speed)
     {
          rb.velocity = modelTF.forward * speed;
     }
     private void StopDash()
     {
-        isDashing = false;
+        dashRequest = false;
+        enableDash =false;
         dashObj.SetActive(false);
         dashVfx.SetActive(false);
-        Stop();
-        // ChangeAnim("Idle"); 
+        StartCoroutine(EnableDash());
+       
+        
+    }
+
+    private IEnumerator EnableDash()
+    {
+        yield return new WaitForSeconds(Constant.TIMER_BLOCK_DASH);
+        enableDash = true;
     }
 
     private void StopRotation()
     {
         rotationObj.SetActive(false);
-        // isAoeing = false;
+        DeActiveAttack();
+        rotationRequest = false;
+        enableRotate = false;
         StartCoroutine(EnableRotation());
 
         
@@ -253,13 +303,19 @@ public class Player : Character
     private IEnumerator EnableRotation()
     {
         yield return new WaitForSeconds(Constant.TIMER_BLOCK_ROTATION);
-        isRotating = false;
-
+        enableRotate = true;
     }
     private void StopAOE()
     {
-        isAoeing = false;
+        aoeRequest = false;
+        enableAoe = false;
         aoeObj.SetActive(false);
+        StartCoroutine(EnableAOE());
+    }
+    private IEnumerator EnableAOE()
+    {
+        yield return new WaitForSeconds(Constant.TIMER_BLOCK_AOE);
+        enableAoe = true;
     }
 
     public void Stop()
@@ -280,8 +336,8 @@ public class Player : Character
                 StopCoroutine(comboAttackResetCouroutine);
             }
             comboHitStep++;
-            anim.SetInteger("hitStep", comboHitStep);
-            ChangeAnim("Attack");
+            anim.SetInteger(Constant.ANIM_LABEL_HIT_STEP, comboHitStep);
+            ChangeAnim(Constant.ANIM_TRIGGER_ATTACK);
             ActiveAttack();
             comboAttackResetCouroutine = StartCoroutine(
                 WaitingForCurrentAnimation(anim,()=>
@@ -291,9 +347,14 @@ public class Player : Character
                     moveInput = moveAction.ReadValue<Vector2>();
                     if(move.sqrMagnitude>0.01f )
                     {
-                        ChangeAnim("Run");
+                        ChangeAnim(Constant.ANIM_TRIGGER_RUN);
                         RotationModel();
                         Move(speed);
+                    }
+                    else
+                    {
+                        Stop();
+                        ChangeAnim(Constant.ANIM_TRIGGER_IDLE);
                     }
                 },
                 stopAfterAnim: true,
@@ -307,7 +368,9 @@ public class Player : Character
         {
             comboHitStep = -1;
             isAttacking = false;
-            anim.SetInteger("hitStep", comboHitStep);
+            DeActiveAttack();
+            anim.SetInteger(Constant.ANIM_LABEL_HIT_STEP, comboHitStep);
+            
         }
     public override void OnDespawn()
     {
@@ -334,7 +397,7 @@ public class Player : Character
            );
         comboHitStep = -1;
         DeActiveAttack();
-        anim.SetInteger("hitStep", comboHitStep);
+        anim.SetInteger(Constant.ANIM_LABEL_HIT_STEP, comboHitStep);
         isAttacking = false;
         isRunning = false;
         
@@ -348,7 +411,7 @@ public class Player : Character
             currentAnimName = animName;
             anim.SetTrigger(currentAnimName);
         }
-        else if(currentAnimName =="Attack")
+        else if(currentAnimName ==Constant.ANIM_TRIGGER_ATTACK)
         {
             anim.SetTrigger(currentAnimName);
         }
