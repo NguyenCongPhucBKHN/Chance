@@ -207,7 +207,7 @@ public class Player : Character
                 yield return new WaitForEndOfFrame();
                     
                 yield return new WaitUntil(() =>
-                    animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.85f);
+                    animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f);
                     RotationModel();
             }
             else if (waitForAnimName == null)
@@ -265,6 +265,7 @@ public class Player : Character
     private void AOE() 
     {
         ChangeAnim(Constant.ANIM_TRIGGER_AOE);
+        aoeObj.SetActive(true);
         Invoke(nameof(StopAOE), Constant.TIMER_RUN_AOE);
     }
     
