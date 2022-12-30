@@ -8,6 +8,7 @@ public class Player : Character
     [SerializeField] Rigidbody rb;
     [SerializeField] private GameObject attackArea;
     [SerializeField] public Transform arrowTF;
+    [SerializeField] private CapsuleCollider colliderPlayer;
     protected JoystickAttackBtn attckBtn;
     public Transform modelTF;
     protected bool jump;
@@ -179,12 +180,6 @@ public class Player : Character
         DeActiveRotation();
         DeActiveDash();
         DeActiveAOE();
-        // dashObj.SetActive(false);
-        // dashVfx.SetActive(false);
-        // aoeObj.SetActive(false);
-        // rotationObj.SetActive(false);
-        // arrowTF.gameObject.SetActive(false);
-        
     }
 
     public void RotationModel()
@@ -303,6 +298,7 @@ public class Player : Character
     {
         yield return new WaitForSeconds(Constant.TIMER_BLOCK_DASH);
         enableDash = true;
+
     }
 
     private void StopRotation()
@@ -448,11 +444,14 @@ public class Player : Character
     {
         dashVfx.SetActive(true);
         dashObj.SetActive(true);
+        // colliderPlayer.isTrigger= true;
+
     }
     private void DeActiveDash()
     {
         dashVfx.SetActive(false);
         dashObj.SetActive(false);
+        // colliderPlayer.isTrigger= false;
     }
     private void ActiveRotation()
     {

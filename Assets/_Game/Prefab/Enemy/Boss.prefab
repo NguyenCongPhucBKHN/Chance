@@ -226,6 +226,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   target: {fileID: 8744997548607744068}
+  parentTf: {fileID: 8744997548607744068}
   offset: {x: 0, y: 2.1, z: 0}
 --- !u!1 &46264482060005010
 GameObject:
@@ -38402,6 +38403,7 @@ MonoBehaviour:
   hp: 0
   attackRange: 3
   fovRadius: 5
+  capsuleCollider: {fileID: 5988319602558206791}
   agent: {fileID: 8744997548607744067}
   path: {fileID: 0}
   listPoint: []

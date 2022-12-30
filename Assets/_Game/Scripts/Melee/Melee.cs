@@ -35,13 +35,13 @@ public class Melee : Enemy, IHitDash
         attackArea.SetActive(false);
         attackvfx.SetActive(false);
     }
-    public void OnHitDash()
-    {
-        if(!IsDead)
-        {
-            TakeDame(hp);
-        }
+    // public void OnHitDash()
+    // {
+    //     if(!IsDead)
+    //     {
+    //         TakeDame(hp);
+    //     }
 
         
-    }
+    // }
 }

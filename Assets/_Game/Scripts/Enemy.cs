@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(SphereCollider))]
-public class Enemy : Character
+public class Enemy : Character, IHitDash
 {
     [SerializeField] private float attackRange;
     [SerializeField] private float fovRadius;
+    [SerializeField] protected CapsuleCollider capsuleCollider;
     protected EnemyType enemyType;
     public NavMeshAgent agent;
     Vector3 point;
@@ -37,6 +38,7 @@ public class Enemy : Character
     private void Start() {
         GetComponent<SphereCollider>().radius = fovRadius;
         agent.speed = speed;
+        
     }
 
     
@@ -56,9 +58,13 @@ public class Enemy : Character
             isTargetInFov = true;
         }
     }
+     
+
+
     public override void OnInit()
     {
         base.OnInit();
+        DeactiveTrigger();
         listPoint = path.WayPoints;
         ChangeState( new IdleState());
     }
@@ -75,9 +81,21 @@ public class Enemy : Character
         base.OnDeath();
         LevelManager.Instance.UpdateCounter(enemyType);
         LevelManager.Instance.SpawnWhileEnemyDead(enemyType);
-        
     }
+     public void OnHitDash()
+    {
+        capsuleCollider.isTrigger = true;
+        if(!IsDead)
+        {   
+            TakeDame(hp);
+            Invoke(nameof(DeactiveTrigger), 1f);
+        }
 
+    }
+    public void DeactiveTrigger()
+    {
+        capsuleCollider.isTrigger = false;   
+    }
 
      public void SetDestination(Vector3 position)
     {

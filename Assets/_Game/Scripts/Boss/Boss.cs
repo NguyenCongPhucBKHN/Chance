@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss : Enemy, IHitDash
+public class Boss : Enemy
 {
     [SerializeField] GameObject attackArea;
     [SerializeField] GameObject attackVFX;
@@ -12,13 +12,13 @@ public class Boss : Enemy, IHitDash
         enemyType = EnemyType.Boss;
     }
 
-    public void OnHitDash()
-    {
-        if(!IsDead)
-        {
-            TakeDame(50);
-        }
-    }
+    // public void OnHitDash()
+    // {
+    //     if(!IsDead)
+    //     {
+    //         TakeDame(50);
+    //     }
+    // }
     public override void Attack()
     {
         ActivateAttack();

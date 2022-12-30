@@ -43,6 +43,7 @@ namespace HealthBarSystem
         /// </summary>
         [SerializeField] private Gradient m_Color;
         [SerializeField] private Transform target;
+        [SerializeField] private Transform parentTf;
         [SerializeField] private Vector3 offset;
         /// <summary>
         /// The current value
@@ -51,18 +52,21 @@ namespace HealthBarSystem
         /// <summary>
         /// The target value need to reach
         /// </summary>
-
+        private Quaternion lastParentRotation;
 
         public float Value { get => m_Value; set => m_Value = value; }
         
         private void Awake() {
             tf = transform;
+            lastParentRotation = parentTf.localRotation;
 
         }
         private void Update()
         {
             HandleHealthBar();
             tf.position = target.position + offset;
+            tf.localRotation = Quaternion.Inverse(parentTf.localRotation)* lastParentRotation * tf.localRotation;
+            lastParentRotation = parentTf.localRotation;
             
         }
         /// <summary>
