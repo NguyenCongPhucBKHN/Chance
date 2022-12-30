@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CombatTextSystem;
+using HealthBarSystem;
 public class Character : GameUnit, IHitAttack
 {
     [Header("Attributes")]
@@ -17,6 +18,7 @@ public class Character : GameUnit, IHitAttack
     [Header("Animator")]
     [SerializeField] protected Animator anim;
     [SerializeField] protected CombatText combatTextPrefab;
+    [SerializeField] protected HealthBar healthBar;
 
     protected string currentAnimName;
     protected bool isHitting;
@@ -44,6 +46,7 @@ public class Character : GameUnit, IHitAttack
     public virtual void OnInit()
     {
         hp =100;
+        healthBar.Init(tf, 100, 0, 100);
     }
 
     public virtual void OnDespawn()
@@ -65,10 +68,11 @@ public class Character : GameUnit, IHitAttack
 
             if (IsDead)
             {
-                hp=0;
                 OnDeath();
+                hp=0;
+                
             }
-            if(this is Player)
+            else if(this is Player)
             {
                 CombatTextManager.Instance.CreateText(tf.position, $"-{damage}", Color.red, true);
             }
@@ -76,6 +80,8 @@ public class Character : GameUnit, IHitAttack
             {
                 CombatTextManager.Instance.CreateText(tf.position, $"-{damage}", Color.green, true);
             }
+            healthBar.DecreaseHealth(damage);
+            healthBar.HandleHealthBar();
             // SimplePool.Spawn<CombatText>(PoolType.CombatText, tf.position + Vector3.up, Quaternion.identity).OnInit(damage);
             // Instantiate(combatTextPrefab, tf.position + Vector3.up, Quaternion.identity).OnInit(damage);
         }

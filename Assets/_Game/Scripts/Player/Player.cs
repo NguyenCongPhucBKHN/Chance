@@ -100,6 +100,10 @@ public class Player : Character
     // Update is called once per frame
     void Update()
     {
+        if (IsDead)
+        {
+            return;
+        }
         moveInput = moveAction.ReadValue<Vector2>();
         if(dashRequest)
         {
@@ -138,10 +142,10 @@ public class Player : Character
         {
            
         }
-        else if(IsDead)
-        {
+        // else if(IsDead)
+        // {
 
-        }
+        // }
         else if(moveInput.SqrMagnitude() >0.001f )
         {
             RotationModel();
@@ -213,7 +217,7 @@ public class Player : Character
                     
                 yield return new WaitUntil(() =>
                     animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f);
-                    RotationModel();
+                    // RotationModel();
             }
             else if (waitForAnimName == null)
             {

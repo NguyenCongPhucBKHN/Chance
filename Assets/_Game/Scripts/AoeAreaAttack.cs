@@ -6,7 +6,7 @@ public class AoeAreaAttack : MonoBehaviour
 {
      [SerializeField] private int m_FirstDamageTake;
     [SerializeField] private int m_DurationDamageTake;
-    private Dictionary<Character, Coroutine> m_Coroutines = new Dictionary<Character, Coroutine>();
+    // private Dictionary<Character, Coroutine> m_Coroutines = new Dictionary<Character, Coroutine>();
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("GO: "+ other.gameObject);
@@ -22,8 +22,8 @@ public class AoeAreaAttack : MonoBehaviour
         Character character = other.GetComponentInParent<Character>();
         if (character!= null)
         {
-            StopCoroutine(m_Coroutines[character]);
-            m_Coroutines.Remove(character);
+            // StopCoroutine(m_Coroutines[character]);
+            // m_Coroutines.Remove(character);
         }
     }
     IEnumerator TakeDamageDuration(Character character)
