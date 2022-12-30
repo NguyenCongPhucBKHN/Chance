@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using CombatTextSystem;
 public class Character : GameUnit, IHitAttack
 {
     [Header("Attributes")]
@@ -68,7 +68,15 @@ public class Character : GameUnit, IHitAttack
                 hp=0;
                 OnDeath();
             }
-            SimplePool.Spawn<CombatText>(PoolType.CombatText, tf.position + Vector3.up, Quaternion.identity).OnInit(damage);
+            if(this is Player)
+            {
+                CombatTextManager.Instance.CreateText(tf.position, $"-{damage}", Color.red, true);
+            }
+            else
+            {
+                CombatTextManager.Instance.CreateText(tf.position, $"-{damage}", Color.green, true);
+            }
+            // SimplePool.Spawn<CombatText>(PoolType.CombatText, tf.position + Vector3.up, Quaternion.identity).OnInit(damage);
             // Instantiate(combatTextPrefab, tf.position + Vector3.up, Quaternion.identity).OnInit(damage);
         }
     }

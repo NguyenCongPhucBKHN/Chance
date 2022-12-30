@@ -5,7 +5,7 @@ using TMPro;
 using DG.Tweening;
 namespace CombatTextSystem
 {
-    public class UICombatText : MonoBehaviour
+    public class UICombatText : GameUnit
     {
         /// <summary>
         /// The transform attached to this gameobject
@@ -61,7 +61,7 @@ namespace CombatTextSystem
         /// </summary>
         private void SelfDespawn()
         {
-            Destroy(gameObject);
+            SimplePool.Despawn(this);
         }
        
     }

@@ -30,7 +30,7 @@ namespace CombatTextSystem
         /// <param name="useScale">is using scale tween</param>
         public void CreateText(Vector3 position, string text, Color color, bool useScale)
         {
-            UICombatText uICombatText = Instantiate(m_UICombatTextPrefab, m_WorldSpaceCanvas);
+            UICombatText uICombatText =SimplePool.Spawn<UICombatText>(PoolType.UICombatText, position, Quaternion.identity);
             uICombatText.Setup(position, text, color, useScale);            
         }
     }
