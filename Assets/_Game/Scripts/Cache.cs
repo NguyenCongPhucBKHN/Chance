@@ -34,9 +34,17 @@ public class Cache : MonoBehaviour
             }
             
         }
-
-
         return characterParents[collider];
+    }
+
+    public static Character GetCharacterInParent2(Collider collider)
+    {
+        if (!characterParents.ContainsKey(collider))
+        {   
+           characterParents.Add(collider, collider.GetComponentInParent<Character>());
+        }
+        return characterParents[collider];
+
     }
 
     public static IHitAttack GetIHitAttackInParent(Collider collider)

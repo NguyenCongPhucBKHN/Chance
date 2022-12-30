@@ -10,11 +10,12 @@ public class AoeAreaAttack : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
          
-        Character character = Cache.GetCharacterInParent(other);
+        Character character = Cache.GetCharacterInParent2(other);
         if (character!= null)
         {
+            
             character.TakeDame(m_FirstDamageTake);
-            if(m_Coroutines.ContainsKey(character))
+            if(!m_Coroutines.ContainsKey(character))
             {
                 m_Coroutines.Add(character, StartCoroutine(TakeDamageDuration(character)));
             }
@@ -23,7 +24,7 @@ public class AoeAreaAttack : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        Character character = Cache.GetCharacterInParent(other);
+        Character character = Cache.GetCharacterInParent2(other);
         if (character!= null)
         {
             StopCoroutine(m_Coroutines[character]);
