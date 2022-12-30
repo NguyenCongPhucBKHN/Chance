@@ -57,6 +57,7 @@ public class Player : Character
     private Vector2 moveInput ;
     private Vector3 move;
     private bool isRunning;
+    private float rotationTimer =0;
     public  void Awake() 
     {
         attckBtn = FindObjectOfType<JoystickAttackBtn>();  
@@ -64,27 +65,6 @@ public class Player : Character
         tf= transform;
     }
 
-    private void OnEnable() {
-        moveAction = inputActions.Player.Move;
-        moveAction.Enable();
-
-        attackAction= inputActions.Player.Attack;
-        attackAction.performed += OnAttackAction;
-        attackAction.Enable();
-
-        dashAction = inputActions.Player.Dash;
-        dashAction.performed += OnDashAction;
-        dashAction.Enable();
-
-        rotationAction = inputActions.Player.RotationAttack;
-        rotationAction.performed += OnRotationAction;
-        rotationAction.Enable();
-
-        aoeAction = inputActions.Player.AOE;
-        aoeAction.performed += OnAOEAction;
-        aoeAction.Enable();
-
-    }
 
     
 
@@ -93,6 +73,24 @@ public class Player : Character
     }
     void Start()
     {
+    moveAction = inputActions.Player.Move;
+    moveAction.Enable();
+
+    attackAction= inputActions.Player.Attack;
+    attackAction.performed += OnAttackAction;
+    attackAction.Enable();
+
+    dashAction = inputActions.Player.Dash;
+    dashAction.performed += OnDashAction;
+    dashAction.Enable();
+
+    rotationAction = inputActions.Player.RotationAttack;
+    rotationAction.performed += OnRotationAction;
+    rotationAction.Enable();
+
+    aoeAction = inputActions.Player.AOE;
+    aoeAction.performed += OnAOEAction;
+    aoeAction.Enable();
      attckBtn = FindObjectOfType<JoystickAttackBtn>();  
      OnInit();
      
@@ -101,10 +99,12 @@ public class Player : Character
     // Update is called once per frame
     void Update()
     {
+
         if (IsDead)
         {
             return;
         }
+        
         moveInput = moveAction.ReadValue<Vector2>();
         if(dashRequest)
         {
@@ -143,14 +143,10 @@ public class Player : Character
         {
            
         }
-        // else if(IsDead)
-        // {
-
-        // }
+        
         else if(moveInput.SqrMagnitude() >0.001f )
         {
             RotationModel();
-            // isRunning = true;
             Move(speed);
             ChangeAnim(Constant.ANIM_TRIGGER_RUN);
         }
@@ -256,6 +252,7 @@ public class Player : Character
     }
     private void Rotation()
     {
+    
         ChangeAnim(Constant.ANIM_TRIGGER_ROTATION);
         ActiveRotation();
         Invoke(nameof(StopRotation), Constant.TIMER_RUN_ROTATION);
@@ -288,7 +285,6 @@ public class Player : Character
         dashRequest = false;
         enableDash =false;
         DeActiveDash();
-        // Stop();
         StartCoroutine(EnableDash());
        
         
@@ -307,11 +303,10 @@ public class Player : Character
         enableRotate = false;
         DeActiveRotation();
         StartCoroutine(EnableRotation());
-
-        
     }
     private IEnumerator EnableRotation()
-    {
+    {   
+        // rotationTimer += Time.deltaTime;
         yield return new WaitForSeconds(Constant.TIMER_BLOCK_ROTATION);
         enableRotate = true;
     }

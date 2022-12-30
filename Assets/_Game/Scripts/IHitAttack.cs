@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IHitAttack 
 {
-    public void OnHitAttack(float damage);
+    public void OnHitAttack( Transform tf, float damage);
 }

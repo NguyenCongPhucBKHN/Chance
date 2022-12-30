@@ -25,7 +25,7 @@ public class Character : GameUnit, IHitAttack
     protected bool isHitting;
     public float Damage => damage;
     public float hp; //TODO: protected
-
+    private Hit hit;
 
     
     
@@ -88,15 +88,22 @@ public class Character : GameUnit, IHitAttack
         }
     }
 
-    public void OnHitAttack(float damage)
+    public void OnHitAttack(Transform hitTF, float damage)
     {
+        hit = SimplePool.Spawn<Hit>(PoolType.HitSlash, hitTF.position, hitTF.rotation);
         if(!IsDead)
         {
             ChangeAnim("Hit");
             TakeDame(damage);
+            Invoke(nameof(DestroyHitAttackVfx), 3f);
         }
         
         
+    }
+
+    public void DestroyHitAttackVfx()
+    {
+        hit.Despawn();
     }
 }
    

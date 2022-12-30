@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : GameUnit, IHitAttack
+public class Bullet : GameUnit
 {
     // [SerializeField] Transform tf;
     [SerializeField] float speed;
@@ -44,15 +44,11 @@ public class Bullet : GameUnit, IHitAttack
         Character player = Cache.GetCharacter(other);
         if(player is Player)
         {
-            player.OnHitAttack(damge);
+            player.OnHitAttack(tf, damge);
             hit = SimplePool.Spawn<Hit>(PoolType.HitBullet, tf.position, tf.rotation);
             // Instantiate(hitBullet, tf.position, tf.rotation);
             OnDespawn();
         }
     }
 
-    public void OnHitAttack(float damage)
-    {
-        SimplePool.Despawn(this);
-    }
 }

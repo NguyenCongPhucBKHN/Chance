@@ -4,8 +4,8 @@ using UnityEngine;
 
 public static class Constant 
 {
-    public const float TIMER_BLOCK_ROTATION =0;
-    public const float TIMER_RUN_ROTATION =1;
+    public const float TIMER_BLOCK_ROTATION = 5f;
+    public const float TIMER_RUN_ROTATION =2.15f;
     public const float TIMER_BLOCK_DASH =0;
     public const float TIMER_RUN_DASH = 0.75f;
 
