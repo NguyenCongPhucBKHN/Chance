@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tf: {fileID: 6149603447684986812}
-  poolType: 6
+  poolType: 8
   m_Content: {fileID: 6149603447807962162}
   m_Offset: {x: 0, y: 3, z: 0}
   m_LifeTime: 2

@@ -2962,8 +2962,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3015f77b25329c94eb724b2c6ed0ab8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPrefab: {fileID: 6263520613801824659, guid: 1679b4586e7f702419fbd75ca1ba2946, type: 3}
-  hitBulletPrefab: {fileID: 1321021649640250, guid: 7e6c183d69bb7084c894a627bd43db61, type: 3}
+  hitPrefab: {fileID: 8819962044270612312, guid: 8543aa476e8ae5541a79c82ccd55cc51, type: 3}
+  hitBulletPrefab: {fileID: 7063719880328152105, guid: d05ed89689b38e84185e3074ff89cf2d, type: 3}
 --- !u!65 &1638269758059532758
 BoxCollider:
   m_ObjectHideFlags: 0

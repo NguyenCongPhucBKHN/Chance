@@ -32,11 +32,6 @@ public class Bullet : GameUnit
     private void OnDespawn()
     {
         SimplePool.Despawn(this);
-        if(hit!=null)
-        {
-            hit.Despawn();
-        }
-        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,8 +39,8 @@ public class Bullet : GameUnit
         IHitBullet hitBullet = Cache.GetIHitBullet(other);
         if(hitBullet!= null)
         {
-             hitBullet.OnHitBullet(tf, damge);
-        
+            hitBullet.OnHitBullet(tf, damge);
+            OnDespawn();
         }
    
     }

@@ -61,6 +61,7 @@ public class Player : Character, IHitBullet
     private Vector3 move;
     private bool isRunning;
     private float rotationTimer =0;
+    private Hit hitBullet;
     public  void Awake() 
     {
         attckBtn = FindObjectOfType<JoystickAttackBtn>();  
@@ -460,9 +461,20 @@ public class Player : Character, IHitBullet
     
     public  void OnHitBullet(Transform tf, float damge)
     {
-        OnHitAttack(tf, damge);
+        hitBullet = SimplePool.Spawn<Hit>(PoolType.HitBullet, tf.position, tf.rotation);
+        if(!IsDead)
+        {
+            ChangeAnim(Constant.ANIM_TRIGGER_HIT);
+            TakeDame(damge);
+             Invoke(nameof(DestroyHitBullet), 1f);
+        }
+       
     }
     
+    public void DestroyHitBullet()
+    {
+        SimplePool.Despawn(hitBullet);
+    }
     
 
     private void DeActiveRotation()

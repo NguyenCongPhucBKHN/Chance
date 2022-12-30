@@ -333,6 +333,8 @@ public enum PoolType
     CombatText,
     HitBullet,
     HitSlash,
+    hitAttackWall,
+    hitBulletWall,
 
     UICombatText
     // Bullet_1,
