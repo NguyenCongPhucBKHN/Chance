@@ -20,26 +20,20 @@ public class Range : Enemy
     public override void Attack()
     {
         ChangeAnim(Constant.ANIM_TRIGGER_ATTACK);
-        Invoke(nameof(DelayAttack), 5f);
-        Invoke(nameof(ReloadBullet), 15f);
         SimplePool.Spawn<Bullet>(PoolType.Bullet, throwPoint.position, throwPoint.rotation).OnInit();
-        // Instantiate(BulletPrefab, throwPoint.position, throwPoint.rotation);
+        // Invoke(nameof(DelayAttack), 5f); //BUG sau khi die van tan cong
+        // Invoke(nameof(ReloadBullet), 15f);
+
     }
 
     public void ReloadBullet()
     {
-        ChangeAnim("Reload");
+        ChangeAnim(Constant.ANIM_TRIGGER_RELOAD);
     }
     public void DelayAttack()
     {
         ChangeAnim("Delay");
     }
-    // public void OnHitDash()
-    // {   
-    //     if(!IsDead)
-    //     {
-    //         TakeDame(hp);
-    //     }
-    // }
+    
 
 }

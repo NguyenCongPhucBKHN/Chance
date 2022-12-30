@@ -9,16 +9,21 @@ public class Player : Character, IHitBullet
     [SerializeField] private GameObject attackArea;
     [SerializeField] public Transform arrowTF;
     [SerializeField] private CapsuleCollider colliderPlayer;
+
+    #region Variables: Inputs
+    private PlayerControllAction inputActions;
+    private InputAction moveAction;
+    private InputAction attackAction;
+    private InputAction dashAction;
+    private InputAction rotationAction;
+    private InputAction aoeAction;
+    #endregion
     
-    protected JoystickAttackBtn attckBtn;
+
     public Transform modelTF;
-    protected bool jump;
-    private float timer;
-    private float T = 3;
-    private int hitNumber;
+    
     
     #region Variables: Attack
-    private float COMBO_MIN_DELAY =0.1f;
     private int COMBO_MAX_STEP=2;
     private int comboHitStep;
     private bool isAttacking;
@@ -49,54 +54,45 @@ public class Player : Character, IHitBullet
     private bool enableAoe = true;
     #endregion  
 
-    #region Variables: Inputs
-    private PlayerControllAction inputActions;
-    private InputAction moveAction;
-    private InputAction attackAction;
-    private InputAction dashAction;
-    private InputAction rotationAction;
-    private InputAction aoeAction;
-    #endregion
-    private Vector2 moveInput ;
-    private Vector3 move;
-    private bool isRunning;
+    
+    private Vector2 moveInput ; //direction joystick
+    private Vector3 move; // direction move
+    
     private float rotationTimer =0;
     private Hit hitBullet;
+    private float timer;
     public  void Awake() 
     {
-        attckBtn = FindObjectOfType<JoystickAttackBtn>();  
         inputActions = new PlayerControllAction();
         tf= transform;
     }
 
-
-    
-
-    private void OnDisable() {
+    private void OnDisable() 
+    {
         moveAction.Disable();
     }
     void Start()
     {
-    moveAction = inputActions.Player.Move;
-    moveAction.Enable();
+        moveAction = inputActions.Player.Move;
+        moveAction.Enable();
 
-    attackAction= inputActions.Player.Attack;
-    attackAction.performed += OnAttackAction;
-    attackAction.Enable();
+        attackAction= inputActions.Player.Attack;
+        attackAction.performed += OnAttackAction;
+        attackAction.Enable();
 
-    dashAction = inputActions.Player.Dash;
-    dashAction.performed += OnDashAction;
-    dashAction.Enable();
+        dashAction = inputActions.Player.Dash;
+        dashAction.performed += OnDashAction;
+        dashAction.Enable();
 
-    rotationAction = inputActions.Player.RotationAttack;
-    rotationAction.performed += OnRotationAction;
-    rotationAction.Enable();
+        rotationAction = inputActions.Player.RotationAttack;
+        rotationAction.performed += OnRotationAction;
+        rotationAction.Enable();
 
-    aoeAction = inputActions.Player.AOE;
-    aoeAction.performed += OnAOEAction;
-    aoeAction.Enable();
-     attckBtn = FindObjectOfType<JoystickAttackBtn>();  
-     OnInit();
+        aoeAction = inputActions.Player.AOE;
+        aoeAction.performed += OnAOEAction;
+        aoeAction.Enable();
+        
+        OnInit();
      
     }
 
@@ -171,7 +167,6 @@ public class Player : Character, IHitBullet
         DeActiveAttack();
         timer =0;
         comboHitStep=-1;
-        isRunning = false;
         isAttacking = false;
         dashRequest = false;
         isHitting = false;
@@ -273,7 +268,6 @@ public class Player : Character, IHitBullet
         
         ChangeAnim(Constant.ANIM_TRIGGER_AOE);
         Invoke(nameof(ActiveAOE), 0.9f);
-        // aoeObj.SetActive(true);
         Invoke(nameof(StopAOE), Constant.TIMER_RUN_AOE + 2.9f);
     }
     
@@ -409,7 +403,6 @@ public class Player : Character, IHitBullet
         DeActiveAttack();
         anim.SetInteger(Constant.ANIM_LABEL_HIT_STEP, comboHitStep);
         isAttacking = false;
-        isRunning = false;
         
     }
 
