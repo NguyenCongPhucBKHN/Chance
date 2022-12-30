@@ -7,6 +7,7 @@ public class Melee : Enemy, IHitDash
 {
     [SerializeField] private GameObject attackArea;
     [SerializeField] private GameObject attackvfx;
+    [SerializeField] private GameObject weaponvfx;
 
     public override void Awake()
     {
@@ -28,12 +29,14 @@ public class Melee : Enemy, IHitDash
     {
         attackArea.SetActive(true);
         attackvfx.SetActive(true);
+        weaponvfx.SetActive(true);
     }
 
     private void DeActiveAttack()
     {
         attackArea.SetActive(false);
         attackvfx.SetActive(false);
+        weaponvfx.SetActive(false);
     }
     // public void OnHitDash()
     // {

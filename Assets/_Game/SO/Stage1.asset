@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalMelee: 3
   totalRange: 2
-  totalBoss: 0
+  totalBoss: 1
   numberMelee: 2
   numberRange: 1
-  numberBoss: 0
+  numberBoss: 1
   enemySpawnInterval: 0

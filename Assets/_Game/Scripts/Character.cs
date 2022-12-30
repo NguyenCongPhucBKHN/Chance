@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -55,7 +56,7 @@ public class Character : GameUnit, IHitAttack
     }
     protected virtual void OnDeath()
     {
-        ChangeAnim("Die");
+        ChangeAnim(Constant.ANIM_TRIGGER_DIE);
         Invoke(nameof(OnDespawn), 3f);
     }
 

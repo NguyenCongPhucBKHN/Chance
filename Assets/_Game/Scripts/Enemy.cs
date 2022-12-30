@@ -51,8 +51,9 @@ public class Enemy : Character, IHitDash
     }
 
     private void OnTriggerEnter(Collider other) {
-        Player player = other.GetComponent<Player>();
-        if(player!= null)
+        Character player = Cache.GetCharacter(other);
+        // Player player = other.GetComponent<Player>();
+        if(player is Player)
         {
             target = player;
             isTargetInFov = true;
@@ -195,6 +196,7 @@ public class Enemy : Character, IHitDash
     public void Reset()
     {
         target = null;
+        ChangeAnim(Constant.ANIM_TRIGGER_IDLE);
         ChangeState(null);
     }
 }

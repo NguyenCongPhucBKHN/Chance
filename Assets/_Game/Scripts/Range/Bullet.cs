@@ -41,8 +41,8 @@ public class Bullet : GameUnit, IHitAttack
 
     private void OnTriggerEnter(Collider other)
     {
-        Player player = other.GetComponent<Player>();
-        if(player!= null)
+        Character player = Cache.GetCharacter(other);
+        if(player is Player)
         {
             player.OnHitAttack(damge);
             hit = SimplePool.Spawn<Hit>(PoolType.HitBullet, tf.position, tf.rotation);
@@ -54,6 +54,5 @@ public class Bullet : GameUnit, IHitAttack
     public void OnHitAttack(float damage)
     {
         SimplePool.Despawn(this);
-        Debug.Log("Dodan");
     }
 }

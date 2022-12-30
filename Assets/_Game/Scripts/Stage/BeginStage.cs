@@ -8,14 +8,14 @@ public class BeginStage : MonoBehaviour
     [SerializeField] GameObject portIn;
    void OnTriggerEnter(Collider other)
    {
-    Character character = other.GetComponent<Character>();
+    Character character = Cache.GetCharacter(other);
     if(character is Player)
     {
         LevelManager.Instance.OnDespawn();
-        // LevelManager.Instance.ResetCounter();
+
         LevelManager.Instance.DespawnPrevStage();
 
-        Invoke(nameof(ClosePort), 2f);
+        Invoke(nameof(ClosePort), 1f);
         LevelManager.Instance.SpawnEnemyWhileInit();
         gameObject.SetActive(false);
     }

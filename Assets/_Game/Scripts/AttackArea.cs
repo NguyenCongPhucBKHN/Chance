@@ -12,7 +12,7 @@ public class AttackArea : MonoBehaviour
     
     private void OnTriggerEnter(Collider collision)
     {
-        IHitAttack character = collision.GetComponentInParent<IHitAttack>();
+        IHitAttack character = Cache.GetIHitAttackInParent(collision);
         if(character!=null)
         {
             hit = SimplePool.Spawn<Hit>(PoolType.HitSlash, tf.position, tf.rotation);

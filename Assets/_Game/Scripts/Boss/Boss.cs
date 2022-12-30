@@ -12,13 +12,11 @@ public class Boss : Enemy
         enemyType = EnemyType.Boss;
     }
 
-    // public void OnHitDash()
-    // {
-    //     if(!IsDead)
-    //     {
-    //         TakeDame(50);
-    //     }
-    // }
+    public override void OnInit()
+    {
+        base.OnInit();
+        DeActivateAttack();
+    }
     public override void Attack()
     {
         ActivateAttack();
