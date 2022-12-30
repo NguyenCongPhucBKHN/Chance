@@ -267,8 +267,8 @@ public class Player : Character, IHitBullet
     {
         
         ChangeAnim(Constant.ANIM_TRIGGER_AOE);
-        Invoke(nameof(ActiveAOE), 0.9f);
-        Invoke(nameof(StopAOE), Constant.TIMER_RUN_AOE + 2.9f);
+        Invoke(nameof(ActiveAOE), Constant.TIMER_DEDAY_TO_AOE);
+        Invoke(nameof(StopAOE), Constant.TIMER_RUN_AOE );
     }
     
     

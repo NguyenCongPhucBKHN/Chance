@@ -6,11 +6,13 @@ public static class Constant
 {
     public const float TIMER_BLOCK_ROTATION = 5f;
     public const float TIMER_RUN_ROTATION =2.15f;
-    public const float TIMER_BLOCK_DASH =0;
-    public const float TIMER_RUN_DASH = 0.75f;
+    public const float TIMER_BLOCK_DASH =10;
+    public const float TIMER_RUN_DASH = 0.7f;
+    public const float TIMER_BLOCK_AOE = 15;
+    public const float TIMER_RUN_AOE =2.5f;
+    public const float TIMER_DEDAY_TO_AOE = 0.52f;
+    public const float TIMER_DEDAY_TO_AOE_BOSS = 0.52f;
 
-    public const float TIMER_BLOCK_AOE = 0;
-    public const float TIMER_RUN_AOE = 1f;
 
     public const string ANIM_LABEL_HIT_STEP="hitStep";
     public const string ANIM_TRIGGER_RUN ="Run";

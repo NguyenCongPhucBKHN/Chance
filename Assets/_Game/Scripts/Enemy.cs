@@ -88,7 +88,7 @@ public class Enemy : Character, IHitDash
         capsuleCollider.isTrigger = true;
         if(!IsDead)
         {   
-            TakeDame(15);
+            TakeDame(45);
             Invoke(nameof(DeactiveTrigger), 1f);
         }
 

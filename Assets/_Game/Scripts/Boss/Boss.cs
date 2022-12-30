@@ -19,8 +19,9 @@ public class Boss : Enemy
     }
     public override void Attack()
     {
-        ActivateAttack();
+        
         ChangeAnim(Constant.ANIM_TRIGGER_ATTACK);
+        Invoke(nameof(ActivateAttack), Constant.TIMER_DEDAY_TO_AOE_BOSS);
         Invoke(nameof(DeActivateAttack), Constant.TIMER_RUN_AOE);
     }
 
