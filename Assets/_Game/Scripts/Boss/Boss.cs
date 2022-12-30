@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class Boss : Enemy, IHitDash
 {
+    [SerializeField] GameObject attackArea;
+    [SerializeField] GameObject attackVFX;
     public override void Awake()
     {
         base.Awake();
         enemyType = EnemyType.Boss;
     }
 
-    public override void Attack()
-    {
-        // base.Attack();
-        ChangeAnim(Constant.ANIM_TRIGGER_ATTACK);
-    }
     public void OnHitDash()
     {
         if(!IsDead)
@@ -22,4 +19,24 @@ public class Boss : Enemy, IHitDash
             TakeDame(50);
         }
     }
+    public override void Attack()
+    {
+        ActivateAttack();
+        ChangeAnim(Constant.ANIM_TRIGGER_ATTACK);
+        Invoke(nameof(DeActivateAttack), Constant.TIMER_RUN_AOE);
+    }
+
+    public void ActivateAttack()
+    {
+        attackArea.SetActive(true);
+        attackVFX.SetActive(true);
+    }
+
+    public void DeActivateAttack()
+    {
+        attackArea.SetActive(false);
+        attackVFX.SetActive(false);
+    }
+
+    
 }

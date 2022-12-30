@@ -4,12 +4,12 @@ using UnityEngine;
 
 public static class Constant 
 {
-    public const float TIMER_BLOCK_ROTATION =5;
+    public const float TIMER_BLOCK_ROTATION =0;
     public const float TIMER_RUN_ROTATION =1;
-    public const float TIMER_BLOCK_DASH =10;
-    public const float TIMER_RUN_DASH =0.5f;
+    public const float TIMER_BLOCK_DASH =0;
+    public const float TIMER_RUN_DASH = 0.75f;
 
-    public const float TIMER_BLOCK_AOE = 15;
+    public const float TIMER_BLOCK_AOE = 0;
     public const float TIMER_RUN_AOE = 1f;
 
     public const string ANIM_LABEL_HIT_STEP="hitStep";

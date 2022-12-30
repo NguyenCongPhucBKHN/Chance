@@ -14,7 +14,7 @@ public class AoeAreaAttack : MonoBehaviour
         if (character!= null)
         {
             character.TakeDame(m_FirstDamageTake);
-            m_Coroutines.Add(character, StartCoroutine(TakeDamageDuration(character)));
+            // m_Coroutines.Add(character, StartCoroutine(TakeDamageDuration(character)));
         }
     }
     private void OnTriggerExit(Collider other)

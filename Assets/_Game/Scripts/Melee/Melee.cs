@@ -6,6 +6,7 @@ using UnityEngine;
 public class Melee : Enemy, IHitDash
 {
     [SerializeField] private GameObject attackArea;
+    [SerializeField] private GameObject attackvfx;
 
     public override void Awake()
     {
@@ -26,11 +27,13 @@ public class Melee : Enemy, IHitDash
     private void ActiveAttack()
     {
         attackArea.SetActive(true);
+        attackvfx.SetActive(true);
     }
 
     private void DeActiveAttack()
     {
         attackArea.SetActive(false);
+        attackvfx.SetActive(false);
     }
     public void OnHitDash()
     {

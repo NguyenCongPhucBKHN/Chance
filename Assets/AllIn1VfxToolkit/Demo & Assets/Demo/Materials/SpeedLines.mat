@@ -48,7 +48,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: eec23f9df0325bf4cafda242e5908fa4, type: 3}
+        m_Texture: {fileID: 2800000, guid: 83b16fbd5473daa44ade69628f34622d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -132,9 +132,9 @@ Material:
     - _GlowGlobal: 1.3
     - _HandDrawnAmount: 10
     - _HandDrawnSpeed: 5
-    - _HsvBright: 1.3
-    - _HsvSaturation: 1.54
-    - _HsvShift: 0
+    - _HsvBright: 2
+    - _HsvSaturation: 0.54
+    - _HsvShift: 8
     - _LightAmount: 0
     - _MaskPow: 1
     - _OffsetSh1: 1
@@ -240,3 +240,4 @@ Material:
     - _Shape2Color: {r: 1, g: 1, b: 1, a: 1}
     - _Shape3Color: {r: 1, g: 1, b: 1, a: 1}
     - _ShapeColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []

@@ -33,12 +33,14 @@ public class Player : Character
 
     #region  Variables: RotationAttack
     [SerializeField] private GameObject rotationObj;
+    [SerializeField] private GameObject rotationVfx;
     private bool rotationRequest;
     private bool enableRotate= true;
     #endregion
     
     #region Variables: AOE
     [SerializeField] private GameObject aoeObj;
+    [SerializeField] private GameObject aoeVFX;
     private bool aoeRequest;
     private bool enableAoe = true;
     #endregion  
@@ -153,7 +155,6 @@ public class Player : Character
         else /*if(moveInput.SqrMagnitude() <0.001f)*/
         {
             ChangeAnim(Constant.ANIM_TRIGGER_IDLE);
-            Debug.Log("Stop player");
             Stop();
         }
           
@@ -170,11 +171,15 @@ public class Player : Character
         dashRequest = false;
         isHitting = false;
         aoeRequest = false;
-        dashObj.SetActive(false);
-        dashVfx.SetActive(false);
-        aoeObj.SetActive(false);
-        rotationObj.SetActive(false);
-        arrowTF.gameObject.SetActive(false);
+        DeActiveAttack();
+        DeActiveRotation();
+        DeActiveDash();
+        DeActiveAOE();
+        // dashObj.SetActive(false);
+        // dashVfx.SetActive(false);
+        // aoeObj.SetActive(false);
+        // rotationObj.SetActive(false);
+        // arrowTF.gameObject.SetActive(false);
         
     }
 
@@ -238,11 +243,12 @@ public class Player : Character
     }
     private void Dash()
     {
+
+        ActiveDash();
         ChangeAnim(Constant.ANIM_TRIGGER_DASH);
         Invoke(nameof(StopDash), Constant.TIMER_RUN_DASH);
         Dash(speed+5);
-        dashObj.SetActive(true);
-        dashVfx.SetActive(true);
+        
     }
 
     private void OnRotationAction(InputAction.CallbackContext obj)
@@ -251,8 +257,8 @@ public class Player : Character
     }
     private void Rotation()
     {
-        ActiveAttack();
         ChangeAnim(Constant.ANIM_TRIGGER_ROTATION);
+        ActiveRotation();
         Invoke(nameof(StopRotation), Constant.TIMER_RUN_ROTATION);
     }
 
@@ -264,9 +270,11 @@ public class Player : Character
     }
     private void AOE() 
     {
+        
         ChangeAnim(Constant.ANIM_TRIGGER_AOE);
-        aoeObj.SetActive(true);
-        Invoke(nameof(StopAOE), Constant.TIMER_RUN_AOE);
+        Invoke(nameof(ActiveAOE), 0.9f);
+        // aoeObj.SetActive(true);
+        Invoke(nameof(StopAOE), Constant.TIMER_RUN_AOE + 2.9f);
     }
     
     
@@ -280,8 +288,8 @@ public class Player : Character
     {
         dashRequest = false;
         enableDash =false;
-        dashObj.SetActive(false);
-        dashVfx.SetActive(false);
+        DeActiveDash();
+        // Stop();
         StartCoroutine(EnableDash());
        
         
@@ -295,10 +303,9 @@ public class Player : Character
 
     private void StopRotation()
     {
-        rotationObj.SetActive(false);
-        DeActiveAttack();
         rotationRequest = false;
         enableRotate = false;
+        DeActiveRotation();
         StartCoroutine(EnableRotation());
 
         
@@ -312,7 +319,7 @@ public class Player : Character
     {
         aoeRequest = false;
         enableAoe = false;
-        aoeObj.SetActive(false);
+        DeActiveAOE();
         StartCoroutine(EnableAOE());
     }
     private IEnumerator EnableAOE()
@@ -328,6 +335,7 @@ public class Player : Character
 
     private void OnAttackAction(InputAction.CallbackContext obj)
     {
+        Stop();
         isAttacking = true;
         if(comboHitStep == COMBO_MAX_STEP)
             return;
@@ -431,14 +439,56 @@ public class Player : Character
         vfxAttack.SetActive(false);
         attackArea.SetActive(false);
     }
-    public void ActivateArrow(Transform endStage)
+
+    private void ActiveDash()
     {
-        Vector3 arrow = endStage.position - tf.position;
-        arrow.y =0;
-        arrowTF.rotation = Quaternion.LookRotation(arrow, Vector3.up);
+        dashVfx.SetActive(true);
+        dashObj.SetActive(true);
     }
-    public void DeactivaeArrow()
+    private void DeActiveDash()
     {
-        arrowTF.gameObject.SetActive(false);
+        dashVfx.SetActive(false);
+        dashObj.SetActive(false);
     }
+    private void ActiveRotation()
+    {
+        rotationObj.SetActive(true);
+        rotationVfx.SetActive(true);
+        // Debug.Log();
+    }
+    
+
+    
+
+    private void DeActiveRotation()
+    {
+        rotationObj.SetActive(false);
+        rotationVfx.SetActive(false);
+    }
+
+    private void ActiveAOE()
+    {
+        aoeObj.SetActive(true);
+        aoeVFX.SetActive(true);
+    }
+
+    private void DeActiveAOE()
+    {
+        aoeObj.SetActive(false);
+        aoeVFX.SetActive(false);
+    }
+
+
+    // public void ActivateArrow(Transform endStage)
+    // {
+    //     Vector3 arrow = endStage.position - tf.position;
+    //     arrow.y =0;
+    //     arrowTF.rotation = Quaternion.LookRotation(arrow, Vector3.up);
+    // }
+    // public void DeactivaeArrow()
+    // {
+    //     arrowTF.gameObject.SetActive(false);
+    // }
+
+
 }
