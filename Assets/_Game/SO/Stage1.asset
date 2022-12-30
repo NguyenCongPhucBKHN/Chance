@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Stage1
   m_EditorClassIdentifier: 
   totalMelee: 0
-  totalRange: 10
-  totalBoss: 0
+  totalRange: 0
+  totalBoss: 3
   numberMelee: 0
-  numberRange: 2
-  numberBoss: 0
+  numberRange: 0
+  numberBoss: 1
   enemySpawnInterval: 0

@@ -13,6 +13,9 @@ public class Melee : Enemy, IHitDash
     {
         base.Awake();
         enemyType = EnemyType.Melee;
+        timberIdle = Constant.TIMER_BOCK_ATT_MELEE;
+        timberPartrol = Constant.TIMER_BOCK_PARTROL_MELEE;
+        timerBockAttack = Constant.TIMER_BOCK_ATT_MELEE;
     }
     public override void OnInit()
     {

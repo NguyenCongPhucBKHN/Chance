@@ -19,10 +19,10 @@ public class AttackState : IState
 
     public void OnExecute(Enemy enemy)
     {
-        // enemy.StopMoving();
-        // enemy.Attack();
+        
         timer += Time.deltaTime;
-        if (timer >= 1.5f)
+        float timerWait = Random.Range(enemy.timerBockAttack[0], enemy.timerBockAttack[1]);
+        if (timer >= timerWait)
         {
             enemy.ChangeState(new PatrolState());
         }

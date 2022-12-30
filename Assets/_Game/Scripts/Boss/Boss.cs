@@ -10,6 +10,9 @@ public class Boss : Enemy
     {
         base.Awake();
         enemyType = EnemyType.Boss;
+        timberIdle = Constant.TIMER_BOCK_ATT_BOSS;
+        timberPartrol = Constant.TIMER_BOCK_PARTROL_BOSS;
+        timerBockAttack = Constant.TIMER_BOCK_ATT_BOSS;
     }
 
     public override void OnInit()

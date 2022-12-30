@@ -10,7 +10,7 @@ public class IdleState : IState
     {
         enemy.StopMoving();
         timer = 0;
-        randomTime = Random.Range(2f, 4f); 
+        randomTime =  Random.Range(enemy.timberIdle[0], enemy.timberIdle[1]);
     }
 
     public void OnExecute(Enemy enemy)

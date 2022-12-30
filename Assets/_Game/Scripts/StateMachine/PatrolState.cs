@@ -12,7 +12,7 @@ public class PatrolState : IState
     {
         
         timer = 0;
-        randomTime = Random.Range(3f, 6f); 
+        randomTime = Random.Range(enemy.timberPartrol[0], enemy.timberPartrol[1]);
     }
 
     public void OnExecute(Enemy enemy)
@@ -29,17 +29,17 @@ public class PatrolState : IState
             }
             else
             {
-                enemy.Moving(); // Neu khong co muc tieu thi cu di chuyen  ( di chuyen ve huong muc tieu)
+                enemy.Moving(); 
             }
 
         }
-        else // Neu khong co muc tieu
+        else 
         {
-            if (timer < randomTime)    // Timer nho hon thoi gian di chuyen
+            if (timer < randomTime)    
             {
-                enemy.Moving(); // Di chuyen
+                enemy.Moving(); 
             }
-            else // Neu Timer lon hon thoi gian di chuyen thi chuyen sang trang thai dung
+            else 
             {
                 enemy.ChangeState(new IdleState()); //
             }
@@ -49,6 +49,6 @@ public class PatrolState : IState
 
     public void OnExit(Enemy enemy)
     {
-        // throw new System.NotImplementedException();
+        
     }
 }

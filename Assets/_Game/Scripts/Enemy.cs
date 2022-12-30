@@ -9,6 +9,9 @@ public class Enemy : Character, IHitDash
     [SerializeField] private float attackRange;
     [SerializeField] private float fovRadius;
     [SerializeField] protected CapsuleCollider capsuleCollider;
+    public Vector2 timerBockAttack; //TODO: private + GetValue
+    public Vector2 timberIdle;
+    public Vector2 timberPartrol;
     protected EnemyType enemyType;
     public NavMeshAgent agent;
     Vector3 point;
@@ -52,7 +55,6 @@ public class Enemy : Character, IHitDash
 
     private void OnTriggerEnter(Collider other) {
         Character player = Cache.GetCharacter(other);
-        // Player player = other.GetComponent<Player>();
         if(player is Player)
         {
             target = player;

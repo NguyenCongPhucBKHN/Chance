@@ -11,6 +11,10 @@ public class Range : Enemy
     {
         base.Awake();
         enemyType = EnemyType.Range;
+        enemyType = EnemyType.Melee;
+        timberIdle = Constant.TIMER_BOCK_ATT_RANGE;
+        timberPartrol = Constant.TIMER_BOCK_PARTROL_RANGE;
+        timerBockAttack = Constant.TIMER_BOCK_ATT_RANGE;
     }
     public override void OnInit()
     {
