@@ -4,9 +4,10 @@ using UnityEngine;
 
 public static class Constant 
 {
+    //TODO: SU DUNG SO THAY CONSTANT DE CO THE THAY DOI THEO LEVEL
     public const float TIMER_BLOCK_ROTATION = 5f;
     public const float TIMER_RUN_ROTATION =2.15f;
-    public const float TIMER_BLOCK_DASH =10;
+    public const float TIMER_BLOCK_DASH =0;
     public const float TIMER_RUN_DASH = 0.7f;
     public const float TIMER_BLOCK_AOE = 15;
     public const float TIMER_RUN_AOE =2.5f;

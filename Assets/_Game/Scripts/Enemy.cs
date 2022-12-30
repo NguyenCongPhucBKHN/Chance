@@ -22,6 +22,7 @@ public class Enemy : Character, IHitDash
     public EnemyPath path;
     public List<Transform> listPoint ; //TODO
     public bool isAttack =false;
+    private bool isSub;
 
     public bool IsDestination 
     {
@@ -70,6 +71,7 @@ public class Enemy : Character, IHitDash
         DeactiveTrigger();
         listPoint = path.WayPoints;
         ChangeState( new IdleState());
+        isSub = false;
     }
     public override void OnDespawn()
     {
@@ -79,18 +81,24 @@ public class Enemy : Character, IHitDash
     }
     protected override void  OnDeath()
     {
+        base.OnDeath(); 
         target= null;
         ChangeState(null);
-        base.OnDeath();
-        LevelManager.Instance.UpdateCounter(enemyType);
-        LevelManager.Instance.SpawnWhileEnemyDead(enemyType);
+        
+        if(!isSub)
+        {
+            LevelManager.Instance.UpdateCounter(enemyType);
+            LevelManager.Instance.SpawnWhileEnemyDead(enemyType);
+            isSub = true;
+        }
+        
     }
      public void OnHitDash()
     {
         capsuleCollider.isTrigger = true;
         if(!IsDead)
         {   
-            TakeDame(45);
+            TakeDame(100);
             Invoke(nameof(DeactiveTrigger), 1f);
         }
 

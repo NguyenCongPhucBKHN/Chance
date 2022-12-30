@@ -164,7 +164,7 @@ public class LevelManager : Singleton<LevelManager>
     {
        switch (enemyType) {
         case EnemyType.Melee:
-            LevelManager.Instance.meleeDead ++;
+            LevelManager.Instance.meleeDead++ ;
             LevelManager.Instance.meleeCouter--;
             break;
         case EnemyType.Range:
@@ -191,12 +191,12 @@ public class LevelManager : Singleton<LevelManager>
         if(enemyType == EnemyType.Melee)
         {
             
-            return  meleeDead + meleeCouter < TotalMelee;
+            return  meleeDead + meleeCouter < TotalMelee-1;
         }
         else if(enemyType == EnemyType.Range)
         {
            
-            return rangeDead + rangeCouter< TotalRange;
+            return rangeDead + rangeCouter< TotalRange -1;
         }
         
         else
