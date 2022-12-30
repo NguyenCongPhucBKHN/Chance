@@ -2,15 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wall :MonoBehaviour,  IHitAttack, IHitDash
+public class Wall :MonoBehaviour,  IHitAttack, IHitBullet
 {
-    public void OnHitAttack( Transform tf, float damage = 0 )
-    {
-        Debug.Log("Hit attack wall");
+    [SerializeField] GameObject hitPrefab;
+    [SerializeField] GameObject hitBulletPrefab;
+    GameObject hit;
+    GameObject hitBullet;
+    public void OnHitAttack( Transform hitTF, float damage = 0 )
+    {   
+        hit = Instantiate(hitPrefab, hitTF.position, hitTF.rotation);
+        
+        Invoke(nameof(DestroyHitAttackVfx), 1f);
+     
+        
     }
 
-    public void OnHitDash()
+    public void OnHitBullet(Transform hitTF, float damage = 0)
     {
-        Debug.Log("Hit dash ");
+        hitBullet = Instantiate(hitBulletPrefab, hitTF.position, hitTF.rotation);
+        Invoke(nameof(DestroyHitBullet), 1f);
+
+    }
+    public void DestroyHitAttackVfx()
+    {
+        Destroy(hit);
+    }
+    public void DestroyHitBullet()
+    {
+        Destroy(hitBullet);
     }
 }

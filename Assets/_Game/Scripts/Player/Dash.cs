@@ -6,7 +6,7 @@ public class Dash : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other) {
 
-        // IHitDash hit = other.GetComponentInParent<IHitDash>();
+        
         IHitDash hit = Cache.GetIHitDashInParent(other);
         if(hit != null)
         {

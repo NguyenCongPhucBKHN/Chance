@@ -8,6 +8,7 @@ public class Cache : MonoBehaviour
     private static Dictionary<Collider, Character> characterParents = new Dictionary<Collider, Character>();
     private static Dictionary<Collider, IHitAttack> iHitAttacks = new Dictionary<Collider, IHitAttack>();
     private static Dictionary<Collider, IHitDash> iHitDashs = new Dictionary<Collider, IHitDash>();
+    private static Dictionary<Collider, IHitBullet> iHitBullets = new Dictionary<Collider, IHitBullet>();
 
     public static Character GetCharacter(Collider collider)
     {
@@ -47,6 +48,17 @@ public class Cache : MonoBehaviour
         }
 
         return iHitAttacks[collider];
+    }
+
+     public static IHitBullet GetIHitBullet(Collider collider)
+    {
+        if (!iHitBullets.ContainsKey(collider))
+        {
+
+            iHitBullets.Add(collider, collider.GetComponentInParent<IHitBullet>());
+        }
+
+        return iHitBullets[collider];
     }
 
     public static IHitDash GetIHitDashInParent(Collider collider)

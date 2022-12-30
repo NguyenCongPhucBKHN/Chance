@@ -21,7 +21,7 @@ public static class Constant
     public const string ANIM_TRIGGER_DASH = "Dash";
     public const string ANIM_TRIGGER_ROTATION = "Skill2";
     public const string ANIM_TRIGGER_AOE= "Skill3";
-
+    public const string ANIM_TRIGGER_HIT = "Hit";
     
 
 }

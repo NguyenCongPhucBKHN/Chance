@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class Player : Character
+public class Player : Character, IHitBullet
 {
     [SerializeField] Rigidbody rb;
     [SerializeField] private GameObject attackArea;
     [SerializeField] public Transform arrowTF;
     [SerializeField] private CapsuleCollider colliderPlayer;
+    
     protected JoystickAttackBtn attckBtn;
     public Transform modelTF;
     protected bool jump;
@@ -22,6 +23,7 @@ public class Player : Character
     private int comboHitStep;
     private bool isAttacking;
     private Coroutine comboAttackResetCouroutine;
+    
     [SerializeField] GameObject vfxAttack;
     
     #endregion
@@ -30,6 +32,7 @@ public class Player : Character
     [SerializeField] private GameObject dashVfx;
     private bool dashRequest;
     private bool enableDash = true;
+
     #endregion
 
     #region  Variables: RotationAttack
@@ -455,7 +458,11 @@ public class Player : Character
         // Debug.Log();
     }
     
-
+    public  void OnHitBullet(Transform tf, float damge)
+    {
+        OnHitAttack(tf, damge);
+    }
+    
     
 
     private void DeActiveRotation()
@@ -477,16 +484,6 @@ public class Player : Character
     }
 
 
-    // public void ActivateArrow(Transform endStage)
-    // {
-    //     Vector3 arrow = endStage.position - tf.position;
-    //     arrow.y =0;
-    //     arrowTF.rotation = Quaternion.LookRotation(arrow, Vector3.up);
-    // }
-    // public void DeactivaeArrow()
-    // {
-    //     arrowTF.gameObject.SetActive(false);
-    // }
 
 
 }

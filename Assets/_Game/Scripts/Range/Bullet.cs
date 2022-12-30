@@ -41,14 +41,13 @@ public class Bullet : GameUnit
 
     private void OnTriggerEnter(Collider other)
     {
-        Character player = Cache.GetCharacter(other);
-        if(player is Player)
+        IHitBullet hitBullet = Cache.GetIHitBullet(other);
+        if(hitBullet!= null)
         {
-            player.OnHitAttack(tf, damge);
-            hit = SimplePool.Spawn<Hit>(PoolType.HitBullet, tf.position, tf.rotation);
-            // Instantiate(hitBullet, tf.position, tf.rotation);
-            OnDespawn();
+             hitBullet.OnHitBullet(tf, damge);
+        
         }
+   
     }
 
 }

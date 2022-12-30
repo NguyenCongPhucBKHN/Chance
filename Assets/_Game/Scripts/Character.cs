@@ -83,8 +83,7 @@ public class Character : GameUnit, IHitAttack
             }
             healthBar.DecreaseHealth(damage);
             healthBar.HandleHealthBar();
-            // SimplePool.Spawn<CombatText>(PoolType.CombatText, tf.position + Vector3.up, Quaternion.identity).OnInit(damage);
-            // Instantiate(combatTextPrefab, tf.position + Vector3.up, Quaternion.identity).OnInit(damage);
+
         }
     }
 
@@ -93,7 +92,7 @@ public class Character : GameUnit, IHitAttack
         hit = SimplePool.Spawn<Hit>(PoolType.HitSlash, hitTF.position, hitTF.rotation);
         if(!IsDead)
         {
-            ChangeAnim("Hit");
+            ChangeAnim(Constant.ANIM_TRIGGER_HIT);
             TakeDame(damage);
             Invoke(nameof(DestroyHitAttackVfx), 3f);
         }

@@ -15,14 +15,9 @@ public class AttackArea : MonoBehaviour
         IHitAttack hit = Cache.GetIHitAttackInParent(collision);
         if(hit!=null)
         {
-            // hit = SimplePool.Spawn<Hit>(PoolType.HitSlash, tf.position, tf.rotation);
             hit.OnHitAttack(tf, ownAttack.Damage);
-            // Invoke(nameof(DestroyHitVfx), 3f);
         }
     }
 
-    // public void DestroyHitVfx()
-    // {
-    //     hit.Despawn();
-    // }
+  
 }

@@ -196,6 +196,7 @@ GameObject:
   - component: {fileID: 2639629096947585569}
   - component: {fileID: 7778839698154604965}
   - component: {fileID: 7455854449740991306}
+  - component: {fileID: 3485119365148619802}
   m_Layer: 15
   m_Name: Border (8)
   m_TagString: Environment
@@ -279,6 +280,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3015f77b25329c94eb724b2c6ed0ab8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPrefab: {fileID: 6263520613801824659, guid: 1679b4586e7f702419fbd75ca1ba2946, type: 3}
+  hitBulletPrefab: {fileID: 1321021649640250, guid: 7e6c183d69bb7084c894a627bd43db61, type: 3}
+--- !u!65 &3485119365148619802
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2338613760284056877}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.500001, y: 2.500001, z: 3.0000012}
+  m_Center: {x: 0.00000015288805, y: -0.00000008607952, z: 1.5000004}
 --- !u!1 &2361009725723076628
 GameObject:
   m_ObjectHideFlags: 0
@@ -1830,6 +1846,7 @@ GameObject:
   - component: {fileID: 2448727954555704707}
   - component: {fileID: 3602320971708696346}
   - component: {fileID: 120632775164461029}
+  - component: {fileID: 7930900648257465521}
   m_Layer: 15
   m_Name: Border (10)
   m_TagString: Environment
@@ -1913,6 +1930,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3015f77b25329c94eb724b2c6ed0ab8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPrefab: {fileID: 6263520613801824659, guid: 1679b4586e7f702419fbd75ca1ba2946, type: 3}
+  hitBulletPrefab: {fileID: 1321021649640250, guid: 7e6c183d69bb7084c894a627bd43db61, type: 3}
+--- !u!65 &7930900648257465521
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3946690071300551769}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.500001, y: 2.500001, z: 3.0000012}
+  m_Center: {x: 0.00000015288805, y: -0.00000008607952, z: 1.5000004}
 --- !u!1 &4391931279256857863
 GameObject:
   m_ObjectHideFlags: 0
@@ -2013,6 +2045,7 @@ GameObject:
   - component: {fileID: 1924941055121169327}
   - component: {fileID: 8321654016222714282}
   - component: {fileID: 8083867652201519621}
+  - component: {fileID: 5861630166570056936}
   m_Layer: 15
   m_Name: Border (11)
   m_TagString: Environment
@@ -2096,6 +2129,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3015f77b25329c94eb724b2c6ed0ab8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPrefab: {fileID: 6263520613801824659, guid: 1679b4586e7f702419fbd75ca1ba2946, type: 3}
+  hitBulletPrefab: {fileID: 1321021649640250, guid: 7e6c183d69bb7084c894a627bd43db61, type: 3}
+--- !u!65 &5861630166570056936
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5868999252750580578}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.500001, y: 2.500001, z: 3.0000012}
+  m_Center: {x: 0.00000015288805, y: -0.00000008607952, z: 1.5000004}
 --- !u!1 &6098177632345003399
 GameObject:
   m_ObjectHideFlags: 0
@@ -2210,6 +2258,7 @@ GameObject:
   - component: {fileID: 6622393377112193744}
   - component: {fileID: 5148450666303541392}
   - component: {fileID: 1486173874603751034}
+  - component: {fileID: 1534103294918986038}
   m_Layer: 15
   m_Name: Border (13)
   m_TagString: Environment
@@ -2293,6 +2342,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3015f77b25329c94eb724b2c6ed0ab8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPrefab: {fileID: 6263520613801824659, guid: 1679b4586e7f702419fbd75ca1ba2946, type: 3}
+  hitBulletPrefab: {fileID: 1321021649640250, guid: 7e6c183d69bb7084c894a627bd43db61, type: 3}
+--- !u!65 &1534103294918986038
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6801438639888946184}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.500001, y: 2.500001, z: 3.0000012}
+  m_Center: {x: 0.00000015288805, y: -0.00000008607952, z: 1.5000004}
 --- !u!1 &7530642526571343184
 GameObject:
   m_ObjectHideFlags: 0
@@ -2305,6 +2369,7 @@ GameObject:
   - component: {fileID: 5879603348880621014}
   - component: {fileID: 8732751053163739855}
   - component: {fileID: 491909325765019309}
+  - component: {fileID: 6502361920605524966}
   m_Layer: 15
   m_Name: Border (9)
   m_TagString: Environment
@@ -2388,6 +2453,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3015f77b25329c94eb724b2c6ed0ab8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPrefab: {fileID: 6263520613801824659, guid: 1679b4586e7f702419fbd75ca1ba2946, type: 3}
+  hitBulletPrefab: {fileID: 1321021649640250, guid: 7e6c183d69bb7084c894a627bd43db61, type: 3}
+--- !u!65 &6502361920605524966
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7530642526571343184}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.500001, y: 2.500001, z: 3.0000012}
+  m_Center: {x: 0.00000015288805, y: -0.00000008607952, z: 1.5000004}
 --- !u!1 &7985789777774213225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2444,6 +2524,7 @@ GameObject:
   - component: {fileID: 3572942343809876338}
   - component: {fileID: 6681537683911952554}
   - component: {fileID: 1611516233266770961}
+  - component: {fileID: 882596192348471897}
   m_Layer: 15
   m_Name: Border (12)
   m_TagString: Environment
@@ -2527,6 +2608,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3015f77b25329c94eb724b2c6ed0ab8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPrefab: {fileID: 6263520613801824659, guid: 1679b4586e7f702419fbd75ca1ba2946, type: 3}
+  hitBulletPrefab: {fileID: 1321021649640250, guid: 7e6c183d69bb7084c894a627bd43db61, type: 3}
+--- !u!65 &882596192348471897
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8028848633342443438}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.500001, y: 2.500001, z: 3.0000012}
+  m_Center: {x: 0.00000015288805, y: -0.00000008607952, z: 1.5000004}
 --- !u!1 &8061523684312660543
 GameObject:
   m_ObjectHideFlags: 0
@@ -2782,6 +2878,7 @@ GameObject:
   - component: {fileID: 8144560970786083160}
   - component: {fileID: 8144560970786083167}
   - component: {fileID: 4704692943327740073}
+  - component: {fileID: 1638269758059532758}
   m_Layer: 15
   m_Name: Border (1)
   m_TagString: Environment
@@ -2865,6 +2962,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3015f77b25329c94eb724b2c6ed0ab8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPrefab: {fileID: 6263520613801824659, guid: 1679b4586e7f702419fbd75ca1ba2946, type: 3}
+  hitBulletPrefab: {fileID: 1321021649640250, guid: 7e6c183d69bb7084c894a627bd43db61, type: 3}
+--- !u!65 &1638269758059532758
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8144560970786083164}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.500001, y: 2.500001, z: 3.0000012}
+  m_Center: {x: 0.00000015288805, y: -0.00000008607952, z: 1.5000004}
 --- !u!1 &8144560971189245296
 GameObject:
   m_ObjectHideFlags: 0
