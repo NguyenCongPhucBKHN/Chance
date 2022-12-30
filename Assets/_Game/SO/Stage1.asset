@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57688ccb1dfac534a9cca2edcd23547a, type: 3}
   m_Name: Stage1
   m_EditorClassIdentifier: 
-  totalMelee: 0
-  totalRange: 0
-  totalBoss: 3
-  numberMelee: 0
-  numberRange: 0
+  totalMelee: 3
+  totalRange: 2
+  totalBoss: 1
+  numberMelee: 2
+  numberRange: 2
   numberBoss: 1
   enemySpawnInterval: 0

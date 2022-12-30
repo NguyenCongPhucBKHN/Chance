@@ -14,9 +14,9 @@ public static class Constant
     public const float TIMER_DEDAY_TO_AOE_BOSS = 1f;
 
 
-    public static Vector2 TIMER_BOCK_ATT_MELEE = new Vector2 (1, 3);
-    public static Vector2 TIMER_BOCK_ATT_RANGE= new Vector2 (1, 4);
-     public static Vector2 TIMER_BOCK_ATT_BOSS= new Vector2 (2, 5);
+    public static Vector2 TIMER_BOCK_ATT_MELEE = new Vector2 (3, 5);
+    public static Vector2 TIMER_BOCK_ATT_RANGE= new Vector2 (3, 7);
+     public static Vector2 TIMER_BOCK_ATT_BOSS= new Vector2 (3, 8);
 
      public static Vector2 TIMER_BOCK_IDLE_MELEE = new Vector2 (1, 3);
     public static Vector2 TIMER_BOCK_IDLE_RANGE= new Vector2 (1, 4);
