@@ -84,6 +84,7 @@ public class Enemy : Character, IHitDash
         base.OnDeath(); 
         target= null;
         ChangeState(null);
+        Debug.Log("enemy type: "+ enemyType);
         
         if(!isSub)
         {

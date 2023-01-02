@@ -7,11 +7,11 @@ using UnityEngine;
 public class EnemyDatas : ScriptableObject 
 {
     public List<EnemyData> listData;
-    public Enemy GetPrefabEnemy(EnemyType enemyType)
+    public Enemy GetPrefabEnemy(EnemyType enemyt)
     {
         for(int i =0; i< listData.Count; i++)
         {
-            if(listData[i].enemyType == enemyType)
+            if(listData[i].enemyType == enemyt)
             {
                 return listData[i].enemyPrefab;
             }

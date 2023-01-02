@@ -191,12 +191,12 @@ public class LevelManager : Singleton<LevelManager>
         if(enemyType == EnemyType.Melee)
         {
             
-            return  meleeDead + meleeCouter < TotalMelee-1;
+            return  meleeDead + meleeCouter < TotalMelee;
         }
         else if(enemyType == EnemyType.Range)
         {
            
-            return rangeDead + rangeCouter< TotalRange -1;
+            return rangeDead + rangeCouter< TotalRange ;
         }
         
         else
