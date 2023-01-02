@@ -22,7 +22,6 @@ public class Enemy : Character, IHitDash
     public EnemyPath path;
     public List<Transform> listPoint ; //TODO
     public bool isAttack =false;
-    private bool isSub;
 
     public bool IsDestination 
     {
@@ -71,7 +70,6 @@ public class Enemy : Character, IHitDash
         DeactiveTrigger();
         listPoint = path.WayPoints;
         ChangeState( new IdleState());
-        isSub = false;
     }
     public override void OnDespawn()
     {
@@ -85,14 +83,9 @@ public class Enemy : Character, IHitDash
         target= null;
         ChangeState(null);
         Debug.Log("enemy type: "+ enemyType);
-        
-        if(!isSub)
-        {
-            LevelManager.Instance.UpdateCounter(enemyType);
-            LevelManager.Instance.SpawnWhileEnemyDead(enemyType);
-            isSub = true;
-        }
-        
+        LevelManager.Instance.UpdateCounter(enemyType);
+        LevelManager.Instance.SpawnWhileEnemyDead(enemyType);
+          
     }
      public void OnHitDash()
     {

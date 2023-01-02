@@ -1131,6 +1131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3819608263180602035}
   - component: {fileID: 3819608263180602032}
+  - component: {fileID: 6212104456993197040}
   m_Layer: 0
   m_Name: BeginStage
   m_TagString: Untagged
@@ -1165,6 +1166,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6212104456993197040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3819608263180602034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 898bb5257a7925a4d83a5c7d019a4e54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portIn: {fileID: 1316055247474143235}
 --- !u!1 &3819608263363981388
 GameObject:
   m_ObjectHideFlags: 0
@@ -3046,7 +3060,7 @@ MonoBehaviour:
   - {fileID: 3819608261572512854}
   - {fileID: 3819608263389750609}
   - {fileID: 3819608262553450371}
-  dataAmountEnemy: {fileID: 11400000, guid: 735704c4d661027428094e629677cba8, type: 2}
+  dataAmountEnemy: {fileID: 11400000, guid: 094eecd6e5db1374a90447ef63236688, type: 2}
   endStage: {fileID: 3819608261741434649}
   navMeshSurface: {fileID: 6338574434536212223}
 --- !u!1 &8144560971254284012

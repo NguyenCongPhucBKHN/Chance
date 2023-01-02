@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57688ccb1dfac534a9cca2edcd23547a, type: 3}
+  m_Name: DataAmountEnemy
+  m_EditorClassIdentifier: 
+  totalMelee: 1
+  totalRange: 0
+  totalBoss: 1
+  numberMelee: 1
+  numberRange: 0
+  numberBoss: 1
+  enemySpawnInterval: 0
