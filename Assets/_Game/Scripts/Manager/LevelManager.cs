@@ -186,7 +186,7 @@ public class LevelManager : Singleton<LevelManager>
         SpawnEnemyAmount(EnemyType.Boss, 1);
     }
 
-    public bool CheckSpawn(EnemyType enemyType)
+    public bool CheckSpawn(EnemyType enemyType) //Bug
     {
         if(enemyType == EnemyType.Melee)
         {
