@@ -44,7 +44,6 @@ public class Level : MonoBehaviour
       UIManager.Instance.CloseUI<Gameplay>();
       UIManager.Instance.OpenUI<Victory>();
     }
-    
   }
 
 }

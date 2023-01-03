@@ -76,13 +76,14 @@ public class Enemy : Character, IHitDash
         target = null;
         ChangeState(null);
         SimplePool.Despawn(this);
+        LevelManager.Instance.SpawnLoot(tf);
     }
     protected override void  OnDeath()
     {
         base.OnDeath(); 
         target= null;
         ChangeState(null);
-        Debug.Log("enemy type: "+ enemyType);
+        
         LevelManager.Instance.UpdateCounter(enemyType);
         LevelManager.Instance.SpawnWhileEnemyDead(enemyType);
           
@@ -177,26 +178,6 @@ public class Enemy : Character, IHitDash
         return listPoint[index].position;
     }
     
-    public void SubAmount()
-    {
-       switch (enemyType) {
-        case EnemyType.Melee:
-            LevelManager.Instance.meleeDead ++;
-            LevelManager.Instance.meleeCouter--;
-            break;
-        case EnemyType.Range:
-            LevelManager.Instance.rangeDead ++;
-            LevelManager.Instance.rangeCouter--;
-            break;
-        case EnemyType.Boss:
-            LevelManager.Instance.bossDead ++;
-            LevelManager.Instance.bossCouter--;
-            break;
-        default :
-            
-            break;
-       }
-    }
     public void Reset()
     {
         target = null;

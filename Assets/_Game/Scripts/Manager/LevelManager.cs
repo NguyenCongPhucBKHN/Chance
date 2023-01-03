@@ -6,9 +6,6 @@ using UnityEngine.AI;
 public class LevelManager : Singleton<LevelManager>
 {
     public Level[] levelPrefabs;
-    // public  Melee meleePrefab;
-    // public Range rangePrefab;
-    // public Boss bossPrefab;
     public EnemyDatas enemyDatas;
     public List<Enemy> enemies = new List<Enemy>();
     public Player player;
@@ -182,7 +179,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public IEnumerator IESpawnBoss()
     {
-        yield return new WaitUntil(()=> meleeDead == TotalMelee && rangeDead == TotalRange);
+        yield return new WaitUntil(()=> meleeDead == TotalMelee && rangeDead == TotalRange && TotalBoss >0);
         SpawnEnemyAmount(EnemyType.Boss, 1);
     }
 
@@ -190,12 +187,10 @@ public class LevelManager : Singleton<LevelManager>
     {
         if(enemyType == EnemyType.Melee)
         {
-            
             return  meleeDead + meleeCouter < TotalMelee;
         }
         else if(enemyType == EnemyType.Range)
         {
-           
             return rangeDead + rangeCouter< TotalRange ;
         }
         
@@ -211,11 +206,27 @@ public class LevelManager : Singleton<LevelManager>
             return  bossDead+ bossCouter < TotalBoss;
         }
     }
+    public void SpawnLoot(Transform tf)
+    {
+        float random = Random.Range(0, 1);
+        if(random<Constant.RATE_LOOT_HP)
+        {
+            LootHP lootHP  = SimplePool.Spawn<LootHP>(PoolType.LootHP, tf.position, Quaternion.identity);
+            lootHP.OnInit();
+            
+        }
+        else if(random < Constant.RATE_LOOT_HP*2)
+        {
+            LootSpeed lootSpeed = SimplePool.Spawn<LootSpeed>(PoolType.LootSpeed, tf.position, Quaternion.identity);
+            lootSpeed.OnInit();
+        }
+    }
     public void SpawnWhileEnemyDead(EnemyType enemyType)
     {
         if(CheckSpawn(enemyType))
         {
             SpawnEnemyAmount(enemyType, 1);
+            
         }
     }
     public void SpawnEnemyAmount(EnemyType enemyType, int amount)

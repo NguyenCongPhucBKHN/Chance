@@ -335,8 +335,9 @@ public enum PoolType
     HitSlash,
     hitAttackWall,
     hitBulletWall,
-
-    UICombatText
+    UICombatText,
+    LootHP,
+    LootSpeed
     // Bullet_1,
     // Bullet_2,
     // Bullet_3,

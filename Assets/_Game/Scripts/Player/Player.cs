@@ -61,6 +61,7 @@ public class Player : Character, IHitBullet
     private float rotationTimer =0;
     private Hit hitBullet;
     private float timer;
+    private float normalSpeed;
     public  void Awake() 
     {
         inputActions = new PlayerControllAction();
@@ -91,6 +92,8 @@ public class Player : Character, IHitBullet
         aoeAction = inputActions.Player.AOE;
         aoeAction.performed += OnAOEAction;
         aoeAction.Enable();
+
+        normalSpeed = speed;
         
         OnInit();
      
@@ -488,7 +491,24 @@ public class Player : Character, IHitBullet
         aoeVFX.SetActive(false);
     }
 
+    public void IncreaseHP( float value)
+    {
+        hp += value;
+        healthBar.IncreaseHealth(value);
+        healthBar.HandleHealthBar();
+    }
 
+    public void IncreaseSpeed (float value)
+    {
+        speed += value;
+        Invoke(nameof(ResetSpeed), 10f);
 
+    }
+
+    public void ResetSpeed()
+    {
+        speed = normalSpeed;
+    }
+    
 
 }
